@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>21st Corps Nova - Marines Galactiques</title>
+<title>21st Corps Nova — Marines Galactiques</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -741,6 +741,76 @@
   .grade-off { background: rgba(107,33,66,.06) !important; }
   .grade-so  { background: rgba(107,33,66,.03) !important; }
 
+  /* ── ZONES IMAGE ── */
+  .img-zone {
+    width: 100%;
+    margin: 32px 0;
+    position: relative;
+    overflow: hidden;
+    background: var(--bordeaux-x);
+  }
+
+  .img-zone img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: .92;
+  }
+
+  .img-zone .img-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 10px 20px;
+    background: linear-gradient(transparent, rgba(20,5,15,.75));
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: rgba(245,240,235,.7);
+    text-transform: uppercase;
+  }
+
+  .img-zone.hero { height: 360px; }
+  .img-zone.medium { height: 260px; }
+  .img-zone.small { height: 180px; }
+
+  .img-placeholder {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--bordeaux-x), #1a0610);
+    border: 1px dashed rgba(201,168,76,.25);
+    color: rgba(201,168,76,.4);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .img-placeholder .ph-icon {
+    font-size: 28px;
+    opacity: .4;
+  }
+
+  .img-placeholder.hero { height: 360px; }
+  .img-placeholder.medium { height: 260px; }
+  .img-placeholder.small { height: 180px; }
+
+  .img-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 32px 0;
+  }
+
+  .img-grid .img-zone,
+  .img-grid .img-placeholder { margin: 0; }
+
   /* ── RULE ── */
   .rule {
     height: 1px;
@@ -800,6 +870,79 @@
 
   .page.active .content { animation: fadeIn .3s ease; }
   .page.active .page-header { animation: fadeIn .2s ease; }
+
+  /* ── TIMELINE ── */
+  .timeline { position:relative; padding-left:32px; margin:32px 0; }
+  .timeline::before { content:''; position:absolute; left:8px; top:0; bottom:0; width:2px; background:linear-gradient(to bottom, var(--bordeaux-l), transparent); }
+  .tl-item { position:relative; margin-bottom:32px; }
+  .tl-dot { position:absolute; left:-28px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--bordeaux); border:2px solid var(--bordeaux-l); }
+  .tl-year { font-family:'Cinzel',serif; font-size:10px; letter-spacing:3px; color:var(--or); text-transform:uppercase; margin-bottom:4px; }
+  .tl-battle { font-family:'Cinzel',serif; font-size:14px; font-weight:700; color:var(--bordeaux-d); margin-bottom:6px; }
+  .tl-desc { font-size:15px; line-height:1.7; color:var(--texte); font-weight:300; }
+  .tl-badge { display:inline-block; font-family:'Cinzel',serif; font-size:9px; letter-spacing:2px; padding:2px 8px; border:1px solid var(--bordeaux-l); color:var(--bordeaux-l); text-transform:uppercase; margin-bottom:6px; }
+
+  /* ── TOMES CARDS ── */
+  .tome-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:24px 0; }
+  .tome-card { border:1px solid rgba(107,33,66,.2); background:var(--creme-alt); transition:all .2s; }
+  .tome-card:hover { border-color:var(--bordeaux); transform:translateY(-2px); }
+  .tome-card-header { background:var(--bordeaux-d); padding:16px 20px; overflow:hidden; }
+  .tome-card-num { font-family:'Cinzel',serif; font-size:28px; font-weight:900; color:rgba(245,240,235,.15); float:right; line-height:1; }
+  .tome-card-label { font-family:'Cinzel',serif; font-size:9px; letter-spacing:3px; color:var(--or); text-transform:uppercase; }
+  .tome-card-title { font-family:'Cinzel',serif; font-size:13px; color:var(--creme); font-weight:700; margin-top:4px; line-height:1.4; }
+  .tome-card-body { padding:16px 20px; }
+  .tome-card-desc { font-size:14px; line-height:1.7; color:var(--texte-sec); margin-bottom:12px; font-weight:300; }
+  .tome-card-audience { font-family:'Cinzel',serif; font-size:10px; letter-spacing:2px; color:var(--bordeaux); text-transform:uppercase; margin-bottom:12px; display:block; }
+  .tome-btn { display:block; text-align:center; padding:10px; background:var(--bordeaux-d); color:var(--or); font-family:'Cinzel',serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; text-decoration:none; transition:all .2s; border:none; width:100%; cursor:pointer; }
+  .tome-btn:hover { background:var(--bordeaux); }
+
+  /* ── RADIO TABLE ── */
+  .radio-section-title { font-family:'Cinzel',serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--bordeaux); background:var(--creme-alt); padding:10px 16px; border-left:3px solid var(--bordeaux); margin:24px 0 0; }
+  .radio-table { width:100%; border-collapse:collapse; margin-bottom:8px; }
+  .radio-table tr { border-bottom:1px solid rgba(107,33,66,.08); }
+  .radio-table tr:nth-child(even) { background:rgba(107,33,66,.02); }
+  .radio-table td { padding:10px 16px; font-size:14px; line-height:1.6; vertical-align:top; }
+  .radio-table td:first-child { font-family:'Cinzel',serif; font-weight:700; color:var(--bordeaux-d); font-size:12px; letter-spacing:1px; width:140px; }
+  .radio-table td:nth-child(2) { font-style:italic; color:var(--bordeaux-l); width:200px; font-size:13px; font-weight:300; }
+  .radio-table td:last-child { color:var(--texte-sec); font-size:13px; font-weight:300; }
+
+  /* ── RECRUTEMENT ── */
+  .etape { display:flex; gap:20px; margin:24px 0; align-items:flex-start; }
+  .etape-num { font-family:'Cinzel',serif; font-size:36px; font-weight:900; color:var(--bordeaux-l); opacity:.3; line-height:1; flex-shrink:0; width:44px; text-align:right; }
+  .etape-content { flex:1; border-left:2px solid rgba(107,33,66,.15); padding-left:20px; }
+  .etape-title { font-family:'Cinzel',serif; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--bordeaux); margin-bottom:8px; font-weight:700; }
+  .etape p { margin-bottom:0; font-size:15px; }
+  .disqualif { background:rgba(139,0,0,.04); border-left:3px solid rgba(139,0,0,.4); padding:12px 20px; margin:8px 0; }
+  .disqualif p { color:#5a0000; font-size:14px; margin:0; font-weight:300; }
+
+  /* ── VENATOR ZONES ── */
+  .zone-card { margin:16px 0; border:1px solid rgba(107,33,66,.15); }
+  .zone-header { background:var(--bordeaux-d); padding:12px 20px; display:flex; justify-content:space-between; align-items:center; }
+  .zone-name { font-family:'Cinzel',serif; font-size:13px; letter-spacing:2px; color:var(--creme); font-weight:700; text-transform:uppercase; }
+  .zone-acces { font-family:'Cinzel',serif; font-size:9px; letter-spacing:2px; padding:3px 10px; border:1px solid; text-transform:uppercase; }
+  .zone-acces.all { border-color:#4aaa88; color:#4aaa88; }
+  .zone-acces.so { border-color:var(--or); color:var(--or); }
+  .zone-acces.off { border-color:#cc6666; color:#cc6666; }
+  .zone-body { padding:14px 20px; font-size:15px; line-height:1.7; font-weight:300; }
+
+  /* ── LEXIQUE ── */
+  .lex-table { width:100%; border-collapse:collapse; margin:16px 0; }
+  .lex-table tr { border-bottom:1px solid rgba(107,33,66,.08); }
+  .lex-table tr:nth-child(even) { background:rgba(107,33,66,.02); }
+  .lex-table td { padding:10px 16px; font-size:15px; line-height:1.6; vertical-align:top; }
+  .lex-table td:first-child { font-family:'Cinzel',serif; font-weight:700; color:var(--bordeaux-d); font-size:13px; letter-spacing:1px; width:180px; }
+  .lex-table td:last-child { font-weight:300; color:var(--texte); }
+
+  /* ── MOT DU COMMANDANT ── */
+  .mot-cmd { background:linear-gradient(135deg, var(--bordeaux-x), var(--bordeaux-d)); padding:48px; margin:32px 0; position:relative; overflow:hidden; }
+  .mot-cmd::before { content:'\201C'; font-family:'Cinzel',serif; font-size:120px; color:rgba(201,168,76,.07); position:absolute; top:-10px; left:20px; line-height:1; pointer-events:none; }
+  .mot-cmd-text { font-family:'Crimson Pro',serif; font-size:19px; font-style:italic; color:rgba(245,240,235,.8); line-height:1.9; font-weight:300; position:relative; }
+  .mot-cmd-sig { font-family:'Cinzel',serif; font-size:11px; letter-spacing:3px; color:var(--or); margin-top:20px; text-transform:uppercase; position:relative; }
+
+  /* ── CITATIONS MEMBRES ── */
+  .citation-membre { margin:20px 0; padding:20px 24px 20px 48px; background:var(--creme-alt); border-left:2px solid var(--bordeaux-l); position:relative; }
+  .citation-membre::before { content:'\201C'; font-family:'Cinzel',serif; font-size:40px; color:var(--bordeaux-l); opacity:.25; position:absolute; left:12px; top:8px; line-height:1; }
+  .citation-membre-text { font-size:16px; font-style:italic; color:var(--bordeaux-d); line-height:1.7; font-weight:300; }
+  .citation-membre-source { font-family:'Cinzel',serif; font-size:10px; letter-spacing:2px; color:var(--texte-sec); margin-top:8px; text-transform:uppercase; }
 </style>
 </head>
 <body>
@@ -811,7 +954,7 @@
   <div class="logo-block">
     <div class="logo-num">21</div>
     <span class="logo-st">Corps Nova</span>
-    <span class="logo-sub">Marines Galactiques<br>4e Armée de Secteur - GAR</span>
+    <span class="logo-sub">Marines Galactiques<br>4e Armée de Secteur — GAR</span>
   </div>
 
   <div class="nav-group">
@@ -851,12 +994,54 @@
 
   <div class="nav-group">
     <div class="nav-group-label">Mémoire</div>
+    <a class="nav-link sub" onclick="show('timeline')">Timeline des batailles</a>
     <a class="nav-link sub" onclick="show('memorial')">Mémorial</a>
     <a class="nav-link sub" onclick="show('medailles')">Médailles</a>
     <a class="nav-link sub" onclick="show('histoires')">Histoires</a>
   </div>
 
-  <div class="sidebar-footer">Usage interne - CC-1138</div>
+  <div class="nav-group">
+    <div class="nav-group-label">Opérations</div>
+    <a class="nav-link sub" onclick="show('venator')">Le Venator</a>
+    <a class="nav-link sub" onclick="show('radio')">Glossaire radio</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Recrutement</div>
+    <a class="nav-link" onclick="show('recrutement')">Rejoindre le 21st</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Référence</div>
+    <a class="nav-link sub" onclick="show('lexique')">Lexique</a>
+    <a class="nav-link sub" onclick="show('tomes')">Manuels opérationnels</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Unités</div>
+    <a class="nav-link sub" onclick="show('specialisations')">Spécialisations</a>
+    <a class="nav-link sub" onclick="show('keller')">Compagnie Keller</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Rejoindre</div>
+    <a class="nav-link" onclick="show('recrutement')">Recrutement & FAQ</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Opérations</div>
+    <a class="nav-link sub" onclick="show('venator')">Le Venator</a>
+    <a class="nav-link sub" onclick="show('radio')">Glossaire radio</a>
+    <a class="nav-link sub" onclick="show('timeline')">Timeline des batailles</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Référence</div>
+    <a class="nav-link sub" onclick="show('lexique')">Lexique</a>
+    <a class="nav-link sub" onclick="show('commandant')">Mot du Commandant</a>
+  </div>
+
+  <div class="sidebar-footer">Usage interne — CC-1138</div>
 </nav>
 
 <!-- ══════════════════════════════════════════════════════════
@@ -871,7 +1056,7 @@
     <div class="cover-st">Corps Nova</div>
     <div class="cover-rule"></div>
     <div class="cover-title">Marines Galactiques</div>
-    <div class="cover-army">4e Armée de Secteur - Grande Armée de la République</div>
+    <div class="cover-army">4e Armée de Secteur — Grande Armée de la République</div>
     <div class="cover-cmd">Commandant Maréchal CC-1138 &nbsp;·&nbsp; "Bacara"</div>
     <div class="cover-quote">Nés pour servir. Forgés pour durer. Ordonnés pour tuer.</div>
     <div style="font-family:'Cinzel',serif; font-size:36px; font-weight:900; color:var(--or); letter-spacing:8px; text-transform:uppercase; margin-top:24px; text-shadow:0 0 60px rgba(201,168,76,.6); position:relative;">Force &amp; Unité</div>
@@ -887,6 +1072,12 @@
   <div class="content">
     <p style="font-size:19px; font-style:italic; color:var(--bordeaux-d); text-align:center; margin:0 0 32px;">Le 21st Corps Nova n'est pas une unité d'élite parce qu'il se le dit.<br>Il l'est parce que la galaxie l'a appris à ses dépens.</p>
 
+    <!-- IMAGE BANNIÈRE ACCUEIL — remplace src="VOTRE_IMAGE" par l'URL de ton image -->
+    <div class="img-zone hero">
+      <img src="VOTRE_IMAGE_ACCUEIL" alt="21st Nova Corps" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder hero\'><span class=\'ph-icon\'>🖼</span><span>Image bannière accueil<br>Remplacer src=&quot;VOTRE_IMAGE_ACCUEIL&quot;</span></div>'">
+      <div class="img-caption">21st Nova Corps — Marines Galactiques</div>
+    </div>
+
     <div class="stat-grid">
       <div class="stat-cell"><span class="stat-val">36 864</span><span class="stat-label">Clones</span></div>
       <div class="stat-cell"><span class="stat-val">16</span><span class="stat-label">Régiments</span></div>
@@ -898,18 +1089,24 @@
 
     <div class="section-title">Fiche d'identification</div>
     <table class="fiche">
-      <tr><td>-</td><td>-</td></tr>
+      <tr><td>—</td><td>—</td></tr>
       <tr><td>Désignation</td><td>21st Nova Corps / Marines Galactiques</td></tr>
       <tr><td>Armée</td><td>4e Armée de Secteur, GAR</td></tr>
-      <tr><td>Effectif théorique</td><td>36 864 clones - 16 régiments</td></tr>
-      <tr><td>Commandant</td><td>CC-1138 "Bacara" - Commandant Maréchal</td></tr>
+      <tr><td>Effectif théorique</td><td>36 864 clones — 16 régiments</td></tr>
+      <tr><td>Commandant</td><td>CC-1138 "Bacara" — Commandant Maréchal</td></tr>
       <tr><td>Général Jedi</td><td>Ki-Adi-Mundi (Maître Jedi, Conseil Jedi)</td></tr>
       <tr><td>Spécialisation</td><td>Assaut multi-environnements, boarding, milieux hostiles</td></tr>
       <tr><td>Armement standard</td><td>DC-15A, DC-15S</td></tr>
-      <tr><td>Véhicules</td><td>UT-AT - marquages violets</td></tr>
+      <tr><td>Véhicules</td><td>UT-AT — marquages violets</td></tr>
       <tr><td>Couleurs</td><td>Bordeaux et blanc</td></tr>
-      <tr><td>Statut</td><td>Actif - Sièges de la Bordure Extérieure</td></tr>
+      <tr><td>Statut</td><td>Actif — Sièges de la Bordure Extérieure</td></tr>
     </table>
+
+    <div class="section-title">Mot du Commandant</div>
+    <div class="mot-cmd">
+      <div class="mot-cmd-text">[ À renseigner par le Commandant Maréchal en exercice ]<br><br>Ce bloc est réservé à une prise de parole personnelle du commandement actuel — vision pour la saison, message aux recrues, rappel de valeurs. Court, dans le ton du Corps. Maximum 5 lignes.</div>
+      <div class="mot-cmd-sig">— CC-1138 &nbsp;·&nbsp; Commandant Maréchal &nbsp;·&nbsp; 21st Corps Nova</div>
+    </div>
   </div>
 </div>
 
@@ -918,42 +1115,48 @@
   <div class="page-header">
     <div class="chapter-label">II · Lore</div>
     <div class="page-title">CC-1138 "Bacara"</div>
-    <div class="page-subtitle">Commandant Maréchal - Marines Galactiques, 21st Nova Corps</div>
+    <div class="page-subtitle">Commandant Maréchal — Marines Galactiques, 21st Nova Corps</div>
   </div>
   <div class="content">
 
     <div class="citation">
-      <div class="citation-text">Je n'hésite pas. Je n'ai jamais hésité. Un ordre du Commandant Suprême est la loi. Quiconque s'y oppose est un ennemi de la République - qu'il porte une armure ou une robe.</div>
-      <div class="citation-source">- CC-1138, après l'Ordre 66, Mygeeto</div>
+      <div class="citation-text">Je n'hésite pas. Je n'ai jamais hésité. Un ordre du Commandant Suprême est la loi. Quiconque s'y oppose est un ennemi de la République — qu'il porte une armure ou une robe.</div>
+      <div class="citation-source">— CC-1138, après l'Ordre 66, Mygeeto</div>
+    </div>
+
+    <!-- IMAGE BACARA — portrait ou screenshot ingame -->
+    <div class="img-zone medium">
+      <img src="VOTRE_IMAGE_BACARA" alt="CC-1138 Bacara" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder medium\'><span class=\'ph-icon\'>🖼</span><span>Portrait CC-1138 &quot;Bacara&quot;<br>Remplacer src=&quot;VOTRE_IMAGE_BACARA&quot;</span></div>'">
+      <div class="img-caption">CC-1138 "Bacara" — Commandant Maréchal</div>
     </div>
 
     <div class="section-title">Origine et formation initiale</div>
     <p>CC-1138 est né dans les cuves de Kamino, clone parmi des millions de l'ADN de Jango Fett. Rien ne le distinguait à la naissance.</p>
     <p>Ce qui l'a séparé de ses frères est arrivé sur les tables de formation.</p>
-    <p>Son instructeur initial n'était pas un Mandalorien. C'était <strong>Cort Davin</strong>, ancien Protecteur de Concord Dawn - un des rares non-Mandalorien recruté par Jango Fett pour le groupe des <em>Cuy'val Dar</em>, les cent instructeurs chargés d'élever la prochaine génération de commandants. Davin lui a transmis quelque chose que les autres clones n'avaient pas : les traditions, l'histoire et la philosophie des Journeyman Protectors de Concord Dawn - des hommes de loi, pas simplement des soldats.</p>
+    <p>Son instructeur initial n'était pas un Mandalorien. C'était <strong>Cort Davin</strong>, ancien Protecteur de Concord Dawn — un des rares non-Mandalorien recruté par Jango Fett pour le groupe des <em>Cuy'val Dar</em>, les cent instructeurs chargés d'élever la prochaine génération de commandants. Davin lui a transmis quelque chose que les autres clones n'avaient pas : les traditions, l'histoire et la philosophie des Journeyman Protectors de Concord Dawn — des hommes de loi, pas simplement des soldats.</p>
     <p>CC-1138 a intégré cette formation comme une identité. Il a commencé à se voir non seulement comme un soldat né pour la guerre, mais comme un <strong>homme de loi et d'ordre</strong>, dont la mission dépasse le champ de bataille.</p>
-    <p>Un effet secondaire de cet enseignement : il a appris le dialecte de Concord Dawn, non le Mando'a standard. Là où ses frères clones disaient <em>"vod"</em> pour frère, lui disait <em>"tat"</em> - le terme des Protecteurs. Cette différence, infime en apparence, l'a progressivement coupé de ses camarades. Les conversations se fragmentaient. L'isolement s'est installé. <strong>CC-1138 est devenu un solitaire.</strong></p>
+    <p>Un effet secondaire de cet enseignement : il a appris le dialecte de Concord Dawn, non le Mando'a standard. Là où ses frères clones disaient <em>"vod"</em> pour frère, lui disait <em>"tat"</em> — le terme des Protecteurs. Cette différence, infime en apparence, l'a progressivement coupé de ses camarades. Les conversations se fragmentaient. L'isolement s'est installé. <strong>CC-1138 est devenu un solitaire.</strong></p>
 
-    <div class="section-title">Le programme ARC - Alpha-17</div>
+    <div class="section-title">Le programme ARC — Alpha-17</div>
     <p>Ses performances sur le terrain lui ont valu une sélection rare : le programme ARC d'Alpha-17.</p>
-    <p>Parmi des millions de clones, seulement une centaine ont été sélectionnés. L'objectif n'était pas de fabriquer des machines plus efficaces. C'était de <strong>réveiller l'individu</strong> - l'initiative tactique, la prise de décision sous pression, la personnalité opérationnelle qu'on avait délibérément étouffée dans la conception originale des clones.</p>
+    <p>Parmi des millions de clones, seulement une centaine ont été sélectionnés. L'objectif n'était pas de fabriquer des machines plus efficaces. C'était de <strong>réveiller l'individu</strong> — l'initiative tactique, la prise de décision sous pression, la personnalité opérationnelle qu'on avait délibérément étouffée dans la conception originale des clones.</p>
     <p>Les autres diplômés du programme sont connus : <strong>Cody</strong> (7e Corps du Ciel), <strong>Gree</strong> (41e Corps d'Élite), <strong>Bly</strong> (327e Corps des Étoiles), <strong>Neyo</strong> (91e Corps de Reconnaissance). CC-1138 a terminé le programme <strong>en avance</strong>.</p>
     <p>C'est dans ce programme qu'il a choisi son nom : <strong>Bacara.</strong> Ce nom n'est pas expliqué dans les archives. Il ne devait pas l'être. Bacara ne s'explique pas.</p>
     <p>Son passage par le programme ARC a amplifié ce que Davin avait planté : une rigueur absolue, une exigence maximale, une intransigeance sur les standards. Ce n'est pas de l'arrogance. C'est le résultat d'un homme qui a compris que la médiocrité tue ses hommes.</p>
 
     <div class="section-title">La transformation du 21st</div>
     <p>Quand Bacara reprend la tête du 21st Nova Corps après sa formation ARC, il ne dirige plus une unité. Il la <strong>refond.</strong></p>
-    <p>Sa méthode est simple et sans appel : tout Marine du 21st doit atteindre un niveau d'excellence absolu. Ceux qui n'y arrivent pas ne restent pas. Bacara <strong>réaffecte unilatéralement</strong> tout clone qui ne répond pas à ses standards - sans discussion, sans délai, sans appel. Ki-Adi-Mundi a protesté à plusieurs reprises contre ces décisions. Bacara a maintenu chaque réaffectation.</p>
+    <p>Sa méthode est simple et sans appel : tout Marine du 21st doit atteindre un niveau d'excellence absolu. Ceux qui n'y arrivent pas ne restent pas. Bacara <strong>réaffecte unilatéralement</strong> tout clone qui ne répond pas à ses standards — sans discussion, sans délai, sans appel. Ki-Adi-Mundi a protesté à plusieurs reprises contre ces décisions. Bacara a maintenu chaque réaffectation.</p>
     <p>Ce n'est pas de la cruauté. C'est de la logique : un clone sous-performant dans le 21st met en danger tous ses frères. Le supprimer de l'équation est un acte de protection, pas de punition.</p>
-    <p>La 21st devient alors une machine. Les Marines ne sont pas des individus dans leurs fonctions - ils sont des composantes d'un système conçu pour l'objectif. Ce standard brutal, appliqué sans exception pendant des années de guerre, a produit l'une des unités les plus redoutées de la GAR.</p>
+    <p>La 21st devient alors une machine. Les Marines ne sont pas des individus dans leurs fonctions — ils sont des composantes d'un système conçu pour l'objectif. Ce standard brutal, appliqué sans exception pendant des années de guerre, a produit l'une des unités les plus redoutées de la GAR.</p>
 
     <div class="section-title">La relation avec Ki-Adi-Mundi</div>
     <p>Bacara et Ki-Adi-Mundi ne se sont jamais aimés. Ils se sont <strong>respectés.</strong></p>
-    <p>Le Maître Jedi trouvait les méthodes de Bacara trop dures, ses réaffectations injustes, sa froideur inquiétante. Bacara trouvait Ki-Adi-Mundi trop attaché à chaque clone individuel - une sentimentalité qui, selon lui, compromettait le jugement tactique.</p>
+    <p>Le Maître Jedi trouvait les méthodes de Bacara trop dures, ses réaffectations injustes, sa froideur inquiétante. Bacara trouvait Ki-Adi-Mundi trop attaché à chaque clone individuel — une sentimentalité qui, selon lui, compromettait le jugement tactique.</p>
     <p>Pourtant, Mundi reconnaissait ouvertement le talent de Bacara. Il a décrit ses tactiques agressives comme <em>"prodigieuses"</em>. Il lui a confié la direction tactique des Marines dans les situations les plus critiques. Et jusqu'à la fin, il a combattu à ses côtés.</p>
     <p>Leur relation était professionnelle dans le sens le plus pur du terme : efficace, fonctionnelle, mutuellement respectueuse, et sans chaleur.</p>
 
-    <div class="section-title">L'Ordre 66 - Mygeeto, 19 BBY</div>
+    <div class="section-title">L'Ordre 66 — Mygeeto, 19 BBY</div>
     <p>Le 19 BBY, sur les ponts de glace de Mygeeto, pendant que les Marines repoussaient les forces séparatistes, Bacara reçoit une transmission directe de Darth Sidious.</p>
     <div class="ordre66"><div class="ordre66-text">Ordre 66</div></div>
     <p>Il a hésité une seconde, selon ses propres mots. Pas parce qu'il ne voulait pas obéir. Parce qu'il ne s'y attendait pas. L'idée qu'un Jedi du Conseil puisse être un traître lui avait semblé absurde.</p>
@@ -961,24 +1164,24 @@
     <p>Bacara a posé son regard sur Ki-Adi-Mundi, qui menait la charge contre des droïdes à dix mètres de lui. Il a levé le bras. Ses Marines ont ouvert le feu. Ki-Adi-Mundi a tenté de se défendre. Il a été submergé sous les tirs croisés de ses propres hommes. Bacara a rendu compte de l'exécution. Sans commentaire.</p>
     <p>Dans les archives post-guerre, il a déclaré qu'il était soulagé. Qu'il avait pensé à tous ses hommes morts sous le commandement de Mundi. Que s'il avait su que les Jedi préparaient un coup d'État, il aurait exécuté Mundi bien plus tôt. Cette déclaration est authentique. Elle n'est pas de la propagande impériale. <strong>C'est Bacara.</strong></p>
 
-    <div class="section-title">Après la guerre - L'Empire</div>
-    <p>Le 21st Nova Corps est devenu les <strong>Marines Galactiques Impériaux</strong> avec la proclamation de l'Empire. L'armure de la 21st - avec sa visière hermétique filtrante, son isolation thermique et sa conception pour environnements extrêmes - a directement inspiré le design des <strong>Snowtroopers de l'Empire</strong>. Le 21st ne disparaît pas. Il se transforme. L'uniforme change. La mission ne change pas.</p>
+    <div class="section-title">Après la guerre — L'Empire</div>
+    <p>Le 21st Nova Corps est devenu les <strong>Marines Galactiques Impériaux</strong> avec la proclamation de l'Empire. L'armure de la 21st — avec sa visière hermétique filtrante, son isolation thermique et sa conception pour environnements extrêmes — a directement inspiré le design des <strong>Snowtroopers de l'Empire</strong>. Le 21st ne disparaît pas. Il se transforme. L'uniforme change. La mission ne change pas.</p>
 
     <div class="section-title">Fiche officielle</div>
     <table class="fiche">
-      <tr><td>-</td><td>-</td></tr>
+      <tr><td>—</td><td>—</td></tr>
       <tr><td>Désignation</td><td>CC-1138</td></tr>
       <tr><td>Nom de guerre</td><td>Bacara</td></tr>
       <tr><td>Rang</td><td>Commandant Maréchal</td></tr>
       <tr><td>Instructeur initial</td><td>Cort Davin (ex-Protecteur Concord Dawn, Cuy'val Dar)</td></tr>
-      <tr><td>Formation avancée</td><td>Programme ARC - sous direction d'Alpha-17</td></tr>
+      <tr><td>Formation avancée</td><td>Programme ARC — sous direction d'Alpha-17</td></tr>
       <tr><td>Langue opérationnelle</td><td>Dialecte Concordien (non Mando'a standard)</td></tr>
-      <tr><td>Terme "frère"</td><td>"tat" (Concordien) - non "vod" (Mandalorien)</td></tr>
+      <tr><td>Terme "frère"</td><td>"tat" (Concordien) — non "vod" (Mandalorien)</td></tr>
       <tr><td>Ami proche</td><td>CC-8826 "Neyo", 91e Corps de Reconnaissance</td></tr>
       <tr><td>Armement</td><td>DC-15A, DC-15S carbine, DC-17 (occasionnel)</td></tr>
       <tr><td>Équipements distinctifs</td><td>Kama, épaulière bordeaux, bandoulière, chauffage dorsal</td></tr>
       <tr><td>Général assigné</td><td>Ki-Adi-Mundi (Maître Jedi, Conseil Jedi)</td></tr>
-      <tr><td>Dernière opération</td><td>Mygeeto - Ordre 66, 19 BBY</td></tr>
+      <tr><td>Dernière opération</td><td>Mygeeto — Ordre 66, 19 BBY</td></tr>
     </table>
   </div>
 </div>
@@ -988,35 +1191,41 @@
   <div class="page-header">
     <div class="chapter-label">III · Lore</div>
     <div class="page-title">Le 21st Nova Corps</div>
-    <div class="page-subtitle">Historique de l'unité - Canon & Legends</div>
+    <div class="page-subtitle">Historique de l'unité — Canon & Legends</div>
   </div>
   <div class="content">
     <div class="section-title">Origine</div>
     <p>Le 21st Nova Corps est une subdivision de la <strong>4e Armée de Secteur</strong> de la Grande Armée de la République. Constitué à Kamino à partir de clones de Jango Fett, il a été rendu indépendant sous commandement conjoint du Général Jedi Ki-Adi-Mundi et du Commandant Maréchal CC-1138 "Bacara". Cette indépendance lui a valu son nom opérationnel : <strong>les Marines Galactiques.</strong></p>
+
+    <!-- IMAGE UNITÉ — photo de groupe ou formation ingame -->
+    <div class="img-zone hero">
+      <img src="VOTRE_IMAGE_UNITE" alt="21st Nova Corps en formation" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder hero\'><span class=\'ph-icon\'>🖼</span><span>Photo de groupe / formation ingame<br>Remplacer src=&quot;VOTRE_IMAGE_UNITE&quot;</span></div>'">
+      <div class="img-caption">21st Nova Corps — En opération</div>
+    </div>
 
     <div class="section-title">Structure</div>
     <p>Un Corps dans la GAR représente <strong>36 864 soldats</strong>, répartis en <strong>seize régiments</strong>. Les Marines Galactiques étaient entraînés en trois phases distinctes :</p>
     <table class="dtable">
       <thead><tr><td>Phase</td><td>Contenu</td></tr></thead>
       <tbody>
-        <tr><td>Phase I - Conditionnement</td><td>Résistance aux conditions extrêmes. Endurance prolongée. Autonomie complète dans les environnements hostiles (froid, chaleur, toxiques, vide spatial).</td></tr>
-        <tr><td>Phase II - Boarding et assaut spatial</td><td>Prise d'assaut de vaisseaux ennemis. Combat en gravité réduite ou nulle. Sécurisation de cibles mobiles dans l'espace.</td></tr>
-        <tr><td>Phase III - Précision armement</td><td>Maîtrise du DC-15A et DC-15S. Tir de précision sous stress opérationnel et conditions de visibilité réduite.</td></tr>
+        <tr><td>Phase I — Conditionnement</td><td>Résistance aux conditions extrêmes. Endurance prolongée. Autonomie complète dans les environnements hostiles (froid, chaleur, toxiques, vide spatial).</td></tr>
+        <tr><td>Phase II — Boarding et assaut spatial</td><td>Prise d'assaut de vaisseaux ennemis. Combat en gravité réduite ou nulle. Sécurisation de cibles mobiles dans l'espace.</td></tr>
+        <tr><td>Phase III — Précision armement</td><td>Maîtrise du DC-15A et DC-15S. Tir de précision sous stress opérationnel et conditions de visibilité réduite.</td></tr>
       </tbody>
     </table>
 
     <div class="section-title">L'armure</div>
-    <p>L'armure des Marines Galactiques est une variante de l'armure Phase II des clones, reconnaissable entre toutes. Sa caractéristique principale est la <strong>visière en synthmesh</strong> - un masque filtrant conçu pour protéger de la neige, des cendres, des spores fongiques, des gaz acides, et des particules abrasives. Les couleurs sont <strong>bordeaux et blanc</strong>. Les véhicules assignés portent des marquages violets.</p>
+    <p>L'armure des Marines Galactiques est une variante de l'armure Phase II des clones, reconnaissable entre toutes. Sa caractéristique principale est la <strong>visière en synthmesh</strong> — un masque filtrant conçu pour protéger de la neige, des cendres, des spores fongiques, des gaz acides, et des particules abrasives. Les couleurs sont <strong>bordeaux et blanc</strong>. Les véhicules assignés portent des marquages violets.</p>
     <p>Cette armure n'est pas un symbole. C'est un outil. Son influence sur l'armement impérial est directe : les <strong>Snowtroopers de l'Empire</strong> portent une armure dérivée de la conception du 21st.</p>
 
-    <div class="section-title">Réputation - Les batailles fondatrices</div>
-    <div class="subsection-title">New Bornalex - La naissance d'une légende</div>
-    <p>À mi-bataille, le prototype d'armure spatiale subi une défaillance complète. Les systèmes d'armes tombent en panne. Le 21st se retrouve face à des super droïdes de combat B2, sans armement fonctionnel. Un autre commandant aurait ordonné le repli. <strong>Bacara a ordonné l'assaut.</strong> Les Marines ont engagé les droïdes à mains nues - utilisant la force amplifiée de leurs combinaisons pour les démembrer. Ils ont gagné. Aucune autre unité n'avait fait quelque chose de comparable.</p>
+    <div class="section-title">Réputation — Les batailles fondatrices</div>
+    <div class="subsection-title">New Bornalex — La naissance d'une légende</div>
+    <p>À mi-bataille, le prototype d'armure spatiale subi une défaillance complète. Les systèmes d'armes tombent en panne. Le 21st se retrouve face à des super droïdes de combat B2, sans armement fonctionnel. Un autre commandant aurait ordonné le repli. <strong>Bacara a ordonné l'assaut.</strong> Les Marines ont engagé les droïdes à mains nues — utilisant la force amplifiée de leurs combinaisons pour les démembrer. Ils ont gagné. Aucune autre unité n'avait fait quelque chose de comparable.</p>
 
     <div class="subsection-title">Rhen Var, Aargonar, Boz Pity</div>
-    <p>Trois théâtres différents, trois environnements opposés - la neige et les montagnes de Rhen Var, la boue d'Aargonar, les conditions de Boz Pity. Le 21st opère avec la même efficacité dans chacun. C'est ça, un Corps multi-environnements.</p>
+    <p>Trois théâtres différents, trois environnements opposés — la neige et les montagnes de Rhen Var, la boue d'Aargonar, les conditions de Boz Pity. Le 21st opère avec la même efficacité dans chacun. C'est ça, un Corps multi-environnements.</p>
 
-    <div class="subsection-title">Mygeeto - Siège prolongé, 19 BBY</div>
+    <div class="subsection-title">Mygeeto — Siège prolongé, 19 BBY</div>
     <p>Pendant les Sièges de la Bordure Extérieure, le 21st est déployé sur Mygeeto pour briser les fortifications de la Confédération liées au Clan Bancaire InterGalactique. C'est un siège urbain dans une cité cristalline. La progression est lente. Elle ne s'arrête jamais. Sur les ponts de glace, l'Ordre 66 est reçu. Ce qui suit est entré dans l'histoire.</p>
 
     <div class="section-title">Héritage</div>
@@ -1029,13 +1238,13 @@
   <div class="page-header">
     <div class="chapter-label">IV · Lore</div>
     <div class="page-title">Théâtres d'opération</div>
-    <div class="page-subtitle">Sources primaires - Canon (C) et Legends (L) séparés</div>
+    <div class="page-subtitle">Sources primaires — Canon (C) et Legends (L) séparés</div>
   </div>
   <div class="content">
 
     <div class="theatre">
       <div class="theatre-header"><div class="theatre-name">New Bornalex</div><div class="theatre-badge">Legends</div></div>
-      <div class="theatre-meta">Environnement : Combat mécanisé - forces CSI + Mandalorians</div>
+      <div class="theatre-meta">Environnement : Combat mécanisé — forces CSI + Mandalorians</div>
       <div class="theatre-body">Premier déploiement majeur avec l'armure prototype spacetrooper. Défaillance complète des armes en cours de bataille. Combat à mains nues contre super droïdes B2. Victoire. C'est sur ce théâtre que la réputation du 21st est née.</div>
       <div class="theatre-result">Résultat : Victoire République</div>
     </div>
@@ -1043,7 +1252,7 @@
     <div class="theatre">
       <div class="theatre-header"><div class="theatre-name">Rhen Var</div><div class="theatre-badge">Legends</div></div>
       <div class="theatre-meta">Environnement : Monde glaciaire, montagneux, hostile</div>
-      <div class="theatre-body">Campagne dans les pics enneigés. Conditions extrêmes. Le 21st opère sans adaptation de doctrine - l'environnement est son terrain natal.</div>
+      <div class="theatre-body">Campagne dans les pics enneigés. Conditions extrêmes. Le 21st opère sans adaptation de doctrine — l'environnement est son terrain natal.</div>
       <div class="theatre-result">Résultat : Victoire République</div>
     </div>
 
@@ -1058,7 +1267,7 @@
       <div class="theatre-header"><div class="theatre-name">Boz Pity</div><div class="theatre-badge">Legends</div></div>
       <div class="theatre-meta">Environnement : Planète Bordure Extérieure</div>
       <div class="theatre-body">Campagne lors des Sièges de la Bordure Extérieure. Bacara, Mundi et la Jedi Knight Rivi-Anu participent à une opération sur un Venator endommagé. Rivi-Anu sacrifie sa vie pour maintenir le vaisseau en vol assez longtemps pour évacuer les forces républicaines.</div>
-      <div class="theatre-result">Résultat : Victoire République - perte de Rivi-Anu (Jedi Knight)</div>
+      <div class="theatre-result">Résultat : Victoire République — perte de Rivi-Anu (Jedi Knight)</div>
     </div>
 
     <div class="theatre">
@@ -1069,17 +1278,17 @@
     </div>
 
     <div class="theatre">
-      <div class="theatre-header"><div class="theatre-name">Mygeeto - 19 BBY</div><div class="theatre-badge">Canon + Legends</div></div>
+      <div class="theatre-header"><div class="theatre-name">Mygeeto — 19 BBY</div><div class="theatre-badge">Canon + Legends</div></div>
       <div class="theatre-meta">Environnement : Cité cristalline, ponts de glace, combat urbain</div>
       <div class="theatre-body">Théâtre principal de la fin de guerre. Siège prolongé des fortifications de la Confédération liées au Clan Bancaire InterGalactique. La 501e Légion est détachée pour l'Opération Hammertong. Bacara maintient la pression sur les lignes séparatistes. Réception de l'Ordre 66. Exécution de Ki-Adi-Mundi.</div>
-      <div class="theatre-result">Résultat : Victoire République / Empire - Ordre 66 exécuté</div>
+      <div class="theatre-result">Résultat : Victoire République / Empire — Ordre 66 exécuté</div>
     </div>
 
     <div class="theatre">
-      <div class="theatre-header"><div class="theatre-name">Toola - Simultané à Mygeeto</div><div class="theatre-badge">Legends</div></div>
+      <div class="theatre-header"><div class="theatre-name">Toola — Simultané à Mygeeto</div><div class="theatre-badge">Legends</div></div>
       <div class="theatre-meta">Environnement : Plaines glacées, arctique</div>
       <div class="theatre-body">Détachements du 21st sous le Commandant Keller déployés sur Toola. Réception de l'Ordre 66. Le Jedi Général Kai Hudorra (Bothan) parvient à s'échapper. Le 21st le pourchasse jusqu'à la station Ithaqua en STAP. Il échappe vers Coruscant.</div>
-      <div class="theatre-result">Résultat : Ordre 66 partiellement exécuté - cible Jedi non neutralisée</div>
+      <div class="theatre-result">Résultat : Ordre 66 partiellement exécuté — cible Jedi non neutralisée</div>
     </div>
 
   </div>
@@ -1101,14 +1310,14 @@
 
     <div class="section-title">L'héritage de Bacara</div>
     <p>Tout ce que le 21st est aujourd'hui vient d'un homme.</p>
-    <p>Bacara n'a pas construit le 21st par affection pour ses hommes. Il l'a construit par conviction : un soldat médiocre est une menace pour ses camarades. L'élever ou le retirer sont les deux seules réponses acceptables. La tolérance n'est pas une vertu - c'est une lâcheté déguisée en compassion.</p>
-    <p>Ce que Bacara a hérité de Cort Davin - la discipline de l'homme de loi, le respect de l'ordre, la conviction que les règles ne sont pas négociables - il l'a traduit en doctrine militaire. Un Marine du 21st n'obéit pas parce qu'on lui dit d'obéir. Il obéit parce qu'il a <strong>compris</strong> que la chaîne de commandement est la seule chose qui transforme des individus en force de combat.</p>
+    <p>Bacara n'a pas construit le 21st par affection pour ses hommes. Il l'a construit par conviction : un soldat médiocre est une menace pour ses camarades. L'élever ou le retirer sont les deux seules réponses acceptables. La tolérance n'est pas une vertu — c'est une lâcheté déguisée en compassion.</p>
+    <p>Ce que Bacara a hérité de Cort Davin — la discipline de l'homme de loi, le respect de l'ordre, la conviction que les règles ne sont pas négociables — il l'a traduit en doctrine militaire. Un Marine du 21st n'obéit pas parce qu'on lui dit d'obéir. Il obéit parce qu'il a <strong>compris</strong> que la chaîne de commandement est la seule chose qui transforme des individus en force de combat.</p>
 
     <div class="section-title">Les trois piliers</div>
     <div class="pilier">
       <div class="pilier-num">I</div>
       <div class="pilier-title">La mission prime</div>
-      <p>Aucune considération - ni personnelle, ni émotionnelle, ni relationnelle - n'entre en conflit avec l'accomplissement de la mission. Un frère blessé est évacué si cela ne compromet pas l'objectif. Si l'objectif l'exige, il reste en position.</p>
+      <p>Aucune considération — ni personnelle, ni émotionnelle, ni relationnelle — n'entre en conflit avec l'accomplissement de la mission. Un frère blessé est évacué si cela ne compromet pas l'objectif. Si l'objectif l'exige, il reste en position.</p>
     </div>
     <div class="pilier">
       <div class="pilier-num">II</div>
@@ -1118,7 +1327,7 @@
     <div class="pilier">
       <div class="pilier-num">III</div>
       <div class="pilier-title">La froideur est une compétence</div>
-      <p>Un Marine qui panique compromet ses camarades. Un Marine qui hésite compromet sa mission. L'absence d'émotion opérationnelle - la capacité à traiter une situation de crise comme un problème technique à résoudre - est une compétence qui s'entraîne, se maintient, et se perd si elle n'est pas entretenue.</p>
+      <p>Un Marine qui panique compromet ses camarades. Un Marine qui hésite compromet sa mission. L'absence d'émotion opérationnelle — la capacité à traiter une situation de crise comme un problème technique à résoudre — est une compétence qui s'entraîne, se maintient, et se perd si elle n'est pas entretenue.</p>
     </div>
 
     <div class="section-title">Ce que nous ne sommes pas</div>
@@ -1127,9 +1336,9 @@
 
     <div class="section-title">La fraternité selon le 21st</div>
     <p>La fraternité du 21st n'est pas la camaraderie chaleureuse de certaines unités. Elle est plus profonde et plus froide à la fois.</p>
-    <p>Un Marine du 21st sait que le Marine à sa gauche et à sa droite feront tout pour accomplir la mission - y compris le risquer, le sacrifier, ou se sacrifier. Cette certitude n'est pas un sentiment. C'est une <strong>connaissance opérationnelle.</strong> Elle remplace la peur. Elle remplace le doute.</p>
+    <p>Un Marine du 21st sait que le Marine à sa gauche et à sa droite feront tout pour accomplir la mission — y compris le risquer, le sacrifier, ou se sacrifier. Cette certitude n'est pas un sentiment. C'est une <strong>connaissance opérationnelle.</strong> Elle remplace la peur. Elle remplace le doute.</p>
     <p>Quand un Marine tombe, ses frères ne pleurent pas. Ils avancent. C'est le respect le plus pur qu'ils peuvent lui rendre : prouver que son sacrifice n'a pas été inutile.</p>
-    <div class="citation"><div class="citation-text">Il n'y a pas de plus grand honneur pour un Marine que de mourir pour sauver ses frères d'armes - tant que ce sacrifice garantit l'accomplissement de la mission.</div></div>
+    <div class="citation"><div class="citation-text">Il n'y a pas de plus grand honneur pour un Marine que de mourir pour sauver ses frères d'armes — tant que ce sacrifice garantit l'accomplissement de la mission.</div></div>
   </div>
 </div>
 
@@ -1143,31 +1352,31 @@
   <div class="content">
     <p style="font-style:italic; color:var(--texte-sec); font-size:16px; text-align:center; margin-bottom:40px;">Le Code Marine n'est pas un ensemble de valeurs affichées sur un mur. C'est ce que vous êtes.<br>Si vous devez le relire pour vous en souvenir, vous n'êtes pas encore un Marine.</p>
 
-    <div class="section-title">Le Code - Héritage fondateur</div>
+    <div class="section-title">Le Code — Héritage fondateur</div>
 
-    <div class="code-art"><div class="code-art-header"><div class="code-art-num">I</div>Il n'y a pas la solitude, il n'y a que l'entraide</div><div class="code-art-body">Un Marine n'est jamais seul - il est toujours accompagné par ses frères et quoi qu'il fasse, ils le soutiendront. Les Marines ne se donnent pas en spectacle. S'il y a des problèmes, ils se règlent en interne.</div></div>
+    <div class="code-art"><div class="code-art-header"><div class="code-art-num">I</div>Il n'y a pas la solitude, il n'y a que l'entraide</div><div class="code-art-body">Un Marine n'est jamais seul — il est toujours accompagné par ses frères et quoi qu'il fasse, ils le soutiendront. Les Marines ne se donnent pas en spectacle. S'il y a des problèmes, ils se règlent en interne.</div></div>
 
     <div class="code-art"><div class="code-art-header"><div class="code-art-num">II</div>Il n'y a pas de séparation, il n'y a que l'unité</div><div class="code-art-body">La division est une abomination. L'unité est notre rempart. Les Marines sont liés par un serment indissoluble, pardonnant et avançant ensemble, face à tous les défis.</div></div>
 
     <div class="code-art"><div class="code-art-header"><div class="code-art-num">III</div>Il n'y a pas le désespoir de la mort, seulement le respect des frères tombés</div><div class="code-art-body">La mort n'est pas une source de désespoir, mais un rappel de l'honneur. Nous honorons nos frères tombés en accomplissant leur mission, en portant leur héritage.</div></div>
 
-    <div class="code-art"><div class="code-art-header"><div class="code-art-num">IV</div>Il n'y a pas la peur de la mort, il n'y a que la victoire</div><div class="code-art-body">La peur est une faiblesse à éradiquer. La victoire est notre unique but, car pour un Marine, la mort n'est qu'une transition - un passage vers la gloire éternelle.</div></div>
+    <div class="code-art"><div class="code-art-header"><div class="code-art-num">IV</div>Il n'y a pas la peur de la mort, il n'y a que la victoire</div><div class="code-art-body">La peur est une faiblesse à éradiquer. La victoire est notre unique but, car pour un Marine, la mort n'est qu'une transition — un passage vers la gloire éternelle.</div></div>
 
     <div class="code-art"><div class="code-art-header"><div class="code-art-num">V</div>La volonté et la détermination sont les clés des portes de la Marine</div><div class="code-art-body">L'épreuve forge notre grandeur. Quiconque peut endosser l'armure et braver les neiges. Mais seuls les Marines du 21st, affrontant les abysses volcaniques, les marais mortels, et les tempêtes arctiques, connaissent le vrai prix de l'excellence.</div></div>
 
-    <div class="code-art"><div class="code-art-header"><div class="code-art-num">VI</div>Les séparatistes nous haïssent, pourvu qu'ils nous craignent</div><div class="code-art-body">Ils ignorent qui nous sommes, et leur pitié est nulle. Nous leur ferons connaître la guerre - la vraie, celle du 21st Corps de Marines. Leur arrogance se transformera en terreur.</div></div>
+    <div class="code-art"><div class="code-art-header"><div class="code-art-num">VI</div>Les séparatistes nous haïssent, pourvu qu'ils nous craignent</div><div class="code-art-body">Ils ignorent qui nous sommes, et leur pitié est nulle. Nous leur ferons connaître la guerre — la vraie, celle du 21st Corps de Marines. Leur arrogance se transformera en terreur.</div></div>
 
-    <div class="code-art"><div class="code-art-header"><div class="code-art-num">VII</div>L'honneur est sur nous, la mort est sur eux</div><div class="code-art-body">Notre honneur est notre guide, notre force inébranlable. Nous portons l'héritage de ceux qui nous ont précédés, défendant les valeurs qui nous définissent. Face à nous, l'ennemi ne trouve que la mort - une fin inévitable pour ceux qui osent se dresser contre notre détermination.</div></div>
+    <div class="code-art"><div class="code-art-header"><div class="code-art-num">VII</div>L'honneur est sur nous, la mort est sur eux</div><div class="code-art-body">Notre honneur est notre guide, notre force inébranlable. Nous portons l'héritage de ceux qui nous ont précédés, défendant les valeurs qui nous définissent. Face à nous, l'ennemi ne trouve que la mort — une fin inévitable pour ceux qui osent se dresser contre notre détermination.</div></div>
 
     <div class="rule"></div>
-    <div class="section-title">Doctrine opérationnelle - Complément</div>
+    <div class="section-title">Doctrine opérationnelle — Complément</div>
     <p style="font-style:italic; color:var(--texte-sec); font-size:15px; margin-bottom:28px;">Ces principes traduisent le Code en comportement concret sur le terrain.</p>
 
-    <div class="code-art"><div class="code-art-header"><div class="code-art-num">01</div>La mission prime</div><div class="code-art-body">Il n'y a qu'un seul objectif : accomplir la mission. Tout le reste s'y subordonne - le confort, la préférence, la sécurité personnelle, et l'opinion. Un Marine qui place son intérêt avant la mission trahit chaque homme à sa gauche et à sa droite.</div></div>
+    <div class="code-art"><div class="code-art-header"><div class="code-art-num">01</div>La mission prime</div><div class="code-art-body">Il n'y a qu'un seul objectif : accomplir la mission. Tout le reste s'y subordonne — le confort, la préférence, la sécurité personnelle, et l'opinion. Un Marine qui place son intérêt avant la mission trahit chaque homme à sa gauche et à sa droite.</div></div>
 
     <div class="code-art"><div class="code-art-header"><div class="code-art-num">02</div>Le standard ne fait pas d'exception</div><div class="code-art-body">Le niveau du 21st est ce qu'il est parce qu'il s'applique à tous, tout le temps. Un Marine qui relâche ses standards "pour cette fois" est un Marine qui a décidé que ses camarades méritaient moins que le meilleur de lui-même.</div></div>
 
-    <div class="code-art"><div class="code-art-header"><div class="code-art-num">03</div>Le silence est une arme</div><div class="code-art-body">Un Marine parle pour informer. Pas pour meubler, pas pour impressionner, pas pour exister dans une conversation. Chaque mot émis est intentionnel. Le silence n'est pas un vide - c'est une posture.</div></div>
+    <div class="code-art"><div class="code-art-header"><div class="code-art-num">03</div>Le silence est une arme</div><div class="code-art-body">Un Marine parle pour informer. Pas pour meubler, pas pour impressionner, pas pour exister dans une conversation. Chaque mot émis est intentionnel. Le silence n'est pas un vide — c'est une posture.</div></div>
 
     <div class="code-art"><div class="code-art-header"><div class="code-art-num">04</div>L'obéissance est absolue dans la chaîne</div><div class="code-art-body">Un ordre légitime dans la chaîne de commandement s'exécute. Pas après réflexion. Pas après discussion. L'espace entre l'ordre et l'exécution doit être inexistant. La confiance dans la chaîne de commandement est ce qui transforme des hommes en unité de combat.</div></div>
 
@@ -1176,7 +1385,7 @@
     <div class="final">
       <div class="final-title">Nous Sommes Des Marines !</div>
       <div style="font-family:'Cinzel',serif; font-size:44px; font-weight:900; color:var(--or); letter-spacing:10px; text-transform:uppercase; margin-top:20px; text-shadow:0 0 40px rgba(201,168,76,.5);">Force &amp; Unité</div>
-      <div class="final-sub" style="margin-top:10px;">21st Corps Nova - Marines Galactiques</div>
+      <div class="final-sub" style="margin-top:10px;">21st Corps Nova — Marines Galactiques — depuis 2018</div>
     </div>
   </div>
 </div>
@@ -1196,7 +1405,7 @@
       <thead><tr><td>Pilier</td><td>Description</td></tr></thead>
       <tbody>
         <tr><td>Froideur</td><td>Un Marine ne laisse pas ses émotions affecter son comportement opérationnel. Il ne panique pas. Il ne s'enthousiasme pas. Il ne célèbre pas. Il constate, il évalue, il agit.</td></tr>
-        <tr><td>Discipline</td><td>Un Marine exécute les ordres de sa chaîne de commandement sans commentaire. Il maintient sa tenue, sa position, et ses standards dans toutes les conditions. La discipline n'est pas une contrainte - c'est le reflet d'un professionnel.</td></tr>
+        <tr><td>Discipline</td><td>Un Marine exécute les ordres de sa chaîne de commandement sans commentaire. Il maintient sa tenue, sa position, et ses standards dans toutes les conditions. La discipline n'est pas une contrainte — c'est le reflet d'un professionnel.</td></tr>
         <tr><td>Altruisme opérationnel</td><td>Un Marine sacrifie sa sécurité pour ses frères et pour la mission. Pas par sentiment. Par calcul : la mission ne peut pas être accomplie seul, et les frères font de même pour lui.</td></tr>
       </tbody>
     </table>
@@ -1222,10 +1431,10 @@
     <table class="dtable">
       <thead><tr><td>Ce n'est PAS</td><td>Explication</td></tr></thead>
       <tbody>
-        <tr><td>Du mutisme</td><td>Un Marine qui ne répond pas à un ordre n'est pas froid - il est inopérant.</td></tr>
+        <tr><td>Du mutisme</td><td>Un Marine qui ne répond pas à un ordre n'est pas froid — il est inopérant.</td></tr>
         <tr><td>De l'arrogance</td><td>Un Marine qui regarde les autres de haut trahit le principe d'altruisme.</td></tr>
         <tr><td>De l'indifférence au danger</td><td>Il reconnaît le danger. Il choisit d'avancer quand même.</td></tr>
-        <tr><td>De la cruauté gratuite</td><td>La froideur a une fonction. Tout comportement sans fonction opérationnelle n'est pas de la froideur - c'est de la mauvaise foi.</td></tr>
+        <tr><td>De la cruauté gratuite</td><td>La froideur a une fonction. Tout comportement sans fonction opérationnelle n'est pas de la froideur — c'est de la mauvaise foi.</td></tr>
       </tbody>
     </table>
     <p style="margin-top:16px;"><strong>La limite est nette :</strong> le RP doit être distinguable de l'irrespect. Un Marine sait faire cette distinction. Ceux qui ne la font pas ne restent pas longtemps.</p>
@@ -1234,14 +1443,126 @@
     <table class="dtable">
       <thead><tr><td>Trait</td><td>Explication</td></tr></thead>
       <tbody>
-        <tr><td>Absence de peur</td><td>Pas d'inconscience - certitude. Un Marine sait que ses frères sont à sa gauche et à sa droite. Il sait ce qu'ils feront. Cette certitude est plus forte que la peur.</td></tr>
-        <tr><td>Absence de désespoir</td><td>Un frère tombe. La réaction n'est pas émotionnelle - c'est une résolution mécanique. L'objectif reste l'objectif. Le deuil est un luxe d'après-guerre.</td></tr>
-        <tr><td>Absence d'hésitation</td><td>L'espace entre l'ordre et l'action est le plus court possible. Un Marine qui hésite doute de la chaîne - ou de lui-même. Les deux sont des problèmes à corriger.</td></tr>
+        <tr><td>Absence de peur</td><td>Pas d'inconscience — certitude. Un Marine sait que ses frères sont à sa gauche et à sa droite. Il sait ce qu'ils feront. Cette certitude est plus forte que la peur.</td></tr>
+        <tr><td>Absence de désespoir</td><td>Un frère tombe. La réaction n'est pas émotionnelle — c'est une résolution mécanique. L'objectif reste l'objectif. Le deuil est un luxe d'après-guerre.</td></tr>
+        <tr><td>Absence d'hésitation</td><td>L'espace entre l'ordre et l'action est le plus court possible. Un Marine qui hésite doute de la chaîne — ou de lui-même. Les deux sont des problèmes à corriger.</td></tr>
         <tr><td>Altruisme calculé</td><td>Un Marine se sacrifie si c'est opérationnellement justifié. Pas par héroïsme. Par efficacité. C'est la même logique que tout le reste.</td></tr>
       </tbody>
     </table>
 
     <div class="citation"><div class="citation-text">Ce RP est difficile. C'est intentionnel. Chaque Marine est un standard vivant. Si vous êtes prêt à le tenir, vous avez votre place ici.</div></div>
+
+    <div class="rule"></div>
+
+    <div class="section-title">Relations internes — Entre frères</div>
+    <p>Le 21st n'est pas une unité de camarades. C'est une unité de frères. La distinction est importante : la camaraderie est chaleureuse et fluctuante. La fraternité du 21st est froide, constante, et inébranlable.</p>
+
+    <div class="subsection-title">Dynamique entre grades</div>
+    <table class="dtable">
+      <thead><tr><td>Situation</td><td>Comportement attendu</td></tr></thead>
+      <tbody>
+        <tr><td>Soldat → Officier</td><td>Vouvoiement systématique en opération. Rapport concis : grade + information + demande si besoin. Pas d'initiative non sollicitée.</td></tr>
+        <tr><td>Officier → Soldat</td><td>Tutoiement naturel. L'officier ne condescend pas — il dirige. Un officier qui humilie un soldat trahit le Code. Un officier qui couvre la médiocrité d'un soldat aussi.</td></tr>
+        <tr><td>Entre soldats de même grade</td><td>Tutoiement. Concision. Le bavardage est toléré hors opération — pas pendant.</td></tr>
+        <tr><td>Désaccord avec un supérieur</td><td>En opération : inexistant. L'ordre s'exécute. Hors opération, en privé : un Marine peut exprimer un désaccord à son supérieur direct, une seule fois, avec des faits. Pas des émotions.</td></tr>
+        <tr><td>Supérieur absent</td><td>Le grade immédiatement inférieur prend le commandement sans délai ni débat. Il rend compte dès que le supérieur est joignable.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="subsection-title">L'entraide selon le 21st</div>
+    <p>Le Code dit <em>"il n'y a pas la solitude, il n'y a que l'entraide"</em>. Concrètement, ça ressemble à ceci :</p>
+    <p style="font-style:italic; color:var(--bordeaux-l); padding-left:32px; line-height:2;">Un Marine en difficulté technique reçoit de l'aide sans avoir à demander deux fois.<br>Un Marine qui se plante en RP reçoit un retour — en privé, jamais en public.<br>Un Marine isolé sur le terrain ne l'est jamais longtemps.</p>
+    <p>L'entraide n'est pas de la tendresse. C'est de l'efficacité collective. Un frère qui échoue ralentit l'unité. L'aider à réussir est dans l'intérêt de tous.</p>
+
+    <div class="rule"></div>
+
+    <div class="section-title">Relations externes — Face aux autres</div>
+    <p>Le 21st opère dans un environnement serveur qui contient d'autres unités, des Jedi, des civils. La froideur du Corps ne signifie pas l'hostilité. Elle signifie la <strong>distance professionnelle.</strong></p>
+
+    <div class="subsection-title">Face aux autres unités clones</div>
+    <table class="dtable">
+      <thead><tr><td>Interlocuteur</td><td>Posture</td></tr></thead>
+      <tbody>
+        <tr><td>Soldat d'une autre unité</td><td>Respect neutre. Le 21st ne méprise pas les autres unités — il n'a simplement pas d'opinion sur elles. Chaque Corps a sa fonction. La leur n'est pas la nôtre.</td></tr>
+        <tr><td>ARC Trooper</td><td>Respect professionnel. Les ARC sont des individus d'élite — Bacara l'est lui-même. Aucune rivalité. Aucune déférence non plus.</td></tr>
+        <tr><td>Officier d'une autre unité</td><td>Courtoisie de grade. Un officier extérieur n'a pas d'autorité sur un Marine du 21st sauf ordre explicite de la chaîne interne.</td></tr>
+        <tr><td>Unité alliée en opération</td><td>Coordination efficace. Pas de friction. Le 21st ne cherche pas à dominer les autres — il cherche à accomplir la mission. Si une autre unité contribue à ça, elle est bienvenue.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="subsection-title">Face aux Jedi</div>
+    <p>La relation Bacara/Mundi est le modèle. Respect professionnel, distance permanente, aucune chaleur superflue.</p>
+    <table class="dtable">
+      <thead><tr><td>Situation</td><td>Comportement</td></tr></thead>
+      <tbody>
+        <tr><td>Jedi Général en opération</td><td>Ses ordres tactiques s'exécutent comme ceux d'un officier supérieur. Pas de familiarité. Pas d'hostilité.</td></tr>
+        <tr><td>Jedi Général hors opération</td><td>Respect de grade. Un Marine ne cherche pas la conversation avec un Jedi. Si le Jedi l'initie, le Marine répond avec concision.</td></tr>
+        <tr><td>Désaccord avec un Jedi</td><td>Identique au désaccord avec un supérieur interne : en privé, avec des faits, une seule fois. Jamais en public.</td></tr>
+        <tr><td>Jedi d'une autre unité</td><td>Courtoisie de grade. Pas plus.</td></tr>
+      </tbody>
+    </table>
+    <p>Un Marine du 21st ne déteste pas les Jedi. Il ne les vénère pas non plus. Ils sont des officiers supérieurs avec des capacités inhabituelles. C'est tout ce qu'ils sont aux yeux d'un Marine.</p>
+
+    <div class="subsection-title">Face aux civils et non-combattants</div>
+    <p>Un Marine du 21st ne s'adresse pas à un civil sans raison opérationnelle. S'il doit le faire — évacuation, information, sécurisation — il est bref, clair, et sans émotion. Il ne brutalise pas. Il ne fraternise pas. Il gère.</p>
+
+    <div class="rule"></div>
+
+    <div class="section-title">Situations limites</div>
+    <p>Le RP du 21st est simple dans les situations standard. C'est dans les situations dégradées qu'il révèle sa profondeur.</p>
+
+    <div class="subsection-title">La mission tourne mal</div>
+    <p>Un Marine ne panique pas. Il réévalue. L'objectif principal est-il encore atteignable ? Sinon, quel est l'objectif secondaire ? Sinon, comment préserver le maximum de frères pour la prochaine mission ? Ces questions se posent dans cet ordre, en quelques secondes, sans le dire à voix haute.</p>
+
+    <div class="subsection-title">Ordre contradictoire ou ambigu</div>
+    <table class="rp-table">
+      <thead><tr><td>Cas</td><td>Réponse</td></tr></thead>
+      <tbody>
+        <tr><td>Deux ordres contradictoires de deux supérieurs</td><td>Le Marine applique l'ordre du grade le plus élevé. Il signale immédiatement la contradiction à son supérieur direct.</td></tr>
+        <tr><td>Ordre ambigu</td><td>Demande de clarification une seule fois, brève. Si pas de réponse possible : le Marine prend la décision la plus conservatrice et rend compte.</td></tr>
+        <tr><td>Ordre manifestement illégal ou contraire au règlement</td><td>Le Marine refuse, rend compte à son supérieur direct, documente. Il ne fait pas justice lui-même.</td></tr>
+        <tr><td>Toute la chaîne de commandement est hors de contact</td><td>Le Marine le plus gradé présent prend le commandement. Il agit selon l'intention de la mission telle qu'il la comprend. Il rend compte au retour.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="subsection-title">Un frère commet une faute</div>
+    <p>En opération : silence. Le Marine note. Il en parle à son supérieur après la mission, en privé. Jamais de correction publique en opération — ça fracture l'unité au pire moment. Hors opération : le supérieur direct gère. Ce n'est pas le rôle d'un soldat de corriger son pair publiquement.</p>
+
+    <div class="rule"></div>
+
+    <div class="section-title">Intégration — Le premier jour</div>
+    <p>Un nouveau Marine n'est pas accueilli avec chaleur. Il est accueilli avec <strong>clarté.</strong></p>
+    <p>Dès son arrivée, il comprend trois choses :</p>
+
+    <div class="pilier">
+      <div class="pilier-num">1</div>
+      <div class="pilier-title">Les standards existent et ne bougent pas</div>
+      <p>Personne ne les adaptera pour lui. C'est lui qui s'adapte. Il a le temps d'apprendre — mais le temps ne remplace pas l'effort.</p>
+    </div>
+    <div class="pilier">
+      <div class="pilier-num">2</div>
+      <div class="pilier-title">Ses frères sont là</div>
+      <p>Pas pour l'encourager. Pour l'aider à réussir. La différence est importante. Un encouragement est gratuit. Une aide engage celui qui la donne.</p>
+    </div>
+    <div class="pilier">
+      <div class="pilier-num">3</div>
+      <div class="pilier-title">Il n'est pas encore un Marine</div>
+      <p>Il le devient. Ce processus n'a pas de raccourci. Il n'y a pas de date garantie. Il y a un standard à atteindre — et quand il l'atteint, tout le monde le sait.</p>
+    </div>
+
+    <div class="subsection-title">Ce qu'on attend concrètement d'une recrue</div>
+    <table class="dtable">
+      <thead><tr><td>Domaine</td><td>Attente minimale</td></tr></thead>
+      <tbody>
+        <tr><td>Connaissance du Code</td><td>Lu, compris, appliqué. Pas récité — incarné.</td></tr>
+        <tr><td>Comportement en opération</td><td>Écoute radio, position tenue, compte-rendu systématique. Pas d'initiative non demandée.</td></tr>
+        <tr><td>Comportement sur le Venator</td><td>Tenue correcte, pas de HRP, respect de la hiérarchie visible.</td></tr>
+        <tr><td>Attitude face aux corrections</td><td>Accusé de réception sans justification. La correction s'applique. Le débat vient après, en privé, si nécessaire.</td></tr>
+        <tr><td>Présence</td><td>Régulière. Un Marine fantôme n'est pas un Marine — c'est une armure vide.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="citation"><div class="citation-text">On ne vous demande pas d'être parfait le premier jour. On vous demande d'être présent, d'écouter, et de ne pas faire semblant de comprendre ce que vous n'avez pas compris.</div><div class="citation-source">— Standard d'intégration, 21st Nova Corps</div></div>
   </div>
 </div>
 
@@ -1255,18 +1576,30 @@
   <div class="content">
     <div class="section-title">L'armure Phase II du 21st</div>
     <p>L'armure des Marines Galactiques est une variante spécialisée de l'armure Phase II standard des clones. Elle n'a pas été conçue pour l'esthétique. Elle a été conçue pour un problème précis : comment un clone combat-il efficacement dans les environnements les plus hostiles de la galaxie ?</p>
+
+    <!-- IMAGE ARMURE — screenshot ingame de l'armure -->
+    <div class="img-grid">
+      <div class="img-zone small">
+        <img src="VOTRE_IMAGE_ARMURE_FACE" alt="Armure Marine face" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder small\'><span class=\'ph-icon\'>🖼</span><span>Armure — face<br>src=&quot;VOTRE_IMAGE_ARMURE_FACE&quot;</span></div>'">
+        <div class="img-caption">Vue face</div>
+      </div>
+      <div class="img-zone small">
+        <img src="VOTRE_IMAGE_ARMURE_DOS" alt="Armure Marine dos" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder small\'><span class=\'ph-icon\'>🖼</span><span>Armure — dos<br>src=&quot;VOTRE_IMAGE_ARMURE_DOS&quot;</span></div>'">
+        <div class="img-caption">Vue dos</div>
+      </div>
+    </div>
     <table class="dtable">
       <thead><tr><td>Élément</td><td>Fonction</td></tr></thead>
       <tbody>
         <tr><td>Visière synthmesh</td><td>Masque filtrant. Protège de la neige, cendres, gaz acides, spores fongiques, particules abrasives. Maintien thermique des voies respiratoires en froid extrême. Élément le plus reconnaissable de l'armure.</td></tr>
         <tr><td>Corps-à-corps thermique</td><td>Combinaison isotherme sous l'armure. Maintien de la température corporelle du vide spatial aux températures polaires.</td></tr>
-        <tr><td>Plastron dorsal</td><td>Protection contre les tirs légers dans l'axe de repli. Conçu pour un Corps qui avance - et qui, quand il recule, ne doit pas être tué en le faisant.</td></tr>
+        <tr><td>Plastron dorsal</td><td>Protection contre les tirs légers dans l'axe de repli. Conçu pour un Corps qui avance — et qui, quand il recule, ne doit pas être tué en le faisant.</td></tr>
         <tr><td>Coloration bordeaux et blanc</td><td>Signature chromatique du 21st. Uniformité absolue. L'individu n'est pas visible. L'unité l'est.</td></tr>
-        <tr><td>Marquages véhicules</td><td>Violets - identification de l'affiliation du Corps sur les UT-AT et autres véhicules.</td></tr>
+        <tr><td>Marquages véhicules</td><td>Violets — identification de l'affiliation du Corps sur les UT-AT et autres véhicules.</td></tr>
       </tbody>
     </table>
 
-    <div class="section-title">Armure de Bacara - Distinctions</div>
+    <div class="section-title">Armure de Bacara — Distinctions</div>
     <p>L'armure de CC-1138 se distingue de celle de ses hommes. Chaque élément a une fonction opérationnelle. Bacara ne porte rien d'inutile.</p>
     <table class="dtable">
       <thead><tr><td>Élément distinctif</td><td>Description</td></tr></thead>
@@ -1279,15 +1612,15 @@
     </table>
 
     <div class="section-title">Règle d'uniformité</div>
-    <div class="code-art"><div class="code-art-header"><div class="code-art-num">!</div>Standardisation absolue</div><div class="code-art-body">Aucune personnalisation d'armure n'est tolérée. L'individu s'efface dans l'unité. Un Marine qui veut se distinguer visuellement de ses frères n'a pas compris ce qu'est le 21st.<br><br><strong>Exception unique :</strong> le Chef de File désigné pour une opération peut porter une distinction visuelle de coordination tactique - uniquement dans ce rôle, uniquement à cette fin.</div></div>
+    <div class="code-art"><div class="code-art-header"><div class="code-art-num">!</div>Standardisation absolue</div><div class="code-art-body">Aucune personnalisation d'armure n'est tolérée. L'individu s'efface dans l'unité. Un Marine qui veut se distinguer visuellement de ses frères n'a pas compris ce qu'est le 21st.<br><br><strong>Exception unique :</strong> le Chef de File désigné pour une opération peut porter une distinction visuelle de coordination tactique — uniquement dans ce rôle, uniquement à cette fin.</div></div>
 
     <div class="section-title">Les véhicules</div>
     <table class="dtable">
       <thead><tr><td>Véhicule</td><td>Rôle</td></tr></thead>
       <tbody>
-        <tr><td>UT-AT - Unstable Terrain Artillery Transport</td><td>Artillerie pour terrains instables et hostiles. Colonne vertébrale du soutien lourd. Opère là où d'autres blindés seraient immobilisés.</td></tr>
-        <tr><td>AT-OT - All Terrain Open Transport</td><td>Transport de personnel.</td></tr>
-        <tr><td>AT-RT - All Terrain Recon Transport</td><td>Reconnaissance légère.</td></tr>
+        <tr><td>UT-AT — Unstable Terrain Artillery Transport</td><td>Artillerie pour terrains instables et hostiles. Colonne vertébrale du soutien lourd. Opère là où d'autres blindés seraient immobilisés.</td></tr>
+        <tr><td>AT-OT — All Terrain Open Transport</td><td>Transport de personnel.</td></tr>
+        <tr><td>AT-RT — All Terrain Recon Transport</td><td>Reconnaissance légère.</td></tr>
       </tbody>
     </table>
   </div>
@@ -1298,31 +1631,49 @@
   <div class="page-header">
     <div class="chapter-label">IX · Équipement</div>
     <div class="page-title">Armement</div>
-    <div class="page-subtitle">Dotation réglementaire</div>
+    <div class="page-subtitle">Dotation réglementaire par rôle et spécialité</div>
   </div>
   <div class="content">
-    <p style="font-style:italic; color:var(--texte-sec);">Le 21st n'innove pas pour innover. Il utilise les meilleurs outils disponibles. Si quelque chose de supérieur existe, il l'adopte. Sinon, il maîtrise parfaitement ce qu'il a.</p>
+    <p style="font-style:italic; color:var(--texte-sec);">Le 21st n'innove pas pour innover. Il utilise les meilleurs outils disponibles. La dotation varie selon le rôle — pas selon le grade. Le grade détermine l'accès aux armes secondaires avancées.</p>
 
-    <div class="section-title">Armement standard de tout Marine</div>
+    <div class="section-title">Régulière — Marines standards</div>
     <table class="dtable">
-      <thead><tr><td>Arme</td><td>Données</td></tr></thead>
+      <thead><tr><td>Catégorie</td><td>Arme</td><td>Notes</td></tr></thead>
       <tbody>
-        <tr><td>DC-15A - Fusil blaster clone</td><td>Portée efficace max : ~500m. Précision élevée. Puissance suffisante contre infanterie droïde et cibles légèrement blindées. Fiable dans toutes conditions climatiques - exigence absolue pour le 21st.</td></tr>
-        <tr><td>DC-15S - Carabine blaster</td><td>Arme secondaire pour situations rapprochées. Plus maniable, portée réduite, cadence augmentée. Combat urbain, boarding de vaisseau.</td></tr>
+        <tr><td>Principale</td><td><strong>DC-15A</strong> — Fusil blaster</td><td>Portée ~500m. Précision élevée. Fiable dans toutes conditions climatiques. Arme de référence du 21st.</td></tr>
+        <tr><td>Secondaire</td><td><strong>DC-15S</strong> — Carabine blaster</td><td>Combat rapproché, boarding, zones urbaines. Plus maniable, portée réduite.</td></tr>
+        <tr><td>Secondaire OF uniquement</td><td><strong>DC-17 Dual</strong> — Pistolets jumelés</td><td>Réservé aux officiers. Arme de commandement ARC. Engagement rapproché intensif.</td></tr>
       </tbody>
     </table>
 
-    <div class="section-title">Armement de commandement</div>
+    <div class="section-title">Vétéran — Unité Keller</div>
+    <div class="article">
+      <div class="article-header"><span>★</span>Dotation identique à la Régulière</div>
+      <p>L'Unité Keller porte le même armement de base que les Marines réguliers — DC-15A principale, DC-15S secondaire, DC-17 Dual réservé aux officiers. La distinction est dans la mission et la sélection, pas dans l'équipement standard. L'armement Keller spécifique (DC-15X, DC-15LE, DP-23) est détaillé dans la page Compagnie Keller.</p>
+    </div>
+
+    <div class="section-title">Spécialisations</div>
     <table class="dtable">
-      <thead><tr><td>Arme</td><td>Usage</td></tr></thead>
+      <thead><tr><td>Spécialité</td><td>Principale</td><td>Secondaire</td></tr></thead>
       <tbody>
-        <tr><td>DC-17 - Pistolet blaster</td><td>Arme de côté des commandants ARC. Bacara en porte un occasionnellement - pas en équipement systématique, contrairement à certains commandants.</td></tr>
+        <tr><td><strong>Fantassin</strong></td><td>DC-15A</td><td>DC-15S / DC-17 Dual (OF)</td></tr>
+        <tr><td><strong>Ingénieur</strong></td><td>DC-15A</td><td>DC-15S / DC-17 Dual (OF)</td></tr>
+        <tr><td><strong>Médic</strong></td><td>DC-15A</td><td>DC-15S / DC-17 Dual (OF)</td></tr>
+        <tr><td><strong>Pilote</strong></td><td>DC-15A</td><td>DC-15S / DC-17 Dual (OF)</td></tr>
+        <tr><td><strong>Lourd (Heavy)</strong></td><td><strong>Z-6 Chaingun</strong></td><td>DC-15S / DC-17 Dual (OF)</td></tr>
       </tbody>
     </table>
 
-    <div class="section-title">Règle opérationnelle</div>
-    <p>Chaque Marine est responsable de son armement. Il entre en opération avec son arme en état de fonctionnement parfait. Il rend compte de toute défaillance immédiatement.</p>
-    <p>La Bataille de New Bornalex a prouvé que le 21st peut se battre sans armes. Ce n'est pas une raison de négliger l'entretien. C'est une raison supplémentaire de ne jamais se retrouver dans cette situation.</p>
+    <div class="code-art">
+      <div class="code-art-header"><div class="code-art-num">!</div>Règle DC-17 Dual</div>
+      <div class="code-art-body">Les DC-17 en configuration duale sont réservés aux officiers — à partir du grade Lieutenant inclus. Aucun sous-officier ou soldat ne porte les dual DC-17. Cette règle est absolue et ne souffre aucune exception de contexte.</div>
+    </div>
+
+    <div class="section-title">Z-6 Chaingun — Heavy</div>
+    <p>L'arme principale du spécialiste Lourd. Cadence de tir maximale, puissance supérieure à tout blaster d'infanterie standard. Efficace contre vagues d'infanterie droïde et positions fixes. Mobilité réduite en compensation — le Heavy tient une position ou soutient par le feu. Il ne progresse pas en tête.</p>
+
+    <div class="section-title">Règle opérationnelle universelle</div>
+    <p>Chaque Marine est responsable de son armement. Il entre en opération avec son arme en état de fonctionnement parfait. La Bataille de New Bornalex a prouvé que le 21st peut se battre sans armes. Ce n'est pas une raison de négliger l'entretien — c'est une raison supplémentaire de ne jamais se retrouver dans cette situation.</p>
   </div>
 </div>
 
@@ -1338,13 +1689,13 @@
     <table class="dtable">
       <thead><tr><td>Rôle</td><td>Titulaire</td></tr></thead>
       <tbody>
-        <tr><td>Général Jedi</td><td>Ki-Adi-Mundi - Maître Jedi, Conseil Jedi. Commandement nominal. Direction stratégique.</td></tr>
-        <tr><td>Commandant Maréchal</td><td>CC-1138 "Bacara" - Commandement tactique. Direction des opérations. Autorité directe sur tous les Marines.</td></tr>
-        <tr><td>Commandant Senior</td><td>CC-1171 "Keller" - Adjoint direct. Commandement des détachements indépendants.</td></tr>
+        <tr><td>Général Jedi</td><td>Ki-Adi-Mundi — Maître Jedi, Conseil Jedi. Commandement nominal. Direction stratégique.</td></tr>
+        <tr><td>Commandant Maréchal</td><td>CC-1138 "Bacara" — Commandement tactique. Direction des opérations. Autorité directe sur tous les Marines.</td></tr>
+        <tr><td>Commandant Senior</td><td>CC-1171 "Keller" — Adjoint direct. Commandement des détachements indépendants.</td></tr>
       </tbody>
     </table>
 
-    <div class="section-title">Hiérarchie - Adaptation serveur</div>
+    <div class="section-title">Hiérarchie — Adaptation serveur</div>
     <table class="grade-table">
       <tr><td>Grade</td><td>Effectif</td><td>Rôle</td></tr>
       <tr class="grade-off"><td>Commandant Maréchal</td><td>×1</td><td>Commandement suprême du Corps</td></tr>
@@ -1353,15 +1704,15 @@
       <tr class="grade-off"><td>Major</td><td>×1</td><td>Coordination inter-sections</td></tr>
       <tr class="grade-off"><td>Capitaine</td><td>×2</td><td>Commandement de section</td></tr>
       <tr class="grade-off"><td>Lieutenant</td><td>×2</td><td>Commandement de section adjoint</td></tr>
-      <tr class="grade-so"><td>Adjudant-Chef</td><td>×2</td><td>SO supérieur - expérience, encadrement</td></tr>
+      <tr class="grade-so"><td>Adjudant-Chef</td><td>×2</td><td>SO supérieur — expérience, encadrement</td></tr>
       <tr class="grade-so"><td>Adjudant</td><td>×2</td><td>SO confirmé</td></tr>
       <tr class="grade-so"><td>Sergent-Chef</td><td>×4</td><td>Commandement de groupe</td></tr>
       <tr class="grade-so"><td>Sergent</td><td>×4</td><td>Commandement de groupe adjoint</td></tr>
-      <tr><td>Caporal-Chef 1ère Classe</td><td>-</td><td>Senior HdR</td></tr>
-      <tr><td>Caporal-Chef</td><td>-</td><td>HdR confirmé</td></tr>
-      <tr><td>Caporal</td><td>-</td><td>HdR qualifié</td></tr>
-      <tr><td>Clone Trooper 1ère Classe</td><td>-</td><td>Soldat confirmé</td></tr>
-      <tr><td>Clone Trooper</td><td>-</td><td>Soldat de base</td></tr>
+      <tr><td>Caporal-Chef 1ère Classe</td><td>—</td><td>Senior HdR</td></tr>
+      <tr><td>Caporal-Chef</td><td>—</td><td>HdR confirmé</td></tr>
+      <tr><td>Caporal</td><td>—</td><td>HdR qualifié</td></tr>
+      <tr><td>Clone Trooper 1ère Classe</td><td>—</td><td>Soldat confirmé</td></tr>
+      <tr><td>Clone Trooper</td><td>—</td><td>Soldat de base</td></tr>
     </table>
 
     <div class="section-title">Doctrine d'emploi</div>
@@ -1386,25 +1737,25 @@
     <div class="page-subtitle">Des règles de fer pour une volonté d'acier.</div>
   </div>
   <div class="content">
-    <div class="section-title">I - Engagement et appartenance</div>
+    <div class="section-title">I — Engagement et appartenance</div>
     <div class="article"><div class="article-header"><span>Art. 1</span>Engagement définitif</div><p>Rejoindre le 21st est un engagement permanent. Un Marine qui quitte volontairement le régiment pour en rejoindre un autre ne sera jamais réintégré.</p><div class="exception"><strong>Exception :</strong> Un départ motivé par une pause de jeu (arrêt de Gmod) ou la fermeture d'un serveur n'est pas considéré comme une rupture. Le retour est autorisé dans ce cas.</div></div>
     <div class="article"><div class="article-header"><span>Art. 2</span>Devoir d'accompagnement au départ</div><p>Un Marine qui part honorablement n'est pas rejeté par le 21st. L'unité l'aide à trouver sa voie dans un autre régiment et facilite son intégration. C'est le respect dû à ses services.</p></div>
 
-    <div class="section-title">II - Uniformité et équipement</div>
+    <div class="section-title">II — Uniformité et équipement</div>
     <div class="article"><div class="article-header"><span>Art. 3</span>Standardisation absolue</div><p>Aucune armure personnalisée n'est tolérée. Aucun équipement individuel ne se distingue de celui de l'unité.</p><div class="exception"><strong>Exception tactique :</strong> Le Chef de File désigné pour une opération peut porter une distinction visuelle de coordination tactique. Uniquement dans ce rôle. Uniquement à cette fin.</div></div>
-    <div class="article"><div class="article-header"><span>Art. 4</span>Polyvalence obligatoire</div><p>Il n'existe pas de classes fixes dans le 21st. Tout Marine est capable de tout faire. La spécialisation temporaire s'acquiert par formation et s'exerce selon les missions - elle ne définit pas l'identité du Marine.</p></div>
+    <div class="article"><div class="article-header"><span>Art. 4</span>Polyvalence obligatoire</div><p>Il n'existe pas de classes fixes dans le 21st. Tout Marine est capable de tout faire. La spécialisation temporaire s'acquiert par formation et s'exerce selon les missions — elle ne définit pas l'identité du Marine.</p></div>
 
-    <div class="section-title">III - Discipline et immersion</div>
+    <div class="section-title">III — Discipline et immersion</div>
     <div class="article"><div class="article-header"><span>Art. 5</span>Immersion totale en opération</div><p>Le HRP vocal ou comportemental est strictement interdit en opération et dans les zones communes du vaisseau.</p><div class="exception"><strong>Zones tolérées :</strong> Le dortoir des Marines et les canaux sécurisés (Discord). En dehors de ces espaces, tout comportement hors-RP est une faute.</div></div>
     <div class="article"><div class="article-header"><span>Art. 6</span>Interdiction du double emploi</div><p>Un Marine en service ne peut pas occuper un autre poste serveur simultanément. Être en service signifie être disponible à 100 % pour l'unité.</p></div>
 
-    <div class="section-title">IV - Fraternité et hiérarchie</div>
-    <div class="article"><div class="article-header"><span>Art. 7</span>Tolérance zéro aux conflits internes</div><p>Tout conflit entre deux membres du 21st - quelle qu'en soit la nature ou l'ampleur - entraîne le renvoi immédiat des deux parties. Il n'y a pas de "petite dispute". Tout ce qui fracture l'unité est traité à la racine.</p></div>
-    <div class="article"><div class="article-header"><span>Art. 8</span>Devoir d'encadrement des officiers</div><p>Un officier disponible quand des Marines sont seuls ou en sous-effectif a l'obligation de se connecter pour les encadrer. Le grade n'est pas un privilège - c'est une responsabilité permanente envers ses hommes.</p></div>
+    <div class="section-title">IV — Fraternité et hiérarchie</div>
+    <div class="article"><div class="article-header"><span>Art. 7</span>Tolérance zéro aux conflits internes</div><p>Tout conflit entre deux membres du 21st — quelle qu'en soit la nature ou l'ampleur — entraîne le renvoi immédiat des deux parties. Il n'y a pas de "petite dispute". Tout ce qui fracture l'unité est traité à la racine.</p></div>
+    <div class="article"><div class="article-header"><span>Art. 8</span>Devoir d'encadrement des officiers</div><p>Un officier disponible quand des Marines sont seuls ou en sous-effectif a l'obligation de se connecter pour les encadrer. Le grade n'est pas un privilège — c'est une responsabilité permanente envers ses hommes.</p></div>
 
-    <div class="section-title">V - Conduite hors-jeu</div>
+    <div class="section-title">V — Conduite hors-jeu</div>
     <div class="article"><div class="article-header"><span>Art. 9</span>Respect mutuel sur Discord</div><p>Les insultes, l'agressivité, les cris sont proscrits. Le respect est la base de la communauté, pas une option.</p></div>
-    <div class="article"><div class="article-header"><span>Art. 10</span>Solidarité hors-jeu</div><p>Un camarade en difficulté - technique ou autre - n'est pas laissé seul. L'unité fait ce qu'elle peut pour l'aider ou l'orienter.</p></div>
+    <div class="article"><div class="article-header"><span>Art. 10</span>Solidarité hors-jeu</div><p>Un camarade en difficulté — technique ou autre — n'est pas laissé seul. L'unité fait ce qu'elle peut pour l'aider ou l'orienter.</p></div>
   </div>
 </div>
 
@@ -1418,8 +1769,26 @@
   <div class="content">
     <p>Chaque Marine laisse quelque chose derrière lui. Une formation développée. Un protocole écrit. Un standard établi. Une manière de faire qui survit après leur départ.</p>
     <p>Ce n'est pas de la nostalgie. C'est la reconnaissance que le 21st que nous sommes aujourd'hui a été construit par ceux qui étaient là avant. Ils ont défriché. Nous tenons le terrain qu'ils ont conquis.</p>
+
+    <!-- IMAGE MÉMORIAL — screenshot ingame ou art -->
+    <div class="img-zone medium">
+      <img src="VOTRE_IMAGE_MEMORIAL" alt="Mémorial 21st" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder medium\'><span class=\'ph-icon\'>🖼</span><span>Image mémorial / ambiance<br>Remplacer src=&quot;VOTRE_IMAGE_MEMORIAL&quot;</span></div>'">
+      <div class="img-caption">À ceux qui ont bâti avant nous</div>
+    </div>
     <div class="rule"></div>
-    <div class="placeholder"><p>[ Section à compléter par le commandement ]<br>Format : Nom de guerre - Grade - Contribution - Statut</p></div>
+    <div class="placeholder"><p>[ Section à compléter par le commandement ]<br>Format : Nom de guerre — Grade — Contribution — Statut</p></div>
+
+    <div class="section-title">Citations marquantes</div>
+    <p style="font-style:italic; color:var(--texte-sec); font-size:15px;">Phrases sorties d'opérations passées, de moments fondateurs de l'unité sur le serveur. À alimenter par le commandement.</p>
+
+    <div class="citation-membre">
+      <div class="citation-membre-text">[ Citation d'un membre — à renseigner ]</div>
+      <div class="citation-membre-source">— Nom de guerre · Grade · Opération · Date</div>
+    </div>
+    <div class="citation-membre">
+      <div class="citation-membre-text">[ Citation d'un membre — à renseigner ]</div>
+      <div class="citation-membre-source">— Nom de guerre · Grade · Opération · Date</div>
+    </div>
   </div>
 </div>
 
@@ -1445,13 +1814,1010 @@
     <div class="page-subtitle">Rapports de combat avec une âme.</div>
   </div>
   <div class="content">
-    <p>Cette section regroupe les récits écrits de l'unité - missions notables, situations RP marquantes, moments qui ont défini ce que le 21st est.</p>
+    <p>Cette section regroupe les récits écrits de l'unité — missions notables, situations RP marquantes, moments qui ont défini ce que le 21st est.</p>
     <p>Le ton suit celui du Corps : factuel, sans emphase. Un récit du 21st n'est pas un roman. C'est un rapport de combat avec une âme.</p>
     <div class="rule"></div>
     <div class="placeholder"><p>[ Section à alimenter par les membres de la communauté ]</p></div>
     <div class="final">
       <div style="font-family:'Cinzel',serif; font-size:44px; font-weight:900; color:var(--or); letter-spacing:10px; text-transform:uppercase; text-shadow:0 0 40px rgba(201,168,76,.5);">Force &amp; Unité</div>
-      <div class="final-sub" style="margin-top:10px;">21st Corps Nova - Marines Galactiques - 4e Armée de Secteur</div>
+      <div class="final-sub" style="margin-top:10px;">21st Corps Nova — Marines Galactiques — 4e Armée de Secteur</div>
+    </div>
+  </div>
+</div>
+<!-- ── TIMELINE ── -->
+<div id="timeline" class="page">
+  <div class="page-header">
+    <div class="chapter-label">XII · Mémoire</div>
+    <div class="page-title">Timeline des batailles</div>
+    <div class="page-subtitle">Chronologie opérationnelle du 21st Nova Corps</div>
+  </div>
+  <div class="content">
+    <p style="font-style:italic; color:var(--texte-sec); margin-bottom:8px;">Les batailles sont classées par ordre chronologique approximatif de la Guerre des Clones (22–19 BBY). Sources : Canon Disney et Legends séparés.</p>
+
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">22 BBY — Début de la guerre des clones</div>
+        <div class="tl-battle">New Bornalex</div>
+        <div class="tl-badge">Legends</div>
+        <div class="tl-desc">Premier déploiement majeur. Défaillance complète de l'armure prototype en plein combat. Les Marines engagent les super droïdes B2 à mains nues et remportent la victoire. La réputation du 21st commence ici.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">22–21 BBY</div>
+        <div class="tl-battle">Rhen Var</div>
+        <div class="tl-badge">Legends</div>
+        <div class="tl-desc">Campagne sur monde glaciaire et montagneux. Conditions extrêmes. Le 21st opère sans adaptation de doctrine — l'environnement est son terrain de prédilection. Victoire République.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">22–21 BBY</div>
+        <div class="tl-battle">Aargonar</div>
+        <div class="tl-badge">Legends</div>
+        <div class="tl-desc">Plaines boueuses d'Aargonar. Conditions opposées à Rhen Var, efficacité identique. Confirmation de la polyvalence multi-environnements du Corps.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">21 BBY</div>
+        <div class="tl-battle">Boz Pity</div>
+        <div class="tl-badge">Legends</div>
+        <div class="tl-desc">Opération sur un Venator endommagé. La Jedi Knight Rivi-Anu sacrifie sa vie pour maintenir le vaisseau en vol et permettre l'évacuation des forces républicaines. Première perte Jedi aux côtés du 21st.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">20 BBY — Sièges de la Bordure Extérieure</div>
+        <div class="tl-battle">Orto Plutonia</div>
+        <div class="tl-badge">Canon</div>
+        <div class="tl-desc">Monde arctique profond. Opérations préliminaires aux grandes offensives de la Bordure Extérieure. Victoire République.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">19 BBY — Fin de la guerre</div>
+        <div class="tl-battle">Mygeeto</div>
+        <div class="tl-badge">Canon + Legends</div>
+        <div class="tl-desc">Siège prolongé des fortifications séparatistes liées au Clan Bancaire InterGalactique. Combat urbain dans la cité cristalline. La 501e est détachée pour l'Opération Hammertong. Le 21st maintient la pression. Réception de l'Ordre 66. Exécution de Ki-Adi-Mundi par Bacara et ses hommes sur les ponts de glace.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">19 BBY — Simultané à Mygeeto</div>
+        <div class="tl-battle">Toola</div>
+        <div class="tl-badge">Legends</div>
+        <div class="tl-desc">Détachements sous le Commandant Keller. Ordre 66 reçu. Le Jedi Général Kai Hudorra parvient à fuir vers la station Ithaqua. Seul échec partiel de l'Ordre 66 pour le 21st.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">19 BBY — Proclamation de l'Empire</div>
+        <div class="tl-battle">Transition impériale</div>
+        <div class="tl-badge">Canon</div>
+        <div class="tl-desc">Le 21st Nova Corps devient les Marines Galactiques Impériaux. L'armure du Corps inspire directement le design des Snowtroopers de l'Empire. L'unité ne disparaît pas — elle change d'employeur.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ── VENATOR ── -->
+<div id="venator" class="page">
+  <div class="page-header">
+    <div class="chapter-label">XIII · Opérations</div>
+    <div class="page-title">Le Venator</div>
+    <div class="page-subtitle">Règles de vie, zones et accès à bord</div>
+  </div>
+  <div class="content">
+    <p>Le Venator est le quartier général mobile du 21st. Ce n'est pas un hôtel. C'est une base opérationnelle. Chaque zone a une fonction, des règles d'accès, et un comportement attendu. Un Marine qui ne connaît pas les règles du Venator n'est pas un Marine opérationnel — il est un civil armé.</p>
+
+    <div class="section-title">Règle générale</div>
+    <p>En dehors du dortoir des Marines, <strong>tout comportement HRP est interdit.</strong> Tenue réglementaire en toutes zones. Déplacement avec objectif — on ne flâne pas sur un Venator de combat. Tout rassemblement non autorisé dans une zone restreinte est une faute disciplinaire.</p>
+
+    <div class="section-title">Zones et accès</div>
+
+    <div class="zone-card">
+      <div class="zone-header"><div class="zone-name">Pont principal — Zone de déploiement</div><div class="zone-acces all">Tous</div></div>
+      <div class="zone-body">Zone de transit et de rassemblement opérationnel. Départ et retour de missions. Comportement : tenue de combat, silence radio sauf ordre. Pas de discussion personnelle. Attente en formation ou en position désignée.</div>
+    </div>
+
+    <div class="zone-card">
+      <div class="zone-header"><div class="zone-name">Dortoir des Marines</div><div class="zone-acces all">Tous Marines</div></div>
+      <div class="zone-body">Seule zone où le HRP est toléré. Conversations informelles autorisées. Entretien de l'équipement. Repos entre missions. <strong>Limite :</strong> même ici, les conflits internes se règlent en privé — jamais en public, jamais en vocal commun.</div>
+    </div>
+
+    <div class="zone-card">
+      <div class="zone-header"><div class="zone-name">Salle de briefing</div><div class="zone-acces so">SO + Officiers</div></div>
+      <div class="zone-body">Planification des opérations. Briefings pré-mission et débriefings post-action. Accès sur convocation uniquement pour les hommes du rang. Comportement : écoute active, prise de notes, questions factuelles uniquement.</div>
+    </div>
+
+    <div class="zone-card">
+      <div class="zone-header"><div class="zone-name">Armurerie</div><div class="zone-acces so">SO + Officiers</div></div>
+      <div class="zone-body">Distribution et maintenance de l'armement. Accès sur ordre du chef de section ou supérieur. Tout Marine rendant une arme défaillante en rend compte immédiatement à son chef de groupe.</div>
+    </div>
+
+    <div class="zone-card">
+      <div class="zone-header"><div class="zone-name">Passerelle de commandement</div><div class="zone-acces off">Officiers uniquement</div></div>
+      <div class="zone-body">Accès strictement réservé aux officiers (Lieutenant et au-dessus) et aux Jedi Généraux. Aucun SO ou homme du rang n'y accède sans convocation explicite d'un officier supérieur.</div>
+    </div>
+
+    <div class="zone-card">
+      <div class="zone-header"><div class="zone-name">Salle des machines</div><div class="zone-acces off">Personnel technique désigné</div></div>
+      <div class="zone-body">Zone critique. En cas d'abordage, priorité absolue de défense. Accès réservé au personnel technique désigné. En opération d'abordage ennemi, les Marines désignés tiennent cette zone jusqu'à nouvel ordre.</div>
+    </div>
+
+    <div class="section-title">Comportement en transit</div>
+    <table class="dtable">
+      <thead><tr><td>Situation</td><td>Comportement correct</td></tr></thead>
+      <tbody>
+        <tr><td>Croiser un officier supérieur</td><td>Salut réglementaire si en tenue de service. Accusé de réception si adressé. Pas d'initiative conversationnelle.</td></tr>
+        <tr><td>Croiser un Jedi</td><td>Respect de grade. Salut bref. Pas de conversation non sollicitée.</td></tr>
+        <tr><td>Croiser une unité alliée</td><td>Neutralité professionnelle. Ni hostilité, ni familiarité.</td></tr>
+        <tr><td>Alarme ou alerte</td><td>Position de combat immédiate. Pas de question. Attendre l'ordre du supérieur présent.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ── GLOSSAIRE RADIO ── -->
+<div id="radio" class="page">
+  <div class="page-header">
+    <div class="chapter-label">XIV · Opérations</div>
+    <div class="page-title">Glossaire radio</div>
+    <div class="page-subtitle">Procédures comlink standardisées du 21st Corps Nova</div>
+  </div>
+  <div class="content">
+    <p>Le 21st applique les procédures radio de l'ACP 125(G) adaptées au cadre Clone Wars. Tout Marine doit maîtriser ces formules avant sa première opération. Une communication radio imprécise peut coûter des vies. Il n'y a pas de marge pour l'improvisation sur comlink.</p>
+
+    <div class="citation"><div class="citation-text">La radio est une arme. Elle s'utilise avec la même précision que ton DC-15A.</div><div class="citation-source">— Tome I, Section III, Discipline radio</div></div>
+
+    <div class="radio-section-title">Mots de procédure essentiels</div>
+    <table class="radio-table">
+      <thead><tr style="background:var(--bordeaux-d);"><td style="color:var(--creme); font-family:'Cinzel',serif; font-size:10px; letter-spacing:2px;">Mot</td><td style="color:var(--creme); font-family:'Cinzel',serif; font-size:10px; letter-spacing:2px;">Prononciation / Usage</td><td style="color:var(--creme); font-family:'Cinzel',serif; font-size:10px; letter-spacing:2px;">Signification</td></tr></thead>
+      <tbody>
+        <tr><td>REÇU</td><td>"Reçu"</td><td>Message reçu et compris dans son intégralité.</td></tr>
+        <tr><td>COMPRIS</td><td>"Compris"</td><td>Message reçu, compris, et sera exécuté.</td></tr>
+        <tr><td>NÉGATIF</td><td>"Négatif"</td><td>Non / Refus / Absence de l'élément demandé.</td></tr>
+        <tr><td>AFFIRMATIF</td><td>"Affirmatif"</td><td>Oui / Confirmation.</td></tr>
+        <tr><td>ATTENDEZ</td><td>"Attendez"</td><td>Pause — réponse dans moins d'une minute.</td></tr>
+        <tr><td>TERMINEZ</td><td>"Terminez"</td><td>Fin de la communication. L'autre ne répond pas.</td></tr>
+        <tr><td>RÉPÉTEZ</td><td>"Répétez"</td><td>Retransmettez votre dernier message.</td></tr>
+        <tr><td>JE RÉPÈTE</td><td>"Je répète"</td><td>Je retransmets une partie importante de mon message.</td></tr>
+        <tr><td>ERREUR</td><td>"Erreur"</td><td>J'ai commis une erreur — annulez ma dernière transmission.</td></tr>
+        <tr><td>SILENCE</td><td>"Silence radio"</td><td>Toutes stations cessent d'émettre immédiatement.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="radio-section-title">Rapports de contact — Structure SALURE</div>
+    <table class="radio-table">
+      <thead><tr style="background:var(--bordeaux-d);"><td style="color:var(--creme); font-family:'Cinzel',serif; font-size:10px; letter-spacing:2px;">Lettre</td><td style="color:var(--creme); font-family:'Cinzel',serif; font-size:10px; letter-spacing:2px;">Élément</td><td style="color:var(--creme); font-family:'Cinzel',serif; font-size:10px; letter-spacing:2px;">Exemple</td></tr></thead>
+      <tbody>
+        <tr><td>S</td><td>Taille (Size)</td><td>"Un groupe d'environ 8 droïdes B1"</td></tr>
+        <tr><td>A</td><td>Activité</td><td>"En patrouille, direction nord"</td></tr>
+        <tr><td>L</td><td>Localisation</td><td>"Pont est, niveau 2, 50 mètres de notre position"</td></tr>
+        <tr><td>U</td><td>Unité / Type</td><td>"Infanterie droïde standard, pas de blindé visible"</td></tr>
+        <tr><td>R</td><td>Heure (Time)</td><td>"Il y a 30 secondes"</td></tr>
+        <tr><td>E</td><td>Équipement</td><td>"Armement léger, un E-5 par droïde"</td></tr>
+      </tbody>
+    </table>
+
+    <div class="radio-section-title">Ordres et comptes rendus opérationnels courants</div>
+    <table class="radio-table">
+      <thead><tr style="background:var(--bordeaux-d);"><td style="color:var(--creme); font-family:'Cinzel',serif; font-size:10px; letter-spacing:2px;">Formule</td><td style="color:var(--creme); font-family:'Cinzel',serif; font-size:10px; letter-spacing:2px;">Usage type</td><td style="color:var(--creme); font-family:'Cinzel',serif; font-size:10px; letter-spacing:2px;">Contexte</td></tr></thead>
+      <tbody>
+        <tr><td>EN POSITION</td><td>"[Indicatif], en position."</td><td>Confirmation d'une position tenue.</td></tr>
+        <tr><td>CONTACT</td><td>"Contact [direction], [type], [distance]."</td><td>Premier signalement d'un ennemi.</td></tr>
+        <tr><td>BLESSÉ</td><td>"Blessé à [position], demande évacuation."</td><td>Signalement d'une perte.</td></tr>
+        <tr><td>ZONE NETTOYÉE</td><td>"Zone nettoyée, aucun survivant ennemi."</td><td>Après élimination d'un groupe ennemi.</td></tr>
+        <tr><td>OBJECTIF ATTEINT</td><td>"Objectif [nom] atteint, en sécurisation."</td><td>Prise d'un point de contrôle.</td></tr>
+        <tr><td>REPLI</td><td>"Repli sur [point de ralliement], ordre du [grade]."</td><td>Mouvement de retrait ordonné.</td></tr>
+        <tr><td>MUNITIONS BASSES</td><td>"Munitions basses, [X] chargeurs restants."</td><td>Signalement logistique.</td></tr>
+        <tr><td>DEMANDE APPUI</td><td>"Demande appui [type] sur [position], [description cible]."</td><td>Coordination avec artillerie/mortiers.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="radio-section-title">Procédure d'appel standard</div>
+    <p style="font-size:15px; font-weight:300; padding:16px 20px; background:var(--creme-alt); border-left:3px solid var(--bordeaux-l); margin:0;">
+      <strong style="font-family:'Cinzel',serif; font-size:12px; letter-spacing:2px; color:var(--bordeaux);">FORMAT :</strong><br>
+      "[Indicatif destinataire], ici [Indicatif émetteur], [message], Terminez."<br><br>
+      <em style="color:var(--bordeaux-l);">Exemple : "Alpha-2, ici Alpha-1, contact nord, 3 B2, 30 mètres, en attente de vos ordres, Terminez."</em>
+    </p>
+  </div>
+</div>
+
+<!-- ── RECRUTEMENT ── -->
+<div id="recrutement" class="page">
+  <div class="page-header">
+    <div class="chapter-label">XV · Recrutement</div>
+    <div class="page-title">Rejoindre le 21st</div>
+    <div class="page-subtitle">Ce que ça demande. Comment ça se passe. Ce qui disqualifie.</div>
+  </div>
+  <div class="content">
+    <div class="citation"><div class="citation-text">On ne postule pas au 21st comme on postule ailleurs. On s'y engage. Nuance fondamentale.</div></div>
+
+    <div class="section-title">Prérequis</div>
+    <table class="dtable">
+      <thead><tr><td>Critère</td><td>Détail</td></tr></thead>
+      <tbody>
+        <tr><td>Serveur</td><td>Être membre actif du serveur Clone Wars. Avoir un minimum de sessions de jeu pour comprendre le fonctionnement général.</td></tr>
+        <tr><td>Maturité</td><td>Capacité à tenir un RP sérieux. La froideur du 21st n'est pas accessible à tout le monde — ce n'est pas un défaut, c'est un constat.</td></tr>
+        <tr><td>Disponibilité</td><td>Présence régulière. Un Marine fantôme n'est pas un Marine.</td></tr>
+        <tr><td>Lecture préalable</td><td>Avoir lu le Code Marine et le RP du Marine avant de postuler. Les questions sur des éléments explicitement documentés ici sont mal vues.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">Ce qui disqualifie d'emblée</div>
+    <div class="disqualif"><p>Avoir quitté le 21st volontairement par le passé pour rejoindre un autre régiment — hors pause de jeu ou fermeture de serveur.</p></div>
+    <div class="disqualif"><p>Antécédents de conflits internes dans d'autres unités, connus du commandement.</p></div>
+    <div class="disqualif"><p>Incapacité à tenir un minimum de discipline radio et opérationnelle démontrée lors d'opérations communes.</p></div>
+    <div class="disqualif"><p>Postuler "pour essayer" — le 21st n'est pas une unité d'essai.</p></div>
+
+    <div class="section-title">Les étapes</div>
+
+    <div class="etape">
+      <div class="etape-num">1</div>
+      <div class="etape-content">
+        <div class="etape-title">Prise de contact</div>
+        <p>Contacter un officier du 21st en jeu ou via Discord. Exprimer son intention clairement et brièvement. Pas de discours — une phrase suffit.</p>
+      </div>
+    </div>
+
+    <div class="etape">
+      <div class="etape-num">2</div>
+      <div class="etape-content">
+        <div class="etape-title">Entretien</div>
+        <p>Un officier ou SO senior évalue la candidature. Questions sur la motivation, la disponibilité, la connaissance des bases du RP 21st. Ce n'est pas un interrogatoire — c'est une conversation professionnelle.</p>
+      </div>
+    </div>
+
+    <div class="etape">
+      <div class="etape-num">3</div>
+      <div class="etape-content">
+        <div class="etape-title">Période d'observation</div>
+        <p>Le candidat participe à des opérations en observateur ou en rang CT sous supervision. Il est évalué sur son comportement réel, pas ses déclarations. Durée variable selon les performances.</p>
+      </div>
+    </div>
+
+    <div class="etape">
+      <div class="etape-num">4</div>
+      <div class="etape-content">
+        <div class="etape-title">Intégration</div>
+        <p>Validation par le commandement. Attribution du grade Clone Trooper. Lecture obligatoire des Tomes I et IV dans les deux premières semaines. Le Marine est ensuite suivi par un SO désigné.</p>
+      </div>
+    </div>
+
+    <div class="etape">
+      <div class="etape-num">5</div>
+      <div class="etape-content">
+        <div class="etape-title">Confirmation</div>
+        <p>Après une période probatoire, évaluation finale. Le Marine est confirmé dans le Corps ou redirigé. La confirmation n'est pas automatique — elle se mérite.</p>
+      </div>
+    </div>
+
+    <div class="citation"><div class="citation-text">Si tu lis cette page en te demandant si le 21st est fait pour toi — la réponse est probablement non. Ceux pour qui il est fait ne se posent pas la question.</div><div class="citation-source">— Standard de recrutement, 21st Nova Corps</div></div>
+  </div>
+</div>
+
+<!-- ── LEXIQUE ── -->
+<div id="lexique" class="page">
+  <div class="page-header">
+    <div class="chapter-label">XVI · Référence</div>
+    <div class="page-title">Lexique</div>
+    <div class="page-subtitle">Termes, abréviations et références du 21st Corps Nova</div>
+  </div>
+  <div class="content">
+
+    <div class="section-title">Termes propres au 21st</div>
+    <table class="lex-table">
+      <tr><td>Tat</td><td>Terme concordien pour "frère" — utilisé par Bacara, hérité de Cort Davin. Distinct de "vod" (Mando'a standard). Signe d'appartenance profonde au Corps.</td></tr>
+      <tr><td>Vod</td><td>Mando'a standard pour "frère / camarade". Utilisé par la majorité des clones. Bacara dit "tat" — différence culturelle fondatrice de son isolement.</td></tr>
+      <tr><td>Le Corps</td><td>Désignation interne du 21st Nova Corps. Majuscule intentionnelle. Pas "l'unité", pas "le régiment" — le Corps.</td></tr>
+      <tr><td>Standard</td><td>Le niveau d'exigence du 21st. Non négociable, non variable. "Tenir le standard" est l'objectif permanent de tout Marine.</td></tr>
+      <tr><td>Cuy'val Dar</td><td>"Ceux qui n'existent plus" — les cent instructeurs recrutés par Jango Fett pour former les commandants clones. Cort Davin, instructeur de Bacara, en faisait partie.</td></tr>
+    </table>
+
+    <div class="section-title">Grades — Abréviations</div>
+    <table class="lex-table">
+      <tr><td>CMD-MAR</td><td>Commandant Maréchal</td></tr>
+      <tr><td>CMD-SEN</td><td>Commandant Sénior</td></tr>
+      <tr><td>CMD</td><td>Commandant</td></tr>
+      <tr><td>MAJ</td><td>Major</td></tr>
+      <tr><td>CPT</td><td>Capitaine</td></tr>
+      <tr><td>LT</td><td>Lieutenant</td></tr>
+      <tr><td>ADJ-C</td><td>Adjudant-Chef</td></tr>
+      <tr><td>ADJ</td><td>Adjudant</td></tr>
+      <tr><td>SGT-C</td><td>Sergent-Chef</td></tr>
+      <tr><td>SGT</td><td>Sergent</td></tr>
+      <tr><td>CPL-C1</td><td>Caporal-Chef 1ère Classe</td></tr>
+      <tr><td>CPL-C</td><td>Caporal-Chef</td></tr>
+      <tr><td>CPL</td><td>Caporal</td></tr>
+      <tr><td>CT-1CL</td><td>Clone Trooper 1ère Classe</td></tr>
+      <tr><td>CT</td><td>Clone Trooper</td></tr>
+    </table>
+
+    <div class="section-title">Véhicules et équipements</div>
+    <table class="lex-table">
+      <tr><td>UT-AT</td><td>Unstable Terrain Artillery Transport — artillerie lourde du 21st pour terrains difficiles.</td></tr>
+      <tr><td>AT-OT</td><td>All Terrain Open Transport — transport de personnel.</td></tr>
+      <tr><td>AT-RT</td><td>All Terrain Recon Transport — reconnaissance légère.</td></tr>
+      <tr><td>DC-15A</td><td>Fusil blaster standard des clones. Arme principale du Marine.</td></tr>
+      <tr><td>DC-15S</td><td>Carabine blaster. Arme secondaire / combat rapproché.</td></tr>
+      <tr><td>DC-17</td><td>Pistolet blaster. Arme de côté des commandants ARC.</td></tr>
+      <tr><td>Synthmesh</td><td>Matériau de la visière de l'armure du 21st — filtre neige, cendres, gaz, spores.</td></tr>
+      <tr><td>Kama</td><td>Pièce d'armure descendant des hanches. Portée par Bacara et les commandants ARC.</td></tr>
+    </table>
+
+    <div class="section-title">Abréviations opérationnelles</div>
+    <table class="lex-table">
+      <tr><td>GAR</td><td>Grande Armée de la République.</td></tr>
+      <tr><td>CSI / CIS</td><td>Confédération des Systèmes Indépendants — l'ennemi.</td></tr>
+      <tr><td>ARC</td><td>Advanced Recon Commando — clones d'élite issus du programme Alpha-17.</td></tr>
+      <tr><td>HRP</td><td>Hors Roleplay — tout comportement ou dialogue hors de la fiction du jeu.</td></tr>
+      <tr><td>RP</td><td>Roleplay — la fiction jouée en jeu.</td></tr>
+      <tr><td>SALURE</td><td>Taille, Activité, Localisation, Unité, heuRe, Équipement — structure du rapport de contact ennemi.</td></tr>
+      <tr><td>CFF</td><td>Call For Fire — demande de tir d'appui artillerie.</td></tr>
+      <tr><td>19 BBY</td><td>Before the Battle of Yavin — calendrier Star Wars. 19 BBY = fin de la Guerre des Clones, Ordre 66, proclamation de l'Empire.</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ── MANUELS TOMES ── -->
+<div id="tomes" class="page">
+  <div class="page-header">
+    <div class="chapter-label">XVII · Référence</div>
+    <div class="page-title">Manuels opérationnels</div>
+    <div class="page-subtitle">La bibliothèque doctrinale du 21st Corps Nova</div>
+  </div>
+  <div class="content">
+    <p>Ces manuels constituent la doctrine opérationnelle complète du 21st Corps Nova. Ils sont fondés sur des sources militaires réelles adaptées au cadre Clone Wars. Leur maîtrise est un prérequis, pas une option.</p>
+    <p style="font-style:italic; color:var(--texte-sec); font-size:15px;">Remplace les liens <code>TON_LIEN_TOME_X</code> par les URLs Google Drive ou GitHub de chaque fichier.</p>
+
+    <div class="section-title">Tronc commun — Obligatoire pour tous</div>
+    <div class="tome-grid">
+      <div class="tome-card">
+        <div class="tome-card-header"><div class="tome-card-num">I</div><div class="tome-card-label">Manuel opérationnel</div><div class="tome-card-title">Tronc Commun du Combattant</div></div>
+        <div class="tome-card-body">
+          <span class="tome-card-audience">CT → Lieutenant</span>
+          <div class="tome-card-desc">Discipline et hiérarchie, formations de combat, protocole comlink, actes élémentaires au combat. Le fondement. Aucune spécialisation sans ce tome maîtrisé.</div>
+          <a class="tome-btn" href="TON_LIEN_TOME_1" target="_blank">Accéder au Tome I →</a>
+        </div>
+      </div>
+
+      <div class="tome-card">
+        <div class="tome-card-header"><div class="tome-card-num">IV</div><div class="tome-card-label">Manuel opérationnel</div><div class="tome-card-title">Commandement et Tactique</div></div>
+        <div class="tome-card-body">
+          <span class="tome-card-audience">Sergent → Commandant Maréchal</span>
+          <div class="tome-card-desc">Principe d'autorité, combat de section, conduite de l'action, renseignement tactique, contre-renseignement. Pour tout grade portant une responsabilité d'encadrement.</div>
+          <a class="tome-btn" href="TON_LIEN_TOME_4" target="_blank">Accéder au Tome IV →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">Spécialités — Sur désignation</div>
+    <div class="tome-grid">
+      <div class="tome-card">
+        <div class="tome-card-header"><div class="tome-card-num">II</div><div class="tome-card-label">Manuel opérationnel</div><div class="tome-card-title">Génie de Combat</div></div>
+        <div class="tome-card-body">
+          <span class="tome-card-audience">CT → Capitaine — Spécialité Génie</span>
+          <div class="tome-card-desc">Explosifs militaires, systèmes d'amorçage, calcul et placement de charges, opérations de démolition, sécurité pyrotechnique. Pour les spécialistes désignés.</div>
+          <a class="tome-btn" href="TON_LIEN_TOME_2" target="_blank">Accéder au Tome II →</a>
+        </div>
+      </div>
+
+      <div class="tome-card">
+        <div class="tome-card-header"><div class="tome-card-num">III</div><div class="tome-card-label">Manuel opérationnel</div><div class="tome-card-title">Artillerie et Mortiers</div></div>
+        <div class="tome-card-body">
+          <span class="tome-card-audience">Sergent → Commandant — Spécialité Artillerie</span>
+          <div class="tome-card-desc">Organisation de l'appui feu, localisation de cibles, demande de tir CFF, réglage et conduite du tir, mortiers, sécurité des tirs.</div>
+          <a class="tome-btn" href="TON_LIEN_TOME_3" target="_blank">Accéder au Tome III →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">Grades d'encadrement — Réservés</div>
+    <div class="tome-grid">
+      <div class="tome-card">
+        <div class="tome-card-header"><div class="tome-card-num">SO</div><div class="tome-card-label">Manuel de grade</div><div class="tome-card-title">Sous-Officier</div></div>
+        <div class="tome-card-body">
+          <span class="tome-card-audience">Sergent → Adjudant-Chef</span>
+          <div class="tome-card-desc">Statut et rôle du SO, commandement de contact, instruction des subordonnés, discipline, administration, droits et procédures. Document réservé aux SO.</div>
+          <a class="tome-btn" href="TON_LIEN_SO" target="_blank">Accéder au Manuel SO →</a>
+        </div>
+      </div>
+
+      <div class="tome-card">
+        <div class="tome-card-header"><div class="tome-card-num">OF</div><div class="tome-card-label">Manuel de grade</div><div class="tome-card-title">Officier</div></div>
+        <div class="tome-card-body">
+          <span class="tome-card-audience">Lieutenant → Commandant Maréchal</span>
+          <div class="tome-card-desc">Responsabilités d'officier, processus de décision METT-T, planification TLP, conduite offensives et défensives, opérations particulières, commandement d'unité. Document réservé aux officiers.</div>
+          <a class="tome-btn" href="TON_LIEN_OF" target="_blank">Accéder au Manuel OF →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="final">
+      <div class="final-title" style="font-size:15px; letter-spacing:4px;">Ces documents sont la propriété du 21st Corps Nova.</div>
+      <div class="final-sub">Toute diffusion hors cadre est interdite.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── RECRUTEMENT ── -->
+<div id="recrutement" class="page">
+  <div class="page-header">
+    <div class="chapter-label">Rejoindre</div>
+    <div class="page-title">Recrutement & FAQ</div>
+    <div class="page-subtitle">Comment rejoindre le 21st Corps Nova — ce qu'on attend, ce qui disqualifie.</div>
+  </div>
+  <div class="content">
+
+    <div class="citation"><div class="citation-text">On ne cherche pas des soldats. On cherche des Marines. La différence, c'est ce document.</div></div>
+
+    <div class="section-title">Prérequis</div>
+    <table class="dtable">
+      <thead><tr><td>Critère</td><td>Exigence</td></tr></thead>
+      <tbody>
+        <tr><td>Âge minimum</td><td>16 ans. Pas de dérogation.</td></tr>
+        <tr><td>Maîtrise du français</td><td>Écrit et oral corrects. Le RP radio exige de la clarté.</td></tr>
+        <tr><td>Connaissance de l'univers</td><td>Bases Clone Wars appréciées, non obligatoires. On forme. L'attitude prime sur la connaissance.</td></tr>
+        <tr><td>Disponibilité</td><td>Présence régulière. Un Marine fantôme n'est pas un Marine.</td></tr>
+        <tr><td>Microphone</td><td>Obligatoire. Le RP radio est vocal.</td></tr>
+        <tr><td>État d'esprit</td><td>Discipline, humilité, esprit d'équipe. Pas d'ego. Pas de bagages de conflits inter-serveurs.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">Ce qui disqualifie immédiatement</div>
+    <div class="article">
+      <div class="article-header"><span>✗</span>Disqualifications automatiques</div>
+      <p>Antécédent de ban permanent sur un serveur CW pour raisons graves (triche, toxicité, sabotage).</p>
+      <p>Appartenance active à une unité concurrente sur le même serveur — le 21st est un engagement exclusif.</p>
+      <p>Candidature motivée uniquement par le prestige du grade. Le grade se mérite ici. Il ne s'obtient pas à l'arrivée.</p>
+      <p>Incapacité ou refus d'accepter les corrections sans discussion publique.</p>
+    </div>
+
+    <div class="section-title">Les étapes</div>
+    <div class="pilier">
+      <div class="pilier-num">1</div>
+      <div class="pilier-title">Prise de contact</div>
+      <p>Tu contactes un officier ou sous-officier du 21st sur le serveur ou le Discord. Tu te présentes brièvement : qui tu es, d'où tu viens, pourquoi le 21st.</p>
+    </div>
+    <div class="pilier">
+      <div class="pilier-num">2</div>
+      <div class="pilier-title">Période d'observation</div>
+      <p>Tu rejoins l'unité comme recrue. Tu lis le Code Marine, ce site, et le Tome I. Tu observes. Tu ne prends pas d'initiative non demandée. On t'observe aussi.</p>
+    </div>
+    <div class="pilier">
+      <div class="pilier-num">3</div>
+      <div class="pilier-title">Évaluation</div>
+      <p>Un SO ou officier évalue ton comportement en opération et sur le Venator. Pas un examen formel — une observation continue. Quand tu es prêt, tout le monde le voit.</p>
+    </div>
+    <div class="pilier">
+      <div class="pilier-num">4</div>
+      <div class="pilier-title">Intégration</div>
+      <p>Tu es Clone Trooper. Tu commences. Tu grimpes si tu le mérites.</p>
+    </div>
+
+    <div class="rule"></div>
+    <div class="section-title">FAQ</div>
+
+    <div class="article">
+      <div class="article-header"><span>?</span>Est-ce que je peux rejoindre si je suis débutant sur GMod ?</div>
+      <p>Oui. Le niveau technique GMod s'acquiert. L'état d'esprit, non. Si tu es débutant mais motivé et humble, tu as ta place. Si tu es expert mais arrogant, non.</p>
+    </div>
+
+    <div class="article">
+      <div class="article-header"><span>?</span>Quel grade est-ce que j'aurai en arrivant ?</div>
+      <p>Clone Trooper. Sans exception. Peu importe ton expérience, ton grade ailleurs, ou le temps que tu connais des membres. Tout le monde commence au même endroit.</p>
+    </div>
+
+    <div class="article">
+      <div class="article-header"><span>?</span>Est-ce que je peux faire une autre unité en parallèle ?</div>
+      <p>Non. Le 21st est un engagement exclusif quand tu es en service. Si tu veux explorer d'autres unités, tu le fais en dehors des créneaux 21st — et tu ne portes pas notre armure ailleurs.</p>
+    </div>
+
+    <div class="article">
+      <div class="article-header"><span>?</span>Combien de temps avant d'être promu ?</div>
+      <p>Il n'y a pas de calendrier. Il y a un standard à atteindre. Certains l'atteignent vite. D'autres plus lentement. Le chronomètre ne compte pas — la qualité compte.</p>
+    </div>
+
+    <div class="article">
+      <div class="article-header"><span>?</span>Est-ce que je peux revenir si je suis parti ?</div>
+      <p>Dépend de la raison du départ. Un départ pour pause de jeu ou fermeture de serveur : retour autorisé. Un départ volontaire pour rejoindre une autre unité : rupture définitive. Voir Article 1 du Règlement.</p>
+    </div>
+
+    <div class="article">
+      <div class="article-header"><span>?</span>Le RP est-il obligatoire en permanence ?</div>
+      <p>En opération et dans les zones communes du Venator : oui, toujours. Dans le dortoir des Marines et sur Discord : non. La limite est claire et connue de tous.</p>
+    </div>
+
+    <div class="citation"><div class="citation-text">Si après avoir lu ce site tu veux encore rejoindre, tu as probablement ce qu'il faut.</div><div class="citation-source">— 21st Nova Corps</div></div>
+  </div>
+</div>
+
+<!-- ── VENATOR ── -->
+<div id="venator" class="page">
+  <div class="page-header">
+    <div class="chapter-label">Opérations</div>
+    <div class="page-title">Le Venator</div>
+    <div class="page-subtitle">Hub opérationnel du 21st — zones, accès, règles de circulation.</div>
+  </div>
+  <div class="content">
+
+    <p>Le Venator est la base permanente du 21st Nova Corps. Ce n'est pas un décor. C'est un espace opérationnel. Le comportement à bord est soumis aux mêmes standards qu'en opération — avec quelques adaptations de contexte.</p>
+
+    <!-- IMAGE VENATOR -->
+    <div class="img-zone medium">
+      <img src="VOTRE_IMAGE_VENATOR" alt="Venator 21st" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder medium\'><span class=\'ph-icon\'>🖼</span><span>Image du Venator ingame<br>Remplacer src=&quot;VOTRE_IMAGE_VENATOR&quot;</span></div>'">
+      <div class="img-caption">Venator — Base opérationnelle du 21st Corps Nova</div>
+    </div>
+
+    <div class="section-title">Zones et accès</div>
+    <table class="dtable">
+      <thead><tr><td>Zone</td><td>Accès</td><td>Règles</td></tr></thead>
+      <tbody>
+        <tr><td>Pont principal</td><td>Tout le monde</td><td>Tenue réglementaire. Arme portée. Comportement RP en toutes circonstances.</td></tr>
+        <tr><td>Passerelle de commandement</td><td>Officiers + convocation</td><td>Aucun accès sans raison opérationnelle. On ne traîne pas sur la passerelle.</td></tr>
+        <tr><td>Salle des machines</td><td>Spécialistes + commandement</td><td>Zone critique. Accès restreint en opération. Priorité de défense en cas d'abordage.</td></tr>
+        <tr><td>Hangar</td><td>Tout le monde</td><td>Véhicules rangés. Aucune utilisation sans ordre ou mission assignée.</td></tr>
+        <tr><td>Armurerie</td><td>Sur autorisation SO/OF</td><td>Entrée et sortie consignées. Aucun emprunt d'équipement sans validation.</td></tr>
+        <tr><td>Infirmerie</td><td>Tout le monde</td><td>Zone neutre même en exercice. Les blessés y ont accès prioritaire.</td></tr>
+        <tr><td>Dortoir Marines</td><td>Marines du 21st</td><td>Seule zone où le HRP vocal est toléré entre frères. La détente y est permise.</td></tr>
+        <tr><td>Salle de briefing</td><td>Convocation uniquement</td><td>On entre quand on est convoqué. Pas de présence passive non demandée.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">Règles de circulation</div>
+    <div class="article">
+      <div class="article-header"><span>01</span>Tenue en permanence</div>
+      <p>Un Marine ne circule pas sur le Venator sans armure, sauf dans le dortoir. L'armure est l'uniforme. L'uniforme se porte.</p>
+    </div>
+    <div class="article">
+      <div class="article-header"><span>02</span>Arme portée, sécurisée</div>
+      <p>L'arme est portée à bord. Elle n'est pas dégainée sans raison. Un Marine qui se promène arme au poing dans les couloirs n'est pas un Marine — c'est un problème.</p>
+    </div>
+    <div class="article">
+      <div class="article-header"><span>03</span>Salut hiérarchique</div>
+      <p>Tout officier croisé dans une zone commune reçoit un salut. Bref, net, correct. Pas de grand théâtre — juste le réflexe.</p>
+    </div>
+    <div class="article">
+      <div class="article-header"><span>04</span>Comportement face aux visiteurs</div>
+      <p>Une autre unité à bord est traitée avec respect neutre. On ne fraternise pas à l'excès. On ne crée pas de tension. Le 21st est professionnel, pas mondain.</p>
+    </div>
+    <div class="article">
+      <div class="article-header"><span>05</span>Défense du Venator</div>
+      <p>En cas d'abordage, la priorité absolue est la salle des machines et les noyaux. Tout Marine présent est automatiquement en service, quelle que soit son activité précédente.</p>
+    </div>
+
+    <div class="section-title">Postes en cas d'alerte</div>
+    <table class="dtable">
+      <thead><tr><td>Grade</td><td>Poste automatique</td></tr></thead>
+      <tbody>
+        <tr><td>Officier présent</td><td>Passerelle ou commandement de la défense selon grade</td></tr>
+        <tr><td>SO présent</td><td>Coordination de section défensive, point d'appui assigné</td></tr>
+        <tr><td>Soldat présent</td><td>Position défensive la plus proche du poste radio ou du SO le plus haut gradé</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ── GLOSSAIRE RADIO ── -->
+<div id="radio" class="page">
+  <div class="page-header">
+    <div class="chapter-label">Opérations</div>
+    <div class="page-title">Glossaire radio</div>
+    <div class="page-subtitle">Codes, formules et procédures — standardisation du RP vocal.</div>
+  </div>
+  <div class="content">
+
+    <p>Le RP radio est la colonne vertébrale du 21st en opération. Un Marine qui maîtrise le comlink maîtrise sa place dans la machine. Un Marine qui l'improvise met ses frères en danger.</p>
+    <p>Ce glossaire est tiré du Tome I — Protocole Comlink. Il est la référence obligatoire pour tout Marine du 21st.</p>
+
+    <div class="section-title">Mots de procédure essentiels</div>
+    <table class="dtable">
+      <thead><tr><td>Mot</td><td>Signification</td><td>Exemple</td></tr></thead>
+      <tbody>
+        <tr><td><strong>Reçu</strong></td><td>Message bien reçu et compris</td><td>"Contact flanc gauche." — "Reçu."</td></tr>
+        <tr><td><strong>Compris</strong></td><td>Ordre compris, sera exécuté</td><td>"Tenez la position." — "Compris."</td></tr>
+        <tr><td><strong>Négatif</strong></td><td>Non / Refus / Inexact</td><td>"Zone sécurisée ?" — "Négatif, contact en cours."</td></tr>
+        <tr><td><strong>Affirmatif</strong></td><td>Oui / Correct</td><td>"Vous êtes en position ?" — "Affirmatif."</td></tr>
+        <tr><td><strong>Attendez</strong></td><td>Pause — réponse dans un instant</td><td>"Attendez — je vérifie."</td></tr>
+        <tr><td><strong>Terminez</strong></td><td>Fin de transmission, pas de réponse attendue</td><td>"Repli vers le point Aurek. Terminez."</td></tr>
+        <tr><td><strong>Répondez</strong></td><td>Fin de transmission, réponse attendue</td><td>"Flanc droit, situation ? Répondez."</td></tr>
+        <tr><td><strong>Je répète</strong></td><td>Je vais répéter l'information</td><td>"Je répète — objectif Besh, pas Aurek."</td></tr>
+        <tr><td><strong>Silence radio</strong></td><td>Toutes les transmissions cessent immédiatement</td><td>"Silence radio." — Plus personne ne parle.</td></tr>
+        <tr><td><strong>Rompez le silence</strong></td><td>Le silence radio est levé</td><td>"Rompez le silence. Situation générale."</td></tr>
+        <tr><td><strong>Calme</strong></td><td>Zone calme, pas de contact</td><td>"Flanc gauche, calme."</td></tr>
+        <tr><td><strong>Blessé</strong></td><td>Marine touché, préciser localisation</td><td>"Blessé, pont B, couloir central."</td></tr>
+        <tr><td><strong>Man down</strong></td><td>Marine hors de combat, évacuation nécessaire</td><td>"Man down, position Alpha."</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">Structure d'appel standard</div>
+    <div class="code-art">
+      <div class="code-art-header"><div class="code-art-num">→</div>Format d'appel</div>
+      <div class="code-art-body">
+        <strong>[Appelé]</strong>, ici <strong>[Appelant]</strong>, <strong>[message]</strong>, <strong>[Répondez / Terminez]</strong>.<br><br>
+        <em>Exemple :</em> "Delta-Deux, ici Delta-Un, contact droite 30 mètres, deux B1, répondez."<br>
+        <em>Réponse :</em> "Delta-Un, ici Delta-Deux, reçu, je couvre."
+      </div>
+    </div>
+
+    <div class="section-title">Compte rendu de contact — SALURE</div>
+    <p>Tout contact ennemi se rapporte selon la structure SALURE. Dans l'ordre, sans sauter d'étape :</p>
+    <table class="dtable">
+      <thead><tr><td>Lettre</td><td>Information</td><td>Exemple</td></tr></thead>
+      <tbody>
+        <tr><td><strong>S</strong> — Situation</td><td>Ennemi vu ou entendu ?</td><td>"Contact visuel"</td></tr>
+        <tr><td><strong>A</strong> — Activité</td><td>Que fait-il ?</td><td>"Patrouille, direction nord"</td></tr>
+        <tr><td><strong>L</strong> — Localisation</td><td>Où exactement ?</td><td>"Couloir central, pont B"</td></tr>
+        <tr><td><strong>U</strong> — Unité</td><td>Qui/quoi ?</td><td>"Deux B2, un droïde comando"</td></tr>
+        <tr><td><strong>R</strong> — Routes</td><td>D'où vient-il, où va-t-il ?</td><td>"Vient du hangar, direction passerelle"</td></tr>
+        <tr><td><strong>E</strong> — Effectifs</td><td>Combien ?</td><td>"Trois unités visibles"</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">Ordres radio courants en opération</div>
+    <table class="dtable">
+      <thead><tr><td>Ordre</td><td>Action attendue</td></tr></thead>
+      <tbody>
+        <tr><td>"En position"</td><td>Halte, adoption de position défensive/d'observation immédiate</td></tr>
+        <tr><td>"Progressez"</td><td>Mouvement vers l'objectif selon formation en cours</td></tr>
+        <tr><td>"Couvrez"</td><td>Tir de suppression sur zone désignée pendant le mouvement des frères</td></tr>
+        <tr><td>"Repli sur [point]"</td><td>Mouvement de repli vers le point désigné, en ordre, pas en fuite</td></tr>
+        <tr><td>"Sécurisez"</td><td>Contrôle de zone — vérification de tous les angles, reddition des survivants</td></tr>
+        <tr><td>"Bilan"</td><td>Chaque élément rend compte de sa situation immédiatement</td></tr>
+        <tr><td>"Regroupement sur moi"</td><td>Tous les éléments convergent vers la position de l'émetteur</td></tr>
+      </tbody>
+    </table>
+
+    <div class="citation"><div class="citation-text">Un comlink mal utilisé tue plus sûrement qu'un droïde. La discipline radio est une discipline de combat.</div><div class="citation-source">— Tome I, Section III — Protocole Comlink</div></div>
+  </div>
+</div>
+
+<!-- ── TIMELINE ── -->
+<div id="timeline" class="page">
+  <div class="page-header">
+    <div class="chapter-label">Opérations</div>
+    <div class="page-title">Timeline des batailles</div>
+    <div class="page-subtitle">Chronologie des engagements du 21st Corps Nova — ordre temporel.</div>
+  </div>
+  <div class="content">
+
+    <p>Les théâtres d'opération du 21st dans l'ordre chronologique. Les dates sont exprimées en BBY (Before the Battle of Yavin). Canon et Legends sont distingués.</p>
+
+    <div class="section-title">Guerre des Clones — 22 à 19 BBY</div>
+
+    <div style="position:relative; padding-left:32px; margin:32px 0;">
+      <div style="position:absolute; left:8px; top:0; bottom:0; width:2px; background:linear-gradient(to bottom, var(--bordeaux), var(--bordeaux-l), transparent);"></div>
+
+      <div style="margin-bottom:32px; position:relative;">
+        <div style="position:absolute; left:-28px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--or); border:2px solid var(--bordeaux-d);"></div>
+        <div style="font-family:'Cinzel',serif; font-size:10px; letter-spacing:3px; color:var(--or); text-transform:uppercase; margin-bottom:4px;">22 BBY — Legends</div>
+        <div style="font-family:'Cinzel',serif; font-size:15px; font-weight:700; color:var(--bordeaux-d); margin-bottom:6px;">New Bornalex</div>
+        <p style="margin:0; font-size:15px;">Premier engagement majeur. Défaillance de l'armure en combat. Victoire à mains nues contre des B2. Naissance de la réputation du 21st.</p>
+      </div>
+
+      <div style="margin-bottom:32px; position:relative;">
+        <div style="position:absolute; left:-28px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--or); border:2px solid var(--bordeaux-d);"></div>
+        <div style="font-family:'Cinzel',serif; font-size:10px; letter-spacing:3px; color:var(--or); text-transform:uppercase; margin-bottom:4px;">21 BBY — Legends</div>
+        <div style="font-family:'Cinzel',serif; font-size:15px; font-weight:700; color:var(--bordeaux-d); margin-bottom:6px;">Rhen Var</div>
+        <p style="margin:0; font-size:15px;">Campagne en milieu glaciaire. Confirmation de la spécialisation montagne/froid du 21st. Victoire.</p>
+      </div>
+
+      <div style="margin-bottom:32px; position:relative;">
+        <div style="position:absolute; left:-28px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--or); border:2px solid var(--bordeaux-d);"></div>
+        <div style="font-family:'Cinzel',serif; font-size:10px; letter-spacing:3px; color:var(--or); text-transform:uppercase; margin-bottom:4px;">21 BBY — Legends</div>
+        <div style="font-family:'Cinzel',serif; font-size:15px; font-weight:700; color:var(--bordeaux-d); margin-bottom:6px;">Aargonar</div>
+        <p style="margin:0; font-size:15px;">Terrain boueux, conditions opposées à Rhen Var. Même efficacité. Confirmation de la polyvalence multi-environnements.</p>
+      </div>
+
+      <div style="margin-bottom:32px; position:relative;">
+        <div style="position:absolute; left:-28px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--or); border:2px solid var(--bordeaux-d);"></div>
+        <div style="font-family:'Cinzel',serif; font-size:10px; letter-spacing:3px; color:var(--or); text-transform:uppercase; margin-bottom:4px;">20 BBY — Legends</div>
+        <div style="font-family:'Cinzel',serif; font-size:15px; font-weight:700; color:var(--bordeaux-d); margin-bottom:6px;">Boz Pity</div>
+        <p style="margin:0; font-size:15px;">Opération sur Venator endommagé. Sacrifice de la Jedi Knight Rivi-Anu pour maintenir le vaisseau en vol le temps de l'évacuation. Victoire.</p>
+      </div>
+
+      <div style="margin-bottom:32px; position:relative;">
+        <div style="position:absolute; left:-28px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--bordeaux-l); border:2px solid var(--bordeaux-d);"></div>
+        <div style="font-family:'Cinzel',serif; font-size:10px; letter-spacing:3px; color:var(--bordeaux-l); text-transform:uppercase; margin-bottom:4px;">20 BBY — Canon</div>
+        <div style="font-family:'Cinzel',serif; font-size:15px; font-weight:700; color:var(--bordeaux-d); margin-bottom:6px;">Orto Plutonia</div>
+        <p style="margin:0; font-size:15px;">Monde arctique. Opérations pré-Mygeeto dans les Sièges de la Bordure Extérieure. Victoire.</p>
+      </div>
+
+      <div style="margin-bottom:32px; position:relative;">
+        <div style="position:absolute; left:-28px; top:4px; width:14px; height:14px; border-radius:50%; background:var(--bordeaux); border:2px solid var(--or);"></div>
+        <div style="font-family:'Cinzel',serif; font-size:10px; letter-spacing:3px; color:var(--or); text-transform:uppercase; margin-bottom:4px;">19 BBY — Canon + Legends</div>
+        <div style="font-family:'Cinzel',serif; font-size:17px; font-weight:900; color:var(--bordeaux); margin-bottom:6px;">Mygeeto — Siège final</div>
+        <p style="margin:0; font-size:15px;">Siège prolongé des fortifications séparatistes. Cité cristalline. Combat urbain sur ponts de glace. Réception de l'Ordre 66. Exécution de Ki-Adi-Mundi par Bacara et les Marines. Fin de la guerre.</p>
+      </div>
+
+      <div style="margin-bottom:0; position:relative;">
+        <div style="position:absolute; left:-28px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--or); border:2px solid var(--bordeaux-d);"></div>
+        <div style="font-family:'Cinzel',serif; font-size:10px; letter-spacing:3px; color:var(--or); text-transform:uppercase; margin-bottom:4px;">19 BBY — Legends (simultané)</div>
+        <div style="font-family:'Cinzel',serif; font-size:15px; font-weight:700; color:var(--bordeaux-d); margin-bottom:6px;">Toola</div>
+        <p style="margin:0; font-size:15px;">Détachements Keller. Ordre 66 exécuté. Le Jedi Hudorra échappe vers Coruscant malgré la poursuite en STAP.</p>
+      </div>
+    </div>
+
+    <div class="section-title">Après la guerre — 19 BBY</div>
+    <p>Le 21st Nova Corps est intégré à l'Empire Galactique comme <strong>Marines Galactiques Impériaux</strong>. Son armure devient le template des Snowtroopers impériaux. La guerre des Clones est terminée. La mission continue.</p>
+  </div>
+</div>
+
+<!-- ── LEXIQUE ── -->
+<div id="lexique" class="page">
+  <div class="page-header">
+    <div class="chapter-label">Référence</div>
+    <div class="page-title">Lexique</div>
+    <div class="page-subtitle">Termes, abréviations et désignations en usage au 21st Corps Nova.</div>
+  </div>
+  <div class="content">
+
+    <div class="section-title">Termes propres au 21st</div>
+    <table class="dtable">
+      <thead><tr><td>Terme</td><td>Définition</td></tr></thead>
+      <tbody>
+        <tr><td><strong>Tat</strong></td><td>"Frère" en dialecte Concordien — utilisé par Bacara. Distinct du "vod" Mandalorien standard. Marque l'héritage de Cort Davin.</td></tr>
+        <tr><td><strong>Le Corps</strong></td><td>Désigne le 21st Nova Corps dans son ensemble. "Servir le Corps" = servir l'unité.</td></tr>
+        <tr><td><strong>Le Standard</strong></td><td>Le niveau d'excellence que tout Marine doit atteindre et maintenir. Pas un barème — une réalité vécue.</td></tr>
+        <tr><td><strong>Marine fantôme</strong></td><td>Un membre absent sans raison régulière. Ni excusé, ni présent. Problème d'engagement.</td></tr>
+        <tr><td><strong>HRP</strong></td><td>Hors-Roleplay. Tout comportement ou communication sortant du cadre RP en zone active.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">Grades — Abréviations</div>
+    <table class="dtable">
+      <thead><tr><td>Abréviation</td><td>Grade complet</td></tr></thead>
+      <tbody>
+        <tr><td>CM</td><td>Commandant Maréchal</td></tr>
+        <tr><td>CS</td><td>Commandant Sénior</td></tr>
+        <tr><td>CDT</td><td>Commandant</td></tr>
+        <tr><td>MAJ</td><td>Major</td></tr>
+        <tr><td>CPT</td><td>Capitaine</td></tr>
+        <tr><td>LT</td><td>Lieutenant</td></tr>
+        <tr><td>ACH</td><td>Adjudant-Chef</td></tr>
+        <tr><td>ADJ</td><td>Adjudant</td></tr>
+        <tr><td>SCH</td><td>Sergent-Chef</td></tr>
+        <tr><td>SGT</td><td>Sergent</td></tr>
+        <tr><td>CCH1</td><td>Caporal-Chef 1ère Classe</td></tr>
+        <tr><td>CCH</td><td>Caporal-Chef</td></tr>
+        <tr><td>CPL</td><td>Caporal</td></tr>
+        <tr><td>CT1</td><td>Clone Trooper 1ère Classe</td></tr>
+        <tr><td>CT</td><td>Clone Trooper</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">Terminologie Star Wars / Clone Wars</div>
+    <table class="dtable">
+      <thead><tr><td>Terme</td><td>Définition</td></tr></thead>
+      <tbody>
+        <tr><td><strong>GAR</strong></td><td>Grande Armée de la République</td></tr>
+        <tr><td><strong>CSI / CIS</strong></td><td>Confédération des Systèmes Indépendants — l'ennemi séparatiste</td></tr>
+        <tr><td><strong>BBY</strong></td><td>Before Battle of Yavin — système de datation Star Wars</td></tr>
+        <tr><td><strong>ARC</strong></td><td>Advanced Recon Commando — clones d'élite formés par Alpha-17</td></tr>
+        <tr><td><strong>Cuy'val Dar</strong></td><td>"Ceux dont on ne parle pas" — les 100 instructeurs recrutés par Jango Fett pour former les clones commandants</td></tr>
+        <tr><td><strong>Mando'a</strong></td><td>Langue Mandalorien standard — Bacara parle le dialecte Concordien, pas le Mando'a</td></tr>
+        <tr><td><strong>Ordre 66</strong></td><td>Protocole implémenté dans les clones ordonnant l'élimination des Jedi — déclenché par Darth Sidious en 19 BBY</td></tr>
+        <tr><td><strong>UT-AT</strong></td><td>Unstable Terrain Artillery Transport — véhicule d'artillerie signature du 21st</td></tr>
+        <tr><td><strong>DC-15A</strong></td><td>Fusil blaster standard des clones — arme principale du 21st</td></tr>
+        <tr><td><strong>DC-15S</strong></td><td>Carabine blaster — arme secondaire, combat rapproché</td></tr>
+        <tr><td><strong>Venator</strong></td><td>Classe de croiseur destroyer de la République — base opérationnelle du 21st</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">Acronymes opérationnels</div>
+    <table class="dtable">
+      <thead><tr><td>Sigle</td><td>Signification</td><td>Usage</td></tr></thead>
+      <tbody>
+        <tr><td><strong>CFF</strong></td><td>Call For Fire — Demande de Tir</td><td>Protocole radio pour demander un appui artillerie</td></tr>
+        <tr><td><strong>SALURE</strong></td><td>Situation — Activité — Localisation — Unité — Routes — Effectifs</td><td>Structure du compte rendu de contact ennemi</td></tr>
+        <tr><td><strong>MSESC</strong></td><td>Mission — Situation — Exécution — Soutien — Commandement</td><td>Format de l'ordre opérationnel du chef de section</td></tr>
+        <tr><td><strong>METT-T</strong></td><td>Mission — Ennemi — Terrain — Troupes — Temps</td><td>Cadre d'analyse tactique des officiers</td></tr>
+        <tr><td><strong>MEDEVAC</strong></td><td>Medical Evacuation</td><td>Procédure d'évacuation des blessés</td></tr>
+        <tr><td><strong>AAR</strong></td><td>After Action Review</td><td>Bilan de fin d'opération</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ── MOT DU COMMANDANT ── -->
+<div id="commandant" class="page">
+  <div class="page-header">
+    <div class="chapter-label">Référence</div>
+    <div class="page-title">Mot du Commandant</div>
+    <div class="page-subtitle">Prise de parole officielle — CC-1138 "Bacara", Commandant Maréchal</div>
+  </div>
+  <div class="content">
+
+    <div class="img-zone medium">
+      <img src="VOTRE_IMAGE_BACARA_2" alt="CC-1138 Bacara" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder medium\'><span class=\'ph-icon\'>🖼</span><span>Photo du Commandant Maréchal ingame<br>Remplacer src=&quot;VOTRE_IMAGE_BACARA_2&quot;</span></div>'">
+      <div class="img-caption">CC-1138 "Bacara" — Commandant Maréchal, 21st Corps Nova</div>
+    </div>
+
+    <div class="section-title">Adresse aux Marines</div>
+
+    <div class="citation">
+      <div class="citation-text">
+        Vous portez l'armure du 21st. Cela ne fait pas de vous un Marine.<br><br>
+        Ce qui fait de vous un Marine, c'est ce que vous faites quand personne ne regarde. C'est la position tenue quand l'ordre n'est plus venu depuis dix minutes. C'est le compte rendu rendu même quand il n'y a rien à rapporter. C'est le frère aidé sans qu'il ait eu à demander.<br><br>
+        Ce Corps existe depuis 2018. Des centaines d'hommes ont porté cette armure avant vous. Certains ont bâti ce que vous utilisez aujourd'hui. D'autres sont partis sans laisser de trace. La différence entre les deux, c'est toujours la même chose : l'engagement.<br><br>
+        Je n'attends pas de vous que vous soyez parfaits. J'attends de vous que vous soyez présents, disciplinés, et que vous ayez le respect de vos frères et de l'héritage que vous portez.<br><br>
+        Le reste, on vous l'apprend.
+      </div>
+      <div class="citation-source">— CC-1138 "Bacara", Commandant Maréchal, 21st Corps Nova</div>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="section-title">Citations des Marines</div>
+    <p style="font-style:italic; color:var(--texte-sec); font-size:15px;">Cette section est réservée aux phrases marquantes sorties d'opérations passées — moments fondateurs, échanges radio mémorables, instants qui ont défini ce qu'est le 21st en jeu.</p>
+    <div class="placeholder"><p>[ À alimenter par le commandement et les membres ]<br>Format : Citation — Nom de guerre — Opération / Date</p></div>
+
+    <div class="final">
+      <div class="final-title">Force &amp; Unité</div>
+      <div class="final-sub">21st Corps Nova — Marines Galactiques — depuis 2018</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SPÉCIALISATIONS ── -->
+<div id="specialisations" class="page">
+  <div class="page-header">
+    <div class="chapter-label">Unités</div>
+    <div class="page-title">Spécialisations</div>
+    <div class="page-subtitle">Les rôles du 21st Corps Nova — compétences et dotations.</div>
+  </div>
+  <div class="content">
+
+    <p>Le 21st opère en deux formations principales — la <strong>Régulière</strong> et la <strong>Vétéran</strong> (Unité Keller). Au sein de chaque formation, chaque Marine peut se spécialiser dans un rôle opérationnel. La spécialité définit l'arme principale et la fonction en opération. Le Code Marine s'applique à tous sans exception.</p>
+
+    <div class="section-title">Formations</div>
+    <table class="dtable">
+      <thead><tr><td>Formation</td><td>Description</td><td>Accès</td></tr></thead>
+      <tbody>
+        <tr><td><strong>Régulière</strong></td><td>Marines standards. Épine dorsale du Corps. Toutes spécialisations disponibles.</td><td>Ouvert après recrutement</td></tr>
+        <tr><td><strong>Vétéran — Unité Keller</strong></td><td>Élite du Corps. Environnements extrêmes, missions critiques. Sélection par Bacara et Keller.</td><td>Sur sélection uniquement</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">Spécialisations disponibles</div>
+
+    <div class="pilier">
+      <div class="pilier-num">01</div>
+      <div class="pilier-title">Fantassin</div>
+      <p>Rôle de base. Combat d'infanterie. Progression en formation, tir de précision, sécurisation de zone. Arme principale : DC-15A. Secondaire : DC-15S.</p>
+    </div>
+
+    <div class="pilier">
+      <div class="pilier-num">02</div>
+      <div class="pilier-title">Lourd (Heavy)</div>
+      <p>Soutien par le feu. Tient une position, supprime les vagues d'infanterie ennemie, protège les progressions de frères. Arme principale : <strong>Z-6 Chaingun</strong>. Secondaire : DC-15S. Le Heavy n'est pas une infanterie rapide — c'est un multiplicateur de puissance de feu fixe ou semi-fixe.</p>
+    </div>
+
+    <div class="pilier">
+      <div class="pilier-num">03</div>
+      <div class="pilier-title">Ingénieur</div>
+      <p>Génie de combat. Demolition, breaching, obstacles, soutien technique. Référence : Tome II. Arme principale : DC-15A. Secondaire : DC-15S. Equipement spécialisé selon mission.</p>
+    </div>
+
+    <div class="pilier">
+      <div class="pilier-num">04</div>
+      <div class="pilier-title">Médic</div>
+      <p>Soutien sanitaire. Stabilisation des blessés, évacuation, soins de campagne. Sa priorité absolue en opération : les frères restent en état de combattre. Arme principale : DC-15A. Secondaire : DC-15S. L'infirmerie du Venator est sa juridiction en dehors des opérations.</p>
+    </div>
+
+    <div class="pilier">
+      <div class="pilier-num">05</div>
+      <div class="pilier-title">Pilote</div>
+      <p>Navigation et combat aérien ou spatial. Conduite des véhicules du Corps — UT-AT, AT-OT, AT-RT, vaisseaux légers. Arme principale : DC-15A. Secondaire : DC-15S. Un pilote reste un Marine : il combat à pied quand son véhicule est hors d'usage.</p>
+    </div>
+
+    <div class="section-title">Règle transversale</div>
+    <div class="code-art">
+      <div class="code-art-header"><div class="code-art-num">!</div>La spécialité ne remplace pas la doctrine</div>
+      <div class="code-art-body">Un Médic en opération reste soumis aux formations de déplacement, à la discipline radio et au Code Marine. Sa spécialité détermine sa fonction — pas ses droits de déviation. Aucune spécialité ne donne le droit d'improviser sur les fondamentaux du Tome I.</div>
+    </div>
+
+    <div class="section-title">Tenues</div>
+    <p style="font-style:italic; color:var(--texte-sec);">Les screens des tenues par spécialité seront ajoutés ici. Transmettre les captures au commandement pour intégration.</p>
+    <div class="placeholder"><p>[ Zone images — tenues par spécialité ]<br>Remplacer par screenshots ingame une fois disponibles.</p></div>
+  </div>
+</div>
+
+<!-- ── COMPAGNIE KELLER ── -->
+<div id="keller" class="page">
+  <div class="page-header">
+    <div class="chapter-label">Unités</div>
+    <div class="page-title">Compagnie Keller</div>
+    <div class="page-subtitle">"Par la force dans la vie et l'unité dans la mort, la Keller gardera le 21st."</div>
+  </div>
+  <div class="content">
+
+    <div class="citation"><div class="citation-text">Sur le champ de bataille, l'émotion est un luxe. Seule compte la mission.</div><div class="citation-source">— CC-1171 "Keller"</div></div>
+
+    <div class="section-title">Présentation</div>
+    <p>La Compagnie Keller — également désignée sous le code opérationnel <strong>COLD</strong> — est l'unité vétéran d'élite du 21st Corps Nova. Elle représente ce que le Corps produit de mieux : des Marines aguerris dans les environnements les plus hostiles de la galaxie, capables d'opérer là où d'autres unités échoueraient avant même d'engager l'ennemi.</p>
+    <p>Elle est dirigée par <strong>CC-1171 "Keller"</strong>, Commandant Sénior, directement sous l'autorité de Bacara. La Compagnie Keller n'est pas une unité séparée du 21st — c'est son fer de lance.</p>
+
+    <!-- IMAGE KELLER -->
+    <div class="img-zone medium">
+      <img src="VOTRE_IMAGE_KELLER" alt="Compagnie Keller" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder medium\'><span class=\'ph-icon\'>🖼</span><span>Image Compagnie Keller<br>Remplacer src=&quot;VOTRE_IMAGE_KELLER&quot;</span></div>'">
+      <div class="img-caption">Compagnie Keller — Unité COLD, 21st Corps Nova</div>
+    </div>
+
+    <div class="section-title">Contexte Canon — Toola (19 BBY)</div>
+    <p>Historiquement, des détachements du 21st Nova Corps ont été déployés sur Toola sous le commandement de Keller et du Général Jedi Kai Hudorra. Simultanément à la bataille de Mygeeto, l'Ordre 66 a été reçu. Keller et ses hommes ont tenté d'éliminer le Général Hudorra, qui a réussi à s'échapper vers Coruscant malgré leur poursuite en STAP. C'est sur ce théâtre glaciaire que le nom "Keller" est entré dans les archives.</p>
+    <p>Dans la continuité du serveur, Keller commandait la 44e Légion Arctique — une légion de Marines Galactiques spécialisée dans les environnements arctiques.</p>
+
+    <div class="section-title">Doctrine COLD</div>
+    <table class="dtable">
+      <thead><tr><td>Domaine</td><td>Standard</td></tr></thead>
+      <tbody>
+        <tr><td>Environnements</td><td>Arctique, spatial, hostile extrême. Là où l'armure standard tue avant l'ennemi.</td></tr>
+        <tr><td>Stratégies</td><td>Stratégies de combat avancées — contre des situations imprévues, des terrains impossibles.</td></tr>
+        <tr><td>Maintenance SDN</td><td>Systèmes de défense et navigation. Capacité technique supérieure à un Marine standard.</td></tr>
+        <tr><td>Combat véhiculaire</td><td>Maîtrise des TX et véhicules lourds en conditions extrêmes.</td></tr>
+        <tr><td>Infiltration</td><td>Capacité de pénétrer et opérer dans des zones que l'ennemi considère comme inaccessibles.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">Effectif — Les quatre piliers</div>
+
+    <div class="article">
+      <div class="article-header"><span>1171</span>KELLER — Commandant de Compagnie</div>
+      <p><strong>Rôle :</strong> Leader. Tacticien et combattant. Mène depuis la ligne de front.</p>
+      <p><strong>Traits :</strong> Calme glacial, déterminé, inébranlable, perfectionniste. Son autorité repose sur l'exemple, pas sur la peur.</p>
+      <p><strong>Armement :</strong> DC-15X, DC-15LE, DC-17 Dual, DC-15S, DC-15SE, DP-23, Grappin, Grenades Impact/Thermiques, Défibrillateur, Injecteur Bacta.</p>
+    </div>
+
+    <div class="article">
+      <div class="article-header"><span>1172</span>SILENT — Bras droit tactique</div>
+      <p><strong>Rôle :</strong> Assassin silencieux. Déployé uniquement sur opérations critiques. Sa présence signifie que l'opération est déjà considérée comme terminée.</p>
+      <p><strong>Traits :</strong> Silencieux, précis, invisible. Ne parle pas. N'a pas besoin de le faire.</p>
+      <p><strong>Armement :</strong> DC-15X, DC-15S, DC-15SE, Grappin, Grenades Impact/Thermiques.</p>
+    </div>
+
+    <div class="article">
+      <div class="article-header"><span>1173</span>SNOW — Scientifique militaire</div>
+      <p><strong>Rôle :</strong> Noyau intellectuel et stratégique. Supériorité technologique, analyse tactique froide. Ses décisions ne laissent de place ni au hasard, ni à l'éthique.</p>
+      <p><strong>Traits :</strong> Visionnaire, impassible, calculateur. Présence omnisciente. Délègue l'exécution, rien ne lui échappe.</p>
+      <p><strong>Armement :</strong> DC-15X, DC-15S, DC-15SE, Grappin.</p>
+    </div>
+
+    <div class="article">
+      <div class="article-header"><span>1174</span>FROST — Spécialiste terrains hostiles</div>
+      <p><strong>Rôle :</strong> Infiltration tactique en milieux impossibles. Conçoit les tactiques que d'autres ne peuvent même pas imaginer. Dirige les escouades adaptatives.</p>
+      <p><strong>Traits :</strong> Résistant, pragmatique, sarcastique. Il râle — et réussit toujours.</p>
+      <p><strong>Armement :</strong> DC-15X, DC-15SE, DP-23, Grappin, Grenades Impact/Thermiques.</p>
+    </div>
+
+    <div class="citation"><div class="citation-text">Si tu peux encore te plaindre, c'est que tu n'es pas encore mort. Alors avance.</div><div class="citation-source">— FROST, devant une recrue gelée à mort.</div></div>
+
+    <div class="section-title">Tenues de la Compagnie</div>
+    <p>La Compagnie Keller porte des tenues distinctives par rapport aux Marines réguliers. Les skins sont définis selon le rôle :</p>
+    <table class="dtable">
+      <thead><tr><td>Membre / Tenue</td><td>Skin</td></tr></thead>
+      <tbody>
+        <tr><td>Tenue standard</td><td>Skin 2 / Skin 0</td></tr>
+        <tr><td>FROST</td><td>Skin 1 / Skin 2</td></tr>
+        <tr><td>SNOW</td><td>Skin 1 / Skin 2</td></tr>
+        <tr><td>SILENT</td><td>Skin 0 / Skin 1</td></tr>
+      </tbody>
+    </table>
+
+    <div class="img-zone medium">
+      <img src="VOTRE_IMAGE_KELLER_TENUES" alt="Tenues Keller" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder medium\'><span class=\'ph-icon\'>🖼</span><span>Screenshots tenues Keller<br>Remplacer src=&quot;VOTRE_IMAGE_KELLER_TENUES&quot;</span></div>'">
+      <div class="img-caption">Tenues de la Compagnie Keller — screenshots à venir</div>
+    </div>
+
+    <div class="section-title">Sélection</div>
+    <div class="code-art">
+      <div class="code-art-header"><div class="code-art-num">★</div>Accès sur sélection exclusive</div>
+      <div class="code-art-body">L'entrée dans la Compagnie Keller est soumise à un test d'entrée. Bacara et Keller se réservent conjointement le droit d'accepter ou refuser toute candidature, sans obligation de justification.<br><br>Les distinctions internes à la Compagnie sont attribuées au seul bon vouloir de Keller et de son second. Les conditions pour les obtenir restent secrètes. Demander explicitement à en recevoir une est sanctionnable. L'usage non autorisé d'une distinction est également sanctionnable.</div>
     </div>
   </div>
 </div>
