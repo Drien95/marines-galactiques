@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>21st Corps Nova — Marines Galactiques</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bordeaux:   #6B2142;
+    --bordeaux-l: #8B3058;
+    --bordeaux-d: #4A1530;
+    --bordeaux-x: #2E0D1E;
+    --or:         #C9A84C;
+    --or-l:       #E8C96A;
+    --creme:      #F5F0EB;
+    --creme-alt:  #EDE5DC;
+    --blanc:      #FFFFFF;
+    --texte:      #1A0A0A;
+    --texte-sec:  #4A2030;
+    --acier:      #1C1C1C;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Crimson Pro', Georgia, serif;
+    background: var(--acier);
+    color: var(--texte);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── LAYOUT ── */
+  .shell {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: 280px;
+    min-width: 280px;
+    background: var(--bordeaux-x);
+    border-right: 1px solid rgba(201,168,76,.15);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+  }
+
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-track { background: transparent; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--bordeaux); }
+
+  .logo-block {
+    padding: 32px 24px 20px;
+    border-bottom: 1px solid rgba(201,168,76,.2);
+    text-align: center;
+  }
+
+  .logo-num {
+    font-family: 'Cinzel', serif;
+    font-size: 56px;
+    font-weight: 900;
+    color: var(--bordeaux-l);
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+
+  .logo-st {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: var(--or);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-top: -4px;
+    display: block;
+  }
+
+  .logo-sub {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    color: rgba(201,168,76,.6);
+    letter-spacing: 3px;
+    margin-top: 8px;
+    display: block;
+    line-height: 1.6;
+  }
+
+  .nav-group { padding: 8px 0; }
+
+  .nav-group-label {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--or);
+    text-transform: uppercase;
+    padding: 12px 24px 4px;
+    opacity: .7;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 8px 24px 8px 28px;
+    color: rgba(245,240,235,.6);
+    text-decoration: none;
+    font-size: 13px;
+    font-family: 'Crimson Pro', serif;
+    font-weight: 300;
+    letter-spacing: .5px;
+    transition: all .2s;
+    border-left: 2px solid transparent;
+    position: relative;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--creme);
+    border-left-color: var(--bordeaux-l);
+    background: rgba(107,33,66,.2);
+    padding-left: 32px;
+  }
+
+  .nav-link.sub {
+    padding-left: 40px;
+    font-size: 12px;
+    color: rgba(245,240,235,.45);
+  }
+
+  .nav-link.sub:hover,
+  .nav-link.sub.active {
+    color: rgba(245,240,235,.8);
+    padding-left: 44px;
+    border-left-color: var(--or);
+  }
+
+  .sidebar-footer {
+    margin-top: auto;
+    padding: 16px 24px;
+    border-top: 1px solid rgba(201,168,76,.1);
+    font-size: 10px;
+    color: rgba(245,240,235,.25);
+    font-family: 'Cinzel', serif;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+
+  /* ── MAIN ── */
+  .main {
+    flex: 1;
+    background: var(--creme);
+    overflow-y: auto;
+  }
+
+  /* ── PAGES ── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, var(--bordeaux-x) 0%, var(--bordeaux-d) 60%, var(--bordeaux) 100%);
+    padding: 60px 60px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(201,168,76,.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .page-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--or), transparent);
+  }
+
+  .chapter-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--or);
+    opacity: .8;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .page-title {
+    font-family: 'Cinzel', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--creme);
+    line-height: 1.2;
+    letter-spacing: 1px;
+  }
+
+  .page-subtitle {
+    font-family: 'Crimson Pro', serif;
+    font-size: 16px;
+    color: rgba(245,240,235,.6);
+    margin-top: 8px;
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  /* ── CONTENT ── */
+  .content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 60px 72px;
+  }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--bordeaux);
+    margin: 48px 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--bordeaux-l);
+    position: relative;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0;
+    width: 48px; height: 2px;
+    background: var(--bordeaux);
+  }
+
+  .subsection-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--bordeaux-l);
+    margin: 32px 0 14px;
+  }
+
+  /* ── BODY TEXT ── */
+  p {
+    font-size: 17px;
+    line-height: 1.85;
+    color: var(--texte);
+    margin-bottom: 16px;
+    text-align: justify;
+    font-weight: 300;
+  }
+
+  strong { color: var(--bordeaux-d); font-weight: 600; }
+
+  em { color: var(--bordeaux-l); font-style: italic; }
+
+  /* ── CITATION ── */
+  .citation {
+    margin: 36px 0;
+    padding: 24px 32px;
+    border-left: 3px solid var(--bordeaux);
+    background: linear-gradient(135deg, rgba(107,33,66,.06), rgba(107,33,66,.02));
+    position: relative;
+  }
+
+  .citation::before {
+    content: '\201C';
+    font-family: 'Cinzel', serif;
+    font-size: 64px;
+    color: var(--bordeaux-l);
+    opacity: .2;
+    position: absolute;
+    top: -8px; left: 12px;
+    line-height: 1;
+  }
+
+  .citation-text {
+    font-size: 18px;
+    font-style: italic;
+    color: var(--bordeaux-d);
+    line-height: 1.7;
+    font-weight: 300;
+    position: relative;
+  }
+
+  .citation-source {
+    font-size: 13px;
+    color: var(--texte-sec);
+    margin-top: 10px;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 1px;
+    font-style: normal;
+  }
+
+  /* ── FICHE TABLE ── */
+  .fiche {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 15px;
+  }
+
+  .fiche tr:first-child td { display: none; }
+
+  .fiche td {
+    padding: 11px 16px;
+    border-bottom: 1px solid rgba(107,33,66,.1);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+
+  .fiche td:first-child {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--bordeaux);
+    background: var(--creme-alt);
+    width: 200px;
+    font-weight: 600;
+  }
+
+  .fiche tr:nth-child(even) td:last-child { background: rgba(107,33,66,.02); }
+
+  /* ── DATA TABLE ── */
+  .dtable {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 15px;
+  }
+
+  .dtable thead tr {
+    background: var(--bordeaux-d);
+    color: var(--creme);
+  }
+
+  .dtable thead td {
+    padding: 12px 16px;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .dtable tbody tr { border-bottom: 1px solid rgba(107,33,66,.1); }
+  .dtable tbody tr:nth-child(even) { background: rgba(107,33,66,.03); }
+
+  .dtable td {
+    padding: 11px 16px;
+    vertical-align: top;
+    line-height: 1.6;
+    font-weight: 300;
+    color: var(--texte);
+  }
+
+  .dtable td:first-child {
+    font-weight: 600;
+    color: var(--bordeaux-d);
+    font-size: 14px;
+  }
+
+  /* ── CORRECT/INCORRECT TABLE ── */
+  .rp-table { width: 100%; border-collapse: collapse; margin: 24px 0; }
+  .rp-table thead tr { background: var(--bordeaux-d); }
+  .rp-table thead td { padding: 10px 16px; font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--creme); font-weight: 600; }
+  .rp-table tbody tr { border-bottom: 1px solid rgba(107,33,66,.1); }
+  .rp-table tbody tr:nth-child(even) { background: rgba(107,33,66,.03); }
+  .rp-table td { padding: 10px 16px; font-size: 14px; vertical-align: top; line-height: 1.6; }
+  .rp-table td:first-child { font-weight: 600; color: var(--bordeaux-d); width: 160px; }
+  .ok { color: #2d6a2d; font-weight: 600; }
+  .nok { color: #8b0000; font-weight: 600; }
+
+  /* ── ARTICLE ── */
+  .article {
+    margin: 24px 0;
+    border-left: 2px solid var(--bordeaux-l);
+    padding-left: 20px;
+  }
+
+  .article-header {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--bordeaux);
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+
+  .article-header span {
+    color: var(--bordeaux-l);
+    margin-right: 8px;
+  }
+
+  .article p { margin-bottom: 8px; }
+
+  .article .exception {
+    font-size: 14px;
+    font-style: italic;
+    color: var(--texte-sec);
+    background: rgba(107,33,66,.04);
+    padding: 8px 12px;
+    margin-top: 6px;
+    border-radius: 2px;
+  }
+
+  .exception strong { color: var(--bordeaux-l); }
+
+  /* ── PILIER ── */
+  .pilier {
+    margin: 20px 0;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, rgba(107,33,66,.05), rgba(107,33,66,.02));
+    border-top: 1px solid rgba(107,33,66,.15);
+  }
+
+  .pilier-num {
+    font-family: 'Cinzel', serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: rgba(107,33,66,.15);
+    float: left;
+    line-height: 1;
+    margin-right: 16px;
+    margin-top: -4px;
+  }
+
+  .pilier-title {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--bordeaux);
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+
+  .pilier p { font-size: 15px; margin-bottom: 0; clear: none; }
+
+  /* ── CODE ARTICLE ── */
+  .code-art {
+    margin: 20px 0;
+    background: var(--creme-alt);
+    padding: 0;
+  }
+
+  .code-art-header {
+    background: var(--bordeaux-d);
+    color: var(--creme);
+    padding: 12px 20px;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .code-art-num {
+    background: var(--or);
+    color: var(--bordeaux-x);
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  .code-art-body {
+    padding: 16px 20px;
+    font-size: 16px;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  /* ── THEATRE ENTRY ── */
+  .theatre {
+    margin: 32px 0;
+    padding: 0;
+    border: 1px solid rgba(107,33,66,.15);
+  }
+
+  .theatre-header {
+    background: var(--bordeaux-d);
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .theatre-name {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: var(--creme);
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .theatre-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    padding: 3px 10px;
+    border: 1px solid var(--or);
+    color: var(--or);
+    text-transform: uppercase;
+  }
+
+  .theatre-meta {
+    background: rgba(107,33,66,.06);
+    padding: 10px 20px;
+    font-size: 13px;
+    color: var(--texte-sec);
+    font-style: italic;
+    border-bottom: 1px solid rgba(107,33,66,.1);
+  }
+
+  .theatre-body {
+    padding: 16px 20px;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .theatre-result {
+    padding: 10px 20px;
+    background: rgba(107,33,66,.04);
+    border-top: 1px solid rgba(107,33,66,.1);
+    font-size: 13px;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 1px;
+    color: var(--bordeaux);
+    text-transform: uppercase;
+  }
+
+  /* ── COVER PAGE ── */
+  .cover {
+    background: linear-gradient(160deg, var(--bordeaux-x) 0%, #1a0a14 40%, var(--bordeaux-d) 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(107,33,66,.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cover-num {
+    font-family: 'Cinzel', serif;
+    font-size: 140px;
+    font-weight: 900;
+    color: var(--bordeaux-l);
+    line-height: 1;
+    letter-spacing: -8px;
+    position: relative;
+    text-shadow: 0 0 80px rgba(139,48,88,.4);
+  }
+
+  .cover-st {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    letter-spacing: 12px;
+    color: var(--or);
+    text-transform: uppercase;
+    margin-top: -16px;
+    position: relative;
+  }
+
+  .cover-rule {
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--or), transparent);
+    margin: 24px 0;
+    position: relative;
+  }
+
+  .cover-title {
+    font-family: 'Cinzel', serif;
+    font-size: 28px;
+    letter-spacing: 8px;
+    color: var(--creme);
+    text-transform: uppercase;
+    text-align: center;
+    position: relative;
+  }
+
+  .cover-army {
+    font-family: 'Crimson Pro', serif;
+    font-size: 16px;
+    color: rgba(245,240,235,.45);
+    letter-spacing: 3px;
+    margin-top: 8px;
+    text-align: center;
+    position: relative;
+    font-weight: 300;
+  }
+
+  .cover-cmd {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    color: var(--or);
+    letter-spacing: 2px;
+    margin-top: 24px;
+    text-align: center;
+    position: relative;
+  }
+
+  .cover-quote {
+    font-family: 'Crimson Pro', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: rgba(245,240,235,.5);
+    text-align: center;
+    max-width: 480px;
+    margin-top: 48px;
+    line-height: 1.7;
+    position: relative;
+    font-weight: 300;
+  }
+
+  .cover-nav {
+    display: flex;
+    gap: 12px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+  }
+
+  .cover-nav a {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--or);
+    text-decoration: none;
+    border: 1px solid rgba(201,168,76,.3);
+    padding: 8px 16px;
+    transition: all .2s;
+  }
+
+  .cover-nav a:hover {
+    background: rgba(201,168,76,.1);
+    border-color: var(--or);
+  }
+
+  /* ── STAT GRID ── */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(107,33,66,.2);
+    margin: 32px 0;
+    border: 1px solid rgba(107,33,66,.2);
+  }
+
+  .stat-cell {
+    background: var(--creme);
+    padding: 20px;
+    text-align: center;
+  }
+
+  .stat-val {
+    font-family: 'Cinzel', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--bordeaux);
+    display: block;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--texte-sec);
+    text-transform: uppercase;
+    margin-top: 6px;
+    display: block;
+    opacity: .7;
+  }
+
+  /* ── ORDRE 66 BLOCK ── */
+  .ordre66 {
+    text-align: center;
+    padding: 32px;
+    margin: 32px 0;
+    border: 1px solid var(--bordeaux);
+    background: linear-gradient(135deg, rgba(74,21,48,.08), rgba(74,21,48,.03));
+    position: relative;
+  }
+
+  .ordre66-text {
+    font-family: 'Cinzel', serif;
+    font-size: 24px;
+    letter-spacing: 8px;
+    color: var(--bordeaux);
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  /* ── GRADE TABLE ── */
+  .grade-table { width: 100%; border-collapse: collapse; margin: 24px 0; }
+  .grade-table tr { border-bottom: 1px solid rgba(107,33,66,.08); }
+  .grade-table tr:first-child { background: var(--bordeaux-d); }
+  .grade-table tr:first-child td { color: var(--creme); font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
+  .grade-table td { padding: 10px 16px; font-size: 14px; line-height: 1.5; }
+  .grade-table tr:nth-child(even) { background: rgba(107,33,66,.03); }
+  .grade-table td:first-child { font-weight: 600; color: var(--bordeaux-d); }
+  .grade-table td:nth-child(2) { color: var(--texte-sec); font-size: 13px; text-align: center; font-family: 'Cinzel', serif; letter-spacing: 1px; }
+  .grade-table td:nth-child(3) { font-size: 13px; color: var(--texte-sec); font-style: italic; }
+
+  .grade-off { background: rgba(107,33,66,.06) !important; }
+  .grade-so  { background: rgba(107,33,66,.03) !important; }
+
+  /* ── RULE ── */
+  .rule {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--bordeaux-l), transparent);
+    margin: 40px 0;
+    opacity: .4;
+  }
+
+  /* ── MEMORIAL PLACEHOLDER ── */
+  .placeholder {
+    border: 1px dashed rgba(107,33,66,.3);
+    padding: 32px;
+    text-align: center;
+    margin: 24px 0;
+    background: rgba(107,33,66,.02);
+  }
+
+  .placeholder p {
+    font-size: 14px;
+    color: var(--texte-sec);
+    font-style: italic;
+    opacity: .7;
+    margin: 0;
+    text-align: center;
+  }
+
+  /* ── FINAL BLOCK ── */
+  .final {
+    text-align: center;
+    padding: 48px 32px;
+    background: linear-gradient(135deg, var(--bordeaux-x), var(--bordeaux-d));
+    margin-top: 60px;
+  }
+
+  .final-title {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    letter-spacing: 8px;
+    color: var(--or);
+    text-transform: uppercase;
+  }
+
+  .final-sub {
+    font-family: 'Crimson Pro', serif;
+    font-size: 14px;
+    color: rgba(245,240,235,.4);
+    margin-top: 10px;
+    font-style: italic;
+    letter-spacing: 2px;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .page.active .content { animation: fadeIn .3s ease; }
+  .page.active .page-header { animation: fadeIn .2s ease; }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+<!-- ── SIDEBAR ── -->
+<nav class="sidebar">
+  <div class="logo-block">
+    <div class="logo-num">21</div>
+    <span class="logo-st">Corps Nova</span>
+    <span class="logo-sub">Marines Galactiques<br>4e Armée de Secteur — GAR</span>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Navigation</div>
+    <a class="nav-link active" onclick="show('accueil')">Accueil</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Lore</div>
+    <a class="nav-link sub" onclick="show('bacara')">CC-1138 "Bacara"</a>
+    <a class="nav-link sub" onclick="show('corps')">Le 21st Nova Corps</a>
+    <a class="nav-link sub" onclick="show('theatres')">Théâtres d'opération</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Doctrine</div>
+    <a class="nav-link sub" onclick="show('philosophie')">Philosophie du Corps</a>
+    <a class="nav-link sub" onclick="show('code')">Le Code Marine</a>
+    <a class="nav-link sub" onclick="show('rp')">Le RP du Marine</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Équipement</div>
+    <a class="nav-link sub" onclick="show('armure')">Armure et tenue</a>
+    <a class="nav-link sub" onclick="show('armement')">Armement</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Structure</div>
+    <a class="nav-link sub" onclick="show('structure')">Organisation & grades</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Règlement</div>
+    <a class="nav-link" onclick="show('reglement')">Règlement</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Mémoire</div>
+    <a class="nav-link sub" onclick="show('memorial')">Mémorial</a>
+    <a class="nav-link sub" onclick="show('medailles')">Médailles</a>
+    <a class="nav-link sub" onclick="show('histoires')">Histoires</a>
+  </div>
+
+  <div class="sidebar-footer">Usage interne — CC-1138</div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGES
+══════════════════════════════════════════════════════════ -->
+<main class="main">
+
+<!-- ── ACCUEIL ── -->
+<div id="accueil" class="page active">
+  <div class="cover">
+    <div class="cover-num">21</div>
+    <div class="cover-st">Corps Nova</div>
+    <div class="cover-rule"></div>
+    <div class="cover-title">Marines Galactiques</div>
+    <div class="cover-army">4e Armée de Secteur — Grande Armée de la République</div>
+    <div class="cover-cmd">Commandant Maréchal CC-1138 &nbsp;·&nbsp; "Bacara"</div>
+    <div class="cover-quote">Nés pour servir. Forgés pour durer. Ordonnés pour tuer.</div>
+    <div class="cover-nav">
+      <a onclick="show('bacara')">Bacara</a>
+      <a onclick="show('corps')">Le Corps</a>
+      <a onclick="show('philosophie')">Doctrine</a>
+      <a onclick="show('code')">Code Marine</a>
+      <a onclick="show('reglement')">Règlement</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <p style="font-size:19px; font-style:italic; color:var(--bordeaux-d); text-align:center; margin:0 0 32px;">Le 21st Corps Nova n'est pas une unité d'élite parce qu'il se le dit.<br>Il l'est parce que la galaxie l'a appris à ses dépens.</p>
+
+    <div class="stat-grid">
+      <div class="stat-cell"><span class="stat-val">36 864</span><span class="stat-label">Clones</span></div>
+      <div class="stat-cell"><span class="stat-val">16</span><span class="stat-label">Régiments</span></div>
+      <div class="stat-cell"><span class="stat-val">1</span><span class="stat-label">Commandant</span></div>
+    </div>
+
+    <p>Sous le commandement du Commandant Maréchal CC-1138 "Bacara", les Marines Galactiques sont l'arme de précision de la République dans les théâtres les plus hostiles de la Bordure Extérieure. Leur réputation ne repose pas sur des déclarations. Elle repose sur <strong>New Bornalex, Aargonar, Boz Pity, Rhen Var, et Mygeeto</strong>.</p>
+    <p>Ce registre est le document officiel de l'unité. Il n'est pas là pour séduire. Il est là pour informer.</p>
+
+    <div class="section-title">Fiche d'identification</div>
+    <table class="fiche">
+      <tr><td>—</td><td>—</td></tr>
+      <tr><td>Désignation</td><td>21st Nova Corps / Marines Galactiques</td></tr>
+      <tr><td>Armée</td><td>4e Armée de Secteur, GAR</td></tr>
+      <tr><td>Effectif théorique</td><td>36 864 clones — 16 régiments</td></tr>
+      <tr><td>Commandant</td><td>CC-1138 "Bacara" — Commandant Maréchal</td></tr>
+      <tr><td>Général Jedi</td><td>Ki-Adi-Mundi (Maître Jedi, Conseil Jedi)</td></tr>
+      <tr><td>Spécialisation</td><td>Assaut multi-environnements, boarding, milieux hostiles</td></tr>
+      <tr><td>Armement standard</td><td>DC-15A, DC-15S</td></tr>
+      <tr><td>Véhicules</td><td>UT-AT — marquages violets</td></tr>
+      <tr><td>Couleurs</td><td>Bordeaux et blanc</td></tr>
+      <tr><td>Statut</td><td>Actif — Sièges de la Bordure Extérieure</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ── BACARA ── -->
+<div id="bacara" class="page">
+  <div class="page-header">
+    <div class="chapter-label">II · Lore</div>
+    <div class="page-title">CC-1138 "Bacara"</div>
+    <div class="page-subtitle">Commandant Maréchal — Marines Galactiques, 21st Nova Corps</div>
+  </div>
+  <div class="content">
+
+    <div class="citation">
+      <div class="citation-text">Je n'hésite pas. Je n'ai jamais hésité. Un ordre du Commandant Suprême est la loi. Quiconque s'y oppose est un ennemi de la République — qu'il porte une armure ou une robe.</div>
+      <div class="citation-source">— CC-1138, après l'Ordre 66, Mygeeto</div>
+    </div>
+
+    <div class="section-title">Origine et formation initiale</div>
+    <p>CC-1138 est né dans les cuves de Kamino, clone parmi des millions de l'ADN de Jango Fett. Rien ne le distinguait à la naissance.</p>
+    <p>Ce qui l'a séparé de ses frères est arrivé sur les tables de formation.</p>
+    <p>Son instructeur initial n'était pas un Mandalorien. C'était <strong>Cort Davin</strong>, ancien Protecteur de Concord Dawn — un des rares non-Mandalorien recruté par Jango Fett pour le groupe des <em>Cuy'val Dar</em>, les cent instructeurs chargés d'élever la prochaine génération de commandants. Davin lui a transmis quelque chose que les autres clones n'avaient pas : les traditions, l'histoire et la philosophie des Journeyman Protectors de Concord Dawn — des hommes de loi, pas simplement des soldats.</p>
+    <p>CC-1138 a intégré cette formation comme une identité. Il a commencé à se voir non seulement comme un soldat né pour la guerre, mais comme un <strong>homme de loi et d'ordre</strong>, dont la mission dépasse le champ de bataille.</p>
+    <p>Un effet secondaire de cet enseignement : il a appris le dialecte de Concord Dawn, non le Mando'a standard. Là où ses frères clones disaient <em>"vod"</em> pour frère, lui disait <em>"tat"</em> — le terme des Protecteurs. Cette différence, infime en apparence, l'a progressivement coupé de ses camarades. Les conversations se fragmentaient. L'isolement s'est installé. <strong>CC-1138 est devenu un solitaire.</strong></p>
+
+    <div class="section-title">Le programme ARC — Alpha-17</div>
+    <p>Ses performances sur le terrain lui ont valu une sélection rare : le programme ARC d'Alpha-17.</p>
+    <p>Parmi des millions de clones, seulement une centaine ont été sélectionnés. L'objectif n'était pas de fabriquer des machines plus efficaces. C'était de <strong>réveiller l'individu</strong> — l'initiative tactique, la prise de décision sous pression, la personnalité opérationnelle qu'on avait délibérément étouffée dans la conception originale des clones.</p>
+    <p>Les autres diplômés du programme sont connus : <strong>Cody</strong> (7e Corps du Ciel), <strong>Gree</strong> (41e Corps d'Élite), <strong>Bly</strong> (327e Corps des Étoiles), <strong>Neyo</strong> (91e Corps de Reconnaissance). CC-1138 a terminé le programme <strong>en avance</strong>.</p>
+    <p>C'est dans ce programme qu'il a choisi son nom : <strong>Bacara.</strong> Ce nom n'est pas expliqué dans les archives. Il ne devait pas l'être. Bacara ne s'explique pas.</p>
+    <p>Son passage par le programme ARC a amplifié ce que Davin avait planté : une rigueur absolue, une exigence maximale, une intransigeance sur les standards. Ce n'est pas de l'arrogance. C'est le résultat d'un homme qui a compris que la médiocrité tue ses hommes.</p>
+
+    <div class="section-title">La transformation du 21st</div>
+    <p>Quand Bacara reprend la tête du 21st Nova Corps après sa formation ARC, il ne dirige plus une unité. Il la <strong>refond.</strong></p>
+    <p>Sa méthode est simple et sans appel : tout Marine du 21st doit atteindre un niveau d'excellence absolu. Ceux qui n'y arrivent pas ne restent pas. Bacara <strong>réaffecte unilatéralement</strong> tout clone qui ne répond pas à ses standards — sans discussion, sans délai, sans appel. Ki-Adi-Mundi a protesté à plusieurs reprises contre ces décisions. Bacara a maintenu chaque réaffectation.</p>
+    <p>Ce n'est pas de la cruauté. C'est de la logique : un clone sous-performant dans le 21st met en danger tous ses frères. Le supprimer de l'équation est un acte de protection, pas de punition.</p>
+    <p>La 21st devient alors une machine. Les Marines ne sont pas des individus dans leurs fonctions — ils sont des composantes d'un système conçu pour l'objectif. Ce standard brutal, appliqué sans exception pendant des années de guerre, a produit l'une des unités les plus redoutées de la GAR.</p>
+
+    <div class="section-title">La relation avec Ki-Adi-Mundi</div>
+    <p>Bacara et Ki-Adi-Mundi ne se sont jamais aimés. Ils se sont <strong>respectés.</strong></p>
+    <p>Le Maître Jedi trouvait les méthodes de Bacara trop dures, ses réaffectations injustes, sa froideur inquiétante. Bacara trouvait Ki-Adi-Mundi trop attaché à chaque clone individuel — une sentimentalité qui, selon lui, compromettait le jugement tactique.</p>
+    <p>Pourtant, Mundi reconnaissait ouvertement le talent de Bacara. Il a décrit ses tactiques agressives comme <em>"prodigieuses"</em>. Il lui a confié la direction tactique des Marines dans les situations les plus critiques. Et jusqu'à la fin, il a combattu à ses côtés.</p>
+    <p>Leur relation était professionnelle dans le sens le plus pur du terme : efficace, fonctionnelle, mutuellement respectueuse, et sans chaleur.</p>
+
+    <div class="section-title">L'Ordre 66 — Mygeeto, 19 BBY</div>
+    <p>Le 19 BBY, sur les ponts de glace de Mygeeto, pendant que les Marines repoussaient les forces séparatistes, Bacara reçoit une transmission directe de Darth Sidious.</p>
+    <div class="ordre66"><div class="ordre66-text">Ordre 66</div></div>
+    <p>Il a hésité une seconde, selon ses propres mots. Pas parce qu'il ne voulait pas obéir. Parce qu'il ne s'y attendait pas. L'idée qu'un Jedi du Conseil puisse être un traître lui avait semblé absurde.</p>
+    <p>Puis la logique a repris le dessus : l'ordre venait du Commandant Suprême. Le Commandant Suprême n'avait pas à se justifier devant un commandant de corps.</p>
+    <p>Bacara a posé son regard sur Ki-Adi-Mundi, qui menait la charge contre des droïdes à dix mètres de lui. Il a levé le bras. Ses Marines ont ouvert le feu. Ki-Adi-Mundi a tenté de se défendre. Il a été submergé sous les tirs croisés de ses propres hommes. Bacara a rendu compte de l'exécution. Sans commentaire.</p>
+    <p>Dans les archives post-guerre, il a déclaré qu'il était soulagé. Qu'il avait pensé à tous ses hommes morts sous le commandement de Mundi. Que s'il avait su que les Jedi préparaient un coup d'État, il aurait exécuté Mundi bien plus tôt. Cette déclaration est authentique. Elle n'est pas de la propagande impériale. <strong>C'est Bacara.</strong></p>
+
+    <div class="section-title">Après la guerre — L'Empire</div>
+    <p>Le 21st Nova Corps est devenu les <strong>Marines Galactiques Impériaux</strong> avec la proclamation de l'Empire. L'armure de la 21st — avec sa visière hermétique filtrante, son isolation thermique et sa conception pour environnements extrêmes — a directement inspiré le design des <strong>Snowtroopers de l'Empire</strong>. Le 21st ne disparaît pas. Il se transforme. L'uniforme change. La mission ne change pas.</p>
+
+    <div class="section-title">Fiche officielle</div>
+    <table class="fiche">
+      <tr><td>—</td><td>—</td></tr>
+      <tr><td>Désignation</td><td>CC-1138</td></tr>
+      <tr><td>Nom de guerre</td><td>Bacara</td></tr>
+      <tr><td>Rang</td><td>Commandant Maréchal</td></tr>
+      <tr><td>Instructeur initial</td><td>Cort Davin (ex-Protecteur Concord Dawn, Cuy'val Dar)</td></tr>
+      <tr><td>Formation avancée</td><td>Programme ARC — sous direction d'Alpha-17</td></tr>
+      <tr><td>Langue opérationnelle</td><td>Dialecte Concordien (non Mando'a standard)</td></tr>
+      <tr><td>Terme "frère"</td><td>"tat" (Concordien) — non "vod" (Mandalorien)</td></tr>
+      <tr><td>Ami proche</td><td>CC-8826 "Neyo", 91e Corps de Reconnaissance</td></tr>
+      <tr><td>Armement</td><td>DC-15A, DC-15S carbine, DC-17 (occasionnel)</td></tr>
+      <tr><td>Équipements distinctifs</td><td>Kama, épaulière bordeaux, bandoulière, chauffage dorsal</td></tr>
+      <tr><td>Général assigné</td><td>Ki-Adi-Mundi (Maître Jedi, Conseil Jedi)</td></tr>
+      <tr><td>Dernière opération</td><td>Mygeeto — Ordre 66, 19 BBY</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ── LE CORPS ── -->
+<div id="corps" class="page">
+  <div class="page-header">
+    <div class="chapter-label">III · Lore</div>
+    <div class="page-title">Le 21st Nova Corps</div>
+    <div class="page-subtitle">Historique de l'unité — Canon & Legends</div>
+  </div>
+  <div class="content">
+    <div class="section-title">Origine</div>
+    <p>Le 21st Nova Corps est une subdivision de la <strong>4e Armée de Secteur</strong> de la Grande Armée de la République. Constitué à Kamino à partir de clones de Jango Fett, il a été rendu indépendant sous commandement conjoint du Général Jedi Ki-Adi-Mundi et du Commandant Maréchal CC-1138 "Bacara". Cette indépendance lui a valu son nom opérationnel : <strong>les Marines Galactiques.</strong></p>
+
+    <div class="section-title">Structure</div>
+    <p>Un Corps dans la GAR représente <strong>36 864 soldats</strong>, répartis en <strong>seize régiments</strong>. Les Marines Galactiques étaient entraînés en trois phases distinctes :</p>
+    <table class="dtable">
+      <thead><tr><td>Phase</td><td>Contenu</td></tr></thead>
+      <tbody>
+        <tr><td>Phase I — Conditionnement</td><td>Résistance aux conditions extrêmes. Endurance prolongée. Autonomie complète dans les environnements hostiles (froid, chaleur, toxiques, vide spatial).</td></tr>
+        <tr><td>Phase II — Boarding et assaut spatial</td><td>Prise d'assaut de vaisseaux ennemis. Combat en gravité réduite ou nulle. Sécurisation de cibles mobiles dans l'espace.</td></tr>
+        <tr><td>Phase III — Précision armement</td><td>Maîtrise du DC-15A et DC-15S. Tir de précision sous stress opérationnel et conditions de visibilité réduite.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">L'armure</div>
+    <p>L'armure des Marines Galactiques est une variante de l'armure Phase II des clones, reconnaissable entre toutes. Sa caractéristique principale est la <strong>visière en synthmesh</strong> — un masque filtrant conçu pour protéger de la neige, des cendres, des spores fongiques, des gaz acides, et des particules abrasives. Les couleurs sont <strong>bordeaux et blanc</strong>. Les véhicules assignés portent des marquages violets.</p>
+    <p>Cette armure n'est pas un symbole. C'est un outil. Son influence sur l'armement impérial est directe : les <strong>Snowtroopers de l'Empire</strong> portent une armure dérivée de la conception du 21st.</p>
+
+    <div class="section-title">Réputation — Les batailles fondatrices</div>
+    <div class="subsection-title">New Bornalex — La naissance d'une légende</div>
+    <p>À mi-bataille, le prototype d'armure spatiale subi une défaillance complète. Les systèmes d'armes tombent en panne. Le 21st se retrouve face à des super droïdes de combat B2, sans armement fonctionnel. Un autre commandant aurait ordonné le repli. <strong>Bacara a ordonné l'assaut.</strong> Les Marines ont engagé les droïdes à mains nues — utilisant la force amplifiée de leurs combinaisons pour les démembrer. Ils ont gagné. Aucune autre unité n'avait fait quelque chose de comparable.</p>
+
+    <div class="subsection-title">Rhen Var, Aargonar, Boz Pity</div>
+    <p>Trois théâtres différents, trois environnements opposés — la neige et les montagnes de Rhen Var, la boue d'Aargonar, les conditions de Boz Pity. Le 21st opère avec la même efficacité dans chacun. C'est ça, un Corps multi-environnements.</p>
+
+    <div class="subsection-title">Mygeeto — Siège prolongé, 19 BBY</div>
+    <p>Pendant les Sièges de la Bordure Extérieure, le 21st est déployé sur Mygeeto pour briser les fortifications de la Confédération liées au Clan Bancaire InterGalactique. C'est un siège urbain dans une cité cristalline. La progression est lente. Elle ne s'arrête jamais. Sur les ponts de glace, l'Ordre 66 est reçu. Ce qui suit est entré dans l'histoire.</p>
+
+    <div class="section-title">Héritage</div>
+    <p>Le 21st Nova Corps est intégré à l'Empire Galactique sous le nom de <strong>Marines Galactiques Impériaux</strong>. Son armure devient le template des Snowtroopers impériaux. L'unité survit à la transition. Sa doctrine survit à la transition. Les Marines ne disparaissent pas. Ils changent d'employeur.</p>
+  </div>
+</div>
+
+<!-- ── THÉÂTRES ── -->
+<div id="theatres" class="page">
+  <div class="page-header">
+    <div class="chapter-label">IV · Lore</div>
+    <div class="page-title">Théâtres d'opération</div>
+    <div class="page-subtitle">Sources primaires — Canon (C) et Legends (L) séparés</div>
+  </div>
+  <div class="content">
+
+    <div class="theatre">
+      <div class="theatre-header"><div class="theatre-name">New Bornalex</div><div class="theatre-badge">Legends</div></div>
+      <div class="theatre-meta">Environnement : Combat mécanisé — forces CSI + Mandalorians</div>
+      <div class="theatre-body">Premier déploiement majeur avec l'armure prototype spacetrooper. Défaillance complète des armes en cours de bataille. Combat à mains nues contre super droïdes B2. Victoire. C'est sur ce théâtre que la réputation du 21st est née.</div>
+      <div class="theatre-result">Résultat : Victoire République</div>
+    </div>
+
+    <div class="theatre">
+      <div class="theatre-header"><div class="theatre-name">Rhen Var</div><div class="theatre-badge">Legends</div></div>
+      <div class="theatre-meta">Environnement : Monde glaciaire, montagneux, hostile</div>
+      <div class="theatre-body">Campagne dans les pics enneigés. Conditions extrêmes. Le 21st opère sans adaptation de doctrine — l'environnement est son terrain natal.</div>
+      <div class="theatre-result">Résultat : Victoire République</div>
+    </div>
+
+    <div class="theatre">
+      <div class="theatre-header"><div class="theatre-name">Aargonar</div><div class="theatre-badge">Legends</div></div>
+      <div class="theatre-meta">Environnement : Terrain boueux, difficile</div>
+      <div class="theatre-body">Campagne dans les plaines de boue d'Aargonar. Conditions opposées à Rhen Var. Même efficacité.</div>
+      <div class="theatre-result">Résultat : Victoire République</div>
+    </div>
+
+    <div class="theatre">
+      <div class="theatre-header"><div class="theatre-name">Boz Pity</div><div class="theatre-badge">Legends</div></div>
+      <div class="theatre-meta">Environnement : Planète Bordure Extérieure</div>
+      <div class="theatre-body">Campagne lors des Sièges de la Bordure Extérieure. Bacara, Mundi et la Jedi Knight Rivi-Anu participent à une opération sur un Venator endommagé. Rivi-Anu sacrifie sa vie pour maintenir le vaisseau en vol assez longtemps pour évacuer les forces républicaines.</div>
+      <div class="theatre-result">Résultat : Victoire République — perte de Rivi-Anu (Jedi Knight)</div>
+    </div>
+
+    <div class="theatre">
+      <div class="theatre-header"><div class="theatre-name">Orto Plutonia</div><div class="theatre-badge">Canon</div></div>
+      <div class="theatre-meta">Environnement : Monde glaciaire, arctique profond</div>
+      <div class="theatre-body">Opérations pré-Mygeeto dans les Sièges de la Bordure Extérieure.</div>
+      <div class="theatre-result">Résultat : Victoire République</div>
+    </div>
+
+    <div class="theatre">
+      <div class="theatre-header"><div class="theatre-name">Mygeeto — 19 BBY</div><div class="theatre-badge">Canon + Legends</div></div>
+      <div class="theatre-meta">Environnement : Cité cristalline, ponts de glace, combat urbain</div>
+      <div class="theatre-body">Théâtre principal de la fin de guerre. Siège prolongé des fortifications de la Confédération liées au Clan Bancaire InterGalactique. La 501e Légion est détachée pour l'Opération Hammertong. Bacara maintient la pression sur les lignes séparatistes. Réception de l'Ordre 66. Exécution de Ki-Adi-Mundi.</div>
+      <div class="theatre-result">Résultat : Victoire République / Empire — Ordre 66 exécuté</div>
+    </div>
+
+    <div class="theatre">
+      <div class="theatre-header"><div class="theatre-name">Toola — Simultané à Mygeeto</div><div class="theatre-badge">Legends</div></div>
+      <div class="theatre-meta">Environnement : Plaines glacées, arctique</div>
+      <div class="theatre-body">Détachements du 21st sous le Commandant Keller déployés sur Toola. Réception de l'Ordre 66. Le Jedi Général Kai Hudorra (Bothan) parvient à s'échapper. Le 21st le pourchasse jusqu'à la station Ithaqua en STAP. Il échappe vers Coruscant.</div>
+      <div class="theatre-result">Résultat : Ordre 66 partiellement exécuté — cible Jedi non neutralisée</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── PHILOSOPHIE ── -->
+<div id="philosophie" class="page">
+  <div class="page-header">
+    <div class="chapter-label">V · Doctrine</div>
+    <div class="page-title">Philosophie du Corps</div>
+    <div class="page-subtitle">Les fondements du 21st Nova Corps</div>
+  </div>
+  <div class="content">
+    <div class="citation"><div class="citation-text">Un Marine ne demande pas pourquoi. Il demande où et quand.</div></div>
+
+    <div class="section-title">Ce que nous sommes</div>
+    <p>Le 21st Nova Corps n'est pas construit sur des idéaux. Il est construit sur une <strong>fonction.</strong></p>
+    <p>Cette fonction est simple : déployer une force de combat maximale dans les environnements où les autres unités de la GAR ne peuvent pas opérer, et accomplir la mission. Pas survivre. Pas essayer. <strong>Accomplir.</strong> La distinction est importante. Survivre est un objectif personnel. Accomplir la mission est l'unique objectif d'un Marine.</p>
+
+    <div class="section-title">L'héritage de Bacara</div>
+    <p>Tout ce que le 21st est aujourd'hui vient d'un homme.</p>
+    <p>Bacara n'a pas construit le 21st par affection pour ses hommes. Il l'a construit par conviction : un soldat médiocre est une menace pour ses camarades. L'élever ou le retirer sont les deux seules réponses acceptables. La tolérance n'est pas une vertu — c'est une lâcheté déguisée en compassion.</p>
+    <p>Ce que Bacara a hérité de Cort Davin — la discipline de l'homme de loi, le respect de l'ordre, la conviction que les règles ne sont pas négociables — il l'a traduit en doctrine militaire. Un Marine du 21st n'obéit pas parce qu'on lui dit d'obéir. Il obéit parce qu'il a <strong>compris</strong> que la chaîne de commandement est la seule chose qui transforme des individus en force de combat.</p>
+
+    <div class="section-title">Les trois piliers</div>
+    <div class="pilier">
+      <div class="pilier-num">I</div>
+      <div class="pilier-title">La mission prime</div>
+      <p>Aucune considération — ni personnelle, ni émotionnelle, ni relationnelle — n'entre en conflit avec l'accomplissement de la mission. Un frère blessé est évacué si cela ne compromet pas l'objectif. Si l'objectif l'exige, il reste en position.</p>
+    </div>
+    <div class="pilier">
+      <div class="pilier-num">II</div>
+      <div class="pilier-title">Le standard ne descend pas</div>
+      <p>Les Marines Galactiques opèrent dans des conditions extrêmes. La tentation de baisser le standard face à la pression est permanente. Elle est toujours refusée. Le standard existe précisément parce que les conditions sont extrêmes. C'est dans les pires moments qu'il doit tenir.</p>
+    </div>
+    <div class="pilier">
+      <div class="pilier-num">III</div>
+      <div class="pilier-title">La froideur est une compétence</div>
+      <p>Un Marine qui panique compromet ses camarades. Un Marine qui hésite compromet sa mission. L'absence d'émotion opérationnelle — la capacité à traiter une situation de crise comme un problème technique à résoudre — est une compétence qui s'entraîne, se maintient, et se perd si elle n'est pas entretenue.</p>
+    </div>
+
+    <div class="section-title">Ce que nous ne sommes pas</div>
+    <p>Le 21st n'est pas une unité héroïque au sens romanesque du terme.</p>
+    <p>Il n'y a pas de gloire dans ce que font les Marines. Il y a des objectifs atteints ou non atteints. Il y a des missions réussies ou échouées. Il y a des frères vivants ou morts. Les Marines ne recherchent pas la reconnaissance. Ils ne cherchent pas à impressionner. Ils ne sont pas arrogants. Ils sont <strong>indifférents à l'opinion externe.</strong></p>
+
+    <div class="section-title">La fraternité selon le 21st</div>
+    <p>La fraternité du 21st n'est pas la camaraderie chaleureuse de certaines unités. Elle est plus profonde et plus froide à la fois.</p>
+    <p>Un Marine du 21st sait que le Marine à sa gauche et à sa droite feront tout pour accomplir la mission — y compris le risquer, le sacrifier, ou se sacrifier. Cette certitude n'est pas un sentiment. C'est une <strong>connaissance opérationnelle.</strong> Elle remplace la peur. Elle remplace le doute.</p>
+    <p>Quand un Marine tombe, ses frères ne pleurent pas. Ils avancent. C'est le respect le plus pur qu'ils peuvent lui rendre : prouver que son sacrifice n'a pas été inutile.</p>
+    <div class="citation"><div class="citation-text">Il n'y a pas de plus grand honneur pour un Marine que de mourir pour sauver ses frères d'armes — tant que ce sacrifice garantit l'accomplissement de la mission.</div></div>
+  </div>
+</div>
+
+<!-- ── CODE MARINE ── -->
+<div id="code" class="page">
+  <div class="page-header">
+    <div class="chapter-label">VI · Doctrine</div>
+    <div class="page-title">Le Code Marine</div>
+    <div class="page-subtitle">Loi fondamentale du 21st Corps Nova</div>
+  </div>
+  <div class="content">
+    <p style="font-style:italic; color:var(--texte-sec); font-size:16px; text-align:center; margin-bottom:40px;">Le Code Marine n'est pas un ensemble de valeurs affichées sur un mur. C'est ce que vous êtes.<br>Si vous devez le relire pour vous en souvenir, vous n'êtes pas encore un Marine.</p>
+
+    <div class="code-art"><div class="code-art-header"><div class="code-art-num">01</div>La mission avant tout</div><div class="code-art-body">Il n'y a qu'un seul objectif : accomplir la mission. Tout le reste s'y subordonne — le confort, la préférence, la sécurité personnelle, et l'opinion. Un Marine qui place son intérêt avant la mission trahit chaque homme à sa gauche et à sa droite.</div></div>
+
+    <div class="code-art"><div class="code-art-header"><div class="code-art-num">02</div>L'unité est inviolable</div><div class="code-art-body">La division ne se négocie pas. Elle n'arrive pas par accident. Elle arrive par faiblesse — l'ego, la rancune, le désaccord non résolu. Ces faiblesses ne survivent pas dans le 21st. Tout ce qui fracture l'unité est éliminé. Pas sanctionné. Éliminé.</div></div>
+
+    <div class="code-art"><div class="code-art-header"><div class="code-art-num">03</div>Le standard ne fait pas d'exception</div><div class="code-art-body">Le niveau du 21st est ce qu'il est parce qu'il s'applique à tous, tout le temps. Un Marine qui relâche ses standards "pour cette fois" est un Marine qui a décidé que ses camarades méritaient moins que le meilleur de lui-même. Ce Marine n'est pas à sa place.</div></div>
+
+    <div class="code-art"><div class="code-art-header"><div class="code-art-num">04</div>Le silence est une arme</div><div class="code-art-body">Un Marine parle pour informer. Pas pour meubler, pas pour impressionner, pas pour exister dans une conversation. Chaque mot émis est intentionnel. Le silence n'est pas un vide — c'est une posture.</div></div>
+
+    <div class="code-art"><div class="code-art-header"><div class="code-art-num">05</div>La mort n'est pas une défaite</div><div class="code-art-body">Un frère tombe. Le Marine continue. Ce n'est pas de l'insensibilité — c'est la compréhension que la meilleure façon d'honorer un mort est de finir ce pour quoi il est tombé. Le désespoir est un luxe que le 21st ne peut pas se permettre.</div></div>
+
+    <div class="code-art"><div class="code-art-header"><div class="code-art-num">06</div>La peur ne commande pas</div><div class="code-art-body">Un Marine connaît le danger. Il connaît les probabilités. Il choisit d'avancer quand même — non par inconscience, mais parce qu'il sait que ses frères avancent avec lui. Cette certitude est plus forte que la peur.</div></div>
+
+    <div class="code-art"><div class="code-art-header"><div class="code-art-num">07</div>L'obéissance est absolue dans la chaîne</div><div class="code-art-body">Un ordre légitime dans la chaîne de commandement s'exécute. Pas après réflexion. Pas après discussion. L'espace entre l'ordre et l'exécution doit être inexistant. La confiance dans la chaîne de commandement est ce qui transforme des hommes en unité de combat.</div></div>
+
+    <div class="code-art"><div class="code-art-header"><div class="code-art-num">08</div>Le Corps est engagé pour la vie</div><div class="code-art-body">Rejoindre le 21st n'est pas un essai. C'est un engagement. Quitter le Corps pour un autre régiment par choix personnel est une rupture définitive. Le 21st n'est pas une étape. Il est une destination.</div></div>
+
+    <div class="final">
+      <div class="final-title">Nous sommes des Marines.</div>
+      <div class="final-sub">Ce n'est pas un cri de ralliement. C'est une déclaration de fait.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── RP DU MARINE ── -->
+<div id="rp" class="page">
+  <div class="page-header">
+    <div class="chapter-label">VII · Doctrine</div>
+    <div class="page-title">Le RP du Marine</div>
+    <div class="page-subtitle">Ce que c'est. Comment ça fonctionne. Ce que ça exige.</div>
+  </div>
+  <div class="content">
+    <p style="font-style:italic; color:var(--texte-sec); font-size:16px; text-align:center; margin-bottom:36px;">Ce document ne vous apprend pas à jouer un Marine.<br>Il vous explique ce qu'est un Marine pour que vous compreniez ce que vous allez devoir incarner.</p>
+
+    <div class="section-title">La trinité fondamentale</div>
+    <table class="dtable">
+      <thead><tr><td>Pilier</td><td>Description</td></tr></thead>
+      <tbody>
+        <tr><td>Froideur</td><td>Un Marine ne laisse pas ses émotions affecter son comportement opérationnel. Il ne panique pas. Il ne s'enthousiasme pas. Il ne célèbre pas. Il constate, il évalue, il agit.</td></tr>
+        <tr><td>Discipline</td><td>Un Marine exécute les ordres de sa chaîne de commandement sans commentaire. Il maintient sa tenue, sa position, et ses standards dans toutes les conditions. La discipline n'est pas une contrainte — c'est le reflet d'un professionnel.</td></tr>
+        <tr><td>Altruisme opérationnel</td><td>Un Marine sacrifie sa sécurité pour ses frères et pour la mission. Pas par sentiment. Par calcul : la mission ne peut pas être accomplie seul, et les frères font de même pour lui.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">Ce que ça ressemble en jeu</div>
+    <div class="subsection-title">En opération</div>
+    <table class="rp-table">
+      <thead><tr><td>Situation</td><td>Correct ✓ / Incorrect ✗</td></tr></thead>
+      <tbody>
+        <tr><td>Signaler un contact</td><td><span class="ok">"Contact droite, un B2, 40 mètres." ✓</span><br><span class="nok">"Waouh, ce droïde était énorme !" ✗</span></td></tr>
+        <tr><td>Rendre compte</td><td><span class="ok">"Flanc gauche sécurisé, en position." ✓</span><br><span class="nok">Silence radio sans raison ✗</span></td></tr>
+        <tr><td>Exécuter un ordre</td><td><span class="ok">Ordre reçu → accusé de réception → exécution ✓</span><br><span class="nok">"Pourquoi on fait ça ?" ✗</span></td></tr>
+        <tr><td>Information inutile</td><td><span class="ok">Une information inutile n'est pas émise. Le silence est correct. ✓</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="subsection-title">Sur le Venator (hors opération)</div>
+    <p>La froideur ne signifie pas le mutisme. Les Marines s'adressent à leurs frères avec concision et précision :</p>
+    <p style="font-style:italic; color:var(--bordeaux-l); padding-left:32px;">"Tu as besoin d'aide pour ça ?"<br>"Excellent travail. Continuons."<br>"Ça ne correspond pas aux standards. Recommençons."</p>
+    <p>Pas de bavardage. Pas de légèreté. Pas de répliques hors-sujet.</p>
+
+    <div class="section-title">Ce que la froideur N'est pas</div>
+    <table class="dtable">
+      <thead><tr><td>Ce n'est PAS</td><td>Explication</td></tr></thead>
+      <tbody>
+        <tr><td>Du mutisme</td><td>Un Marine qui ne répond pas à un ordre n'est pas froid — il est inopérant.</td></tr>
+        <tr><td>De l'arrogance</td><td>Un Marine qui regarde les autres de haut trahit le principe d'altruisme.</td></tr>
+        <tr><td>De l'indifférence au danger</td><td>Il reconnaît le danger. Il choisit d'avancer quand même.</td></tr>
+        <tr><td>De la cruauté gratuite</td><td>La froideur a une fonction. Tout comportement sans fonction opérationnelle n'est pas de la froideur — c'est de la mauvaise foi.</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:16px;"><strong>La limite est nette :</strong> le RP doit être distinguable de l'irrespect. Un Marine sait faire cette distinction. Ceux qui ne la font pas ne restent pas longtemps.</p>
+
+    <div class="section-title">Psychologie opérationnelle</div>
+    <table class="dtable">
+      <thead><tr><td>Trait</td><td>Explication</td></tr></thead>
+      <tbody>
+        <tr><td>Absence de peur</td><td>Pas d'inconscience — certitude. Un Marine sait que ses frères sont à sa gauche et à sa droite. Il sait ce qu'ils feront. Cette certitude est plus forte que la peur.</td></tr>
+        <tr><td>Absence de désespoir</td><td>Un frère tombe. La réaction n'est pas émotionnelle — c'est une résolution mécanique. L'objectif reste l'objectif. Le deuil est un luxe d'après-guerre.</td></tr>
+        <tr><td>Absence d'hésitation</td><td>L'espace entre l'ordre et l'action est le plus court possible. Un Marine qui hésite doute de la chaîne — ou de lui-même. Les deux sont des problèmes à corriger.</td></tr>
+        <tr><td>Altruisme calculé</td><td>Un Marine se sacrifie si c'est opérationnellement justifié. Pas par héroïsme. Par efficacité. C'est la même logique que tout le reste.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="citation"><div class="citation-text">Ce RP est difficile. C'est intentionnel. Chaque Marine est un standard vivant. Si vous êtes prêt à le tenir, vous avez votre place ici.</div></div>
+  </div>
+</div>
+
+<!-- ── ARMURE ── -->
+<div id="armure" class="page">
+  <div class="page-header">
+    <div class="chapter-label">VIII · Équipement</div>
+    <div class="page-title">Armure et tenue</div>
+    <div class="page-subtitle">Équipement réglementaire du 21st Corps Nova</div>
+  </div>
+  <div class="content">
+    <div class="section-title">L'armure Phase II du 21st</div>
+    <p>L'armure des Marines Galactiques est une variante spécialisée de l'armure Phase II standard des clones. Elle n'a pas été conçue pour l'esthétique. Elle a été conçue pour un problème précis : comment un clone combat-il efficacement dans les environnements les plus hostiles de la galaxie ?</p>
+    <table class="dtable">
+      <thead><tr><td>Élément</td><td>Fonction</td></tr></thead>
+      <tbody>
+        <tr><td>Visière synthmesh</td><td>Masque filtrant. Protège de la neige, cendres, gaz acides, spores fongiques, particules abrasives. Maintien thermique des voies respiratoires en froid extrême. Élément le plus reconnaissable de l'armure.</td></tr>
+        <tr><td>Corps-à-corps thermique</td><td>Combinaison isotherme sous l'armure. Maintien de la température corporelle du vide spatial aux températures polaires.</td></tr>
+        <tr><td>Plastron dorsal</td><td>Protection contre les tirs légers dans l'axe de repli. Conçu pour un Corps qui avance — et qui, quand il recule, ne doit pas être tué en le faisant.</td></tr>
+        <tr><td>Coloration bordeaux et blanc</td><td>Signature chromatique du 21st. Uniformité absolue. L'individu n'est pas visible. L'unité l'est.</td></tr>
+        <tr><td>Marquages véhicules</td><td>Violets — identification de l'affiliation du Corps sur les UT-AT et autres véhicules.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">Armure de Bacara — Distinctions</div>
+    <p>L'armure de CC-1138 se distingue de celle de ses hommes. Chaque élément a une fonction opérationnelle. Bacara ne porte rien d'inutile.</p>
+    <table class="dtable">
+      <thead><tr><td>Élément distinctif</td><td>Description</td></tr></thead>
+      <tbody>
+        <tr><td>Épaulière bordeaux</td><td>Sur l'épaule droite, maintenue par un cross-strap diagonal traversant la poitrine. Identification visuelle de commandement.</td></tr>
+        <tr><td>Kama</td><td>Pièce d'armure descendant des hanches. Typique des commandants ARC. Protection supplémentaire des membres inférieurs.</td></tr>
+        <tr><td>Bandoulière de munitions</td><td>Traversant la poitrine. Capacité de munitions augmentée pour les engagements prolongés.</td></tr>
+        <tr><td>Système de chauffage dorsal</td><td>Intégré au dos. Complément du corps-à-corps thermique standard. Autonomie thermique maximale.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">Règle d'uniformité</div>
+    <div class="code-art"><div class="code-art-header"><div class="code-art-num">!</div>Standardisation absolue</div><div class="code-art-body">Aucune personnalisation d'armure n'est tolérée. L'individu s'efface dans l'unité. Un Marine qui veut se distinguer visuellement de ses frères n'a pas compris ce qu'est le 21st.<br><br><strong>Exception unique :</strong> le Chef de File désigné pour une opération peut porter une distinction visuelle de coordination tactique — uniquement dans ce rôle, uniquement à cette fin.</div></div>
+
+    <div class="section-title">Les véhicules</div>
+    <table class="dtable">
+      <thead><tr><td>Véhicule</td><td>Rôle</td></tr></thead>
+      <tbody>
+        <tr><td>UT-AT — Unstable Terrain Artillery Transport</td><td>Artillerie pour terrains instables et hostiles. Colonne vertébrale du soutien lourd. Opère là où d'autres blindés seraient immobilisés.</td></tr>
+        <tr><td>AT-OT — All Terrain Open Transport</td><td>Transport de personnel.</td></tr>
+        <tr><td>AT-RT — All Terrain Recon Transport</td><td>Reconnaissance légère.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ── ARMEMENT ── -->
+<div id="armement" class="page">
+  <div class="page-header">
+    <div class="chapter-label">IX · Équipement</div>
+    <div class="page-title">Armement</div>
+    <div class="page-subtitle">Dotation réglementaire</div>
+  </div>
+  <div class="content">
+    <p style="font-style:italic; color:var(--texte-sec);">Le 21st n'innove pas pour innover. Il utilise les meilleurs outils disponibles. Si quelque chose de supérieur existe, il l'adopte. Sinon, il maîtrise parfaitement ce qu'il a.</p>
+
+    <div class="section-title">Armement standard de tout Marine</div>
+    <table class="dtable">
+      <thead><tr><td>Arme</td><td>Données</td></tr></thead>
+      <tbody>
+        <tr><td>DC-15A — Fusil blaster clone</td><td>Portée efficace max : ~500m. Précision élevée. Puissance suffisante contre infanterie droïde et cibles légèrement blindées. Fiable dans toutes conditions climatiques — exigence absolue pour le 21st.</td></tr>
+        <tr><td>DC-15S — Carabine blaster</td><td>Arme secondaire pour situations rapprochées. Plus maniable, portée réduite, cadence augmentée. Combat urbain, boarding de vaisseau.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">Armement de commandement</div>
+    <table class="dtable">
+      <thead><tr><td>Arme</td><td>Usage</td></tr></thead>
+      <tbody>
+        <tr><td>DC-17 — Pistolet blaster</td><td>Arme de côté des commandants ARC. Bacara en porte un occasionnellement — pas en équipement systématique, contrairement à certains commandants.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">Règle opérationnelle</div>
+    <p>Chaque Marine est responsable de son armement. Il entre en opération avec son arme en état de fonctionnement parfait. Il rend compte de toute défaillance immédiatement.</p>
+    <p>La Bataille de New Bornalex a prouvé que le 21st peut se battre sans armes. Ce n'est pas une raison de négliger l'entretien. C'est une raison supplémentaire de ne jamais se retrouver dans cette situation.</p>
+  </div>
+</div>
+
+<!-- ── STRUCTURE ── -->
+<div id="structure" class="page">
+  <div class="page-header">
+    <div class="chapter-label">X · Structure</div>
+    <div class="page-title">Organisation & grades</div>
+    <div class="page-subtitle">Hiérarchie et doctrine d'emploi</div>
+  </div>
+  <div class="content">
+    <div class="section-title">Commandement</div>
+    <table class="dtable">
+      <thead><tr><td>Rôle</td><td>Titulaire</td></tr></thead>
+      <tbody>
+        <tr><td>Général Jedi</td><td>Ki-Adi-Mundi — Maître Jedi, Conseil Jedi. Commandement nominal. Direction stratégique.</td></tr>
+        <tr><td>Commandant Maréchal</td><td>CC-1138 "Bacara" — Commandement tactique. Direction des opérations. Autorité directe sur tous les Marines.</td></tr>
+        <tr><td>Commandant Senior</td><td>CC-1171 "Keller" — Adjoint direct. Commandement des détachements indépendants.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">Hiérarchie — Adaptation serveur</div>
+    <table class="grade-table">
+      <tr><td>Grade</td><td>Effectif</td><td>Rôle</td></tr>
+      <tr class="grade-off"><td>Commandant Maréchal</td><td>×1</td><td>Commandement suprême du Corps</td></tr>
+      <tr class="grade-off"><td>Commandant Sénior</td><td>×1</td><td>Adjoint du Maréchal, supervision des officiers</td></tr>
+      <tr class="grade-off"><td>Commandant</td><td>×1</td><td>Commandement de compagnie</td></tr>
+      <tr class="grade-off"><td>Major</td><td>×1</td><td>Coordination inter-sections</td></tr>
+      <tr class="grade-off"><td>Capitaine</td><td>×2</td><td>Commandement de section</td></tr>
+      <tr class="grade-off"><td>Lieutenant</td><td>×2</td><td>Commandement de section adjoint</td></tr>
+      <tr class="grade-so"><td>Adjudant-Chef</td><td>×2</td><td>SO supérieur — expérience, encadrement</td></tr>
+      <tr class="grade-so"><td>Adjudant</td><td>×2</td><td>SO confirmé</td></tr>
+      <tr class="grade-so"><td>Sergent-Chef</td><td>×4</td><td>Commandement de groupe</td></tr>
+      <tr class="grade-so"><td>Sergent</td><td>×4</td><td>Commandement de groupe adjoint</td></tr>
+      <tr><td>Caporal-Chef 1ère Classe</td><td>—</td><td>Senior HdR</td></tr>
+      <tr><td>Caporal-Chef</td><td>—</td><td>HdR confirmé</td></tr>
+      <tr><td>Caporal</td><td>—</td><td>HdR qualifié</td></tr>
+      <tr><td>Clone Trooper 1ère Classe</td><td>—</td><td>Soldat confirmé</td></tr>
+      <tr><td>Clone Trooper</td><td>—</td><td>Soldat de base</td></tr>
+    </table>
+
+    <div class="section-title">Doctrine d'emploi</div>
+    <table class="dtable">
+      <thead><tr><td>Mission</td><td>Description</td></tr></thead>
+      <tbody>
+        <tr><td>Combat en milieu difficile</td><td>Premier choix quand le théâtre est hostile à l'infanterie standard. Températures extrêmes, terrain instable, environnements toxiques.</td></tr>
+        <tr><td>Siège et percée</td><td>Puissance de feu soutenue, résilience prolongée. Positions défendues prises méthodiquement.</td></tr>
+        <tr><td>Appui lourd</td><td>Mortiers, UT-AT, armes anti-blindage. Capacités absentes des unités d'infanterie légère.</td></tr>
+        <tr><td>Défense du Venator</td><td>Résistance aux abordages. Protection de la salle des machines et noyaux. Résistance thermique de l'équipement.</td></tr>
+        <tr><td>Limites connues</td><td>Pas de reconnaissance. Pas de discrétion. Pas de rapidité. L'État-Major compense. Le 21st ne prétend pas être ce qu'il n'est pas.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ── RÈGLEMENT ── -->
+<div id="reglement" class="page">
+  <div class="page-header">
+    <div class="chapter-label">XI · Règlement</div>
+    <div class="page-title">Règlement</div>
+    <div class="page-subtitle">Des règles de fer pour une volonté d'acier.</div>
+  </div>
+  <div class="content">
+    <div class="section-title">I — Engagement et appartenance</div>
+    <div class="article"><div class="article-header"><span>Art. 1</span>Engagement définitif</div><p>Rejoindre le 21st est un engagement permanent. Un Marine qui quitte volontairement le régiment pour en rejoindre un autre ne sera jamais réintégré.</p><div class="exception"><strong>Exception :</strong> Un départ motivé par une pause de jeu (arrêt de Gmod) ou la fermeture d'un serveur n'est pas considéré comme une rupture. Le retour est autorisé dans ce cas.</div></div>
+    <div class="article"><div class="article-header"><span>Art. 2</span>Devoir d'accompagnement au départ</div><p>Un Marine qui part honorablement n'est pas rejeté par le 21st. L'unité l'aide à trouver sa voie dans un autre régiment et facilite son intégration. C'est le respect dû à ses services.</p></div>
+
+    <div class="section-title">II — Uniformité et équipement</div>
+    <div class="article"><div class="article-header"><span>Art. 3</span>Standardisation absolue</div><p>Aucune armure personnalisée n'est tolérée. Aucun équipement individuel ne se distingue de celui de l'unité.</p><div class="exception"><strong>Exception tactique :</strong> Le Chef de File désigné pour une opération peut porter une distinction visuelle de coordination tactique. Uniquement dans ce rôle. Uniquement à cette fin.</div></div>
+    <div class="article"><div class="article-header"><span>Art. 4</span>Polyvalence obligatoire</div><p>Il n'existe pas de classes fixes dans le 21st. Tout Marine est capable de tout faire. La spécialisation temporaire s'acquiert par formation et s'exerce selon les missions — elle ne définit pas l'identité du Marine.</p></div>
+
+    <div class="section-title">III — Discipline et immersion</div>
+    <div class="article"><div class="article-header"><span>Art. 5</span>Immersion totale en opération</div><p>Le HRP vocal ou comportemental est strictement interdit en opération et dans les zones communes du vaisseau.</p><div class="exception"><strong>Zones tolérées :</strong> Le dortoir des Marines et les canaux sécurisés (Discord). En dehors de ces espaces, tout comportement hors-RP est une faute.</div></div>
+    <div class="article"><div class="article-header"><span>Art. 6</span>Interdiction du double emploi</div><p>Un Marine en service ne peut pas occuper un autre poste serveur simultanément. Être en service signifie être disponible à 100 % pour l'unité.</p></div>
+
+    <div class="section-title">IV — Fraternité et hiérarchie</div>
+    <div class="article"><div class="article-header"><span>Art. 7</span>Tolérance zéro aux conflits internes</div><p>Tout conflit entre deux membres du 21st — quelle qu'en soit la nature ou l'ampleur — entraîne le renvoi immédiat des deux parties. Il n'y a pas de "petite dispute". Tout ce qui fracture l'unité est traité à la racine.</p></div>
+    <div class="article"><div class="article-header"><span>Art. 8</span>Devoir d'encadrement des officiers</div><p>Un officier disponible quand des Marines sont seuls ou en sous-effectif a l'obligation de se connecter pour les encadrer. Le grade n'est pas un privilège — c'est une responsabilité permanente envers ses hommes.</p></div>
+
+    <div class="section-title">V — Conduite hors-jeu</div>
+    <div class="article"><div class="article-header"><span>Art. 9</span>Respect mutuel sur Discord</div><p>Les insultes, l'agressivité, les cris sont proscrits. Le respect est la base de la communauté, pas une option.</p></div>
+    <div class="article"><div class="article-header"><span>Art. 10</span>Solidarité hors-jeu</div><p>Un camarade en difficulté — technique ou autre — n'est pas laissé seul. L'unité fait ce qu'elle peut pour l'aider ou l'orienter.</p></div>
+  </div>
+</div>
+
+<!-- ── MÉMORIAL ── -->
+<div id="memorial" class="page">
+  <div class="page-header">
+    <div class="chapter-label">XII · Mémoire</div>
+    <div class="page-title">Mémorial</div>
+    <div class="page-subtitle">À ceux qui ont bâti avant nous.</div>
+  </div>
+  <div class="content">
+    <p>Chaque Marine laisse quelque chose derrière lui. Une formation développée. Un protocole écrit. Un standard établi. Une manière de faire qui survit après leur départ.</p>
+    <p>Ce n'est pas de la nostalgie. C'est la reconnaissance que le 21st que nous sommes aujourd'hui a été construit par ceux qui étaient là avant. Ils ont défriché. Nous tenons le terrain qu'ils ont conquis.</p>
+    <div class="rule"></div>
+    <div class="placeholder"><p>[ Section à compléter par le commandement ]<br>Format : Nom de guerre — Grade — Contribution — Statut</p></div>
+  </div>
+</div>
+
+<!-- ── MÉDAILLES ── -->
+<div id="medailles" class="page">
+  <div class="page-header">
+    <div class="chapter-label">XII · Mémoire</div>
+    <div class="page-title">Médailles et distinctions</div>
+    <div class="page-subtitle">Attribuées pour des actes précis, documentés, jugés par le commandement.</div>
+  </div>
+  <div class="content">
+    <p>Les médailles du 21st ne sont pas distribuées pour la participation. Elles sont attribuées pour des actes précis, documentés, et jugés par le commandement.</p>
+    <div class="rule"></div>
+    <div class="placeholder"><p>[ Section à renseigner ]<br>Format : Nom · Critère d'attribution · Autorité · Nombre maximum</p></div>
+  </div>
+</div>
+
+<!-- ── HISTOIRES ── -->
+<div id="histoires" class="page">
+  <div class="page-header">
+    <div class="chapter-label">XII · Mémoire</div>
+    <div class="page-title">Histoires</div>
+    <div class="page-subtitle">Rapports de combat avec une âme.</div>
+  </div>
+  <div class="content">
+    <p>Cette section regroupe les récits écrits de l'unité — missions notables, situations RP marquantes, moments qui ont défini ce que le 21st est.</p>
+    <p>Le ton suit celui du Corps : factuel, sans emphase. Un récit du 21st n'est pas un roman. C'est un rapport de combat avec une âme.</p>
+    <div class="rule"></div>
+    <div class="placeholder"><p>[ Section à alimenter par les membres de la communauté ]</p></div>
+    <div class="final">
+      <div class="final-title">Force &amp; Unité</div>
+      <div class="final-sub">21st Corps Nova — Marines Galactiques — 4e Armée de Secteur</div>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(a => a.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(a => {
+    if (a.getAttribute('onclick') === `show('${id}')`) a.classList.add('active');
+  });
+  document.querySelector('.main').scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
